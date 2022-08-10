@@ -1,7 +1,7 @@
-{% extends 'secretary\secretaryHome.html' %}
+{% extends 'headveterinarian\headVetHome.html' %}
 {% load static %}
 
-{% block content %}
+{% block content %} 
 
 <style>
     /* Google Font Import - Poppins */
@@ -9,19 +9,33 @@
 
 
 
+    .bodyhead-container {
+        padding-top: 20px;
+        padding-bottom: 50px;
+
+    }
+
+    .bodyhead-container label {
+
+        display: block;
+
+
+    }
+
     .bodyhead {
         font-family: 'Poppins';
         font-style: normal;
         font-weight: 600;
         font-size: 29px;
         color: #0F416F;
-        padding-bottom: 50px;
+        padding-bottom: 0px;
+        padding: 0px;
+        line-height: 15px;
 
     }
 
-    .bodyhead .back {
-        font-size: 25px;
-        padding-right: 20px;
+    .desc {
+        font-size: 12px;
     }
 
     /*add pets*/
@@ -301,7 +315,8 @@
 </style>
 
 <!--BODY HEAD-->
-<div class="bodyhead"></a>Service Reports</div>
+<div class="bodyhead-container"><label class="bodyhead">Service Reports </label><label class="desc">Availed Services
+   </label></div>
 <!--END BODY HEAD-->
 
 <div class="row">

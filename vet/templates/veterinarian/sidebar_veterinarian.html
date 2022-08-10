@@ -99,7 +99,7 @@
 
             {% endif %}"> 
             
-            <i class="bx bxs-dog icon 
+            <i class="bx bx-capsule icon 
             
             {% if sideb == 'services_veterinarian' %} activeicon 
             {% elif sideb == 'vet_add_pets' %} activeicon 
@@ -127,8 +127,8 @@
         </li>
         <i class=""></i>
 
-        <li class="dropdown">
-            <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu-sidebar
+        <li>
+            <a href="{% url 'vet_upcoming_app' %}" class="menu-sidebar
             {% if sideb == 'vet_upcoming_app' %} active 
         
             {% endif %}">
@@ -139,27 +139,9 @@
                 {% endif %}
                 
                 "></i><span>Schedule</span></a>
-            <ul class="collapse list-unstyled menu" id="homeSubmenu1">
-                <li>
-                    <a href="{% url 'vet_upcoming_app' %}">Appointments</a>
-                </li>
-               
-            </ul>
+          
         </li>
 
-        <li class="dropdown">
-            <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu-sidebar">
-                <i class='bx bx-history icon'></i><span>History</span></a>
-            <ul class="collapse list-unstyled menu" id="pageSubmenu2">
-                <li>
-                    <a href="#">Transaction History</a>
-                </li>
-                <li>
-                    <a href="#">Appointment History</a>
-                </li>
-
-            </ul>
-        </li>
     </ul>
 
     <div class="bottom-content">

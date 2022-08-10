@@ -1,4 +1,4 @@
-{% extends 'secretary\secretaryHome.html' %}
+{% extends 'headveterinarian\headVetHome.html' %}
 {% load static %}
 
 {% block content %}
@@ -9,19 +9,34 @@
 
 
 
+ 
+    .bodyhead-container {
+        padding-top: 20px;
+        padding-bottom: 50px;
+
+    }
+
+    .bodyhead-container label {
+
+        display: block;
+
+
+    }
+
     .bodyhead {
         font-family: 'Poppins';
         font-style: normal;
         font-weight: 600;
         font-size: 29px;
         color: #0F416F;
-        padding-bottom: 50px;
+        padding-bottom: 0px;
+        padding: 0px;
+        line-height: 15px;
 
     }
 
-    .bodyhead .back {
-        font-size: 25px;
-        padding-right: 20px;
+    .desc {
+        font-size: 12px;
     }
 
     /*add pets*/
@@ -308,8 +323,10 @@
 {% endif %}
 
 <!--BODY HEAD-->
-<div class="bodyhead"></a>Transaction Reports</div>
+<div class="bodyhead-container"><label class="bodyhead">Transaction Reports </label><label class="desc">Transactions
+</label></div>
 <!--END BODY HEAD-->
+
 <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6">
         <div class="dropdownn">

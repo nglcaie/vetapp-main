@@ -95,8 +95,8 @@
 
            
             {% endif %}">
-
-                <i class="bx bxs-dog icon 
+           
+                <i class="bx bx-capsule icon
             {% if sideb == 'head_patientsTab' %} activeicon 
             {% elif sideb == 'head_vet_add_pets' %} activeicon
             {% elif sideb == 'head_view_record' %} activeicon
@@ -127,58 +127,46 @@
         </li>
         <i class=""></i>
 
-        <li class="dropdown">
-            <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu-sidebar
+        <li>
+            <a href="{% url 'headvet_upcoming_app' %}" class="menu-sidebar
             {% if sideb == 'headvet_upcoming_app' %} active 
             {% endif %}">
                 <i class="bx bx-calendar-alt icon
                 {% if sideb == 'headvet_upcoming_app' %} activeicon 
                 {% endif %}">
                 </i><span>Schedule</span></a>
-            <ul class="collapse list-unstyled menu" id="homeSubmenu1">
-                <li>
-                    <a href="{% url 'headvet_upcoming_app' %}">Upcoming Appointments</a>
-                </li>
-            </ul>
+
         </li>
 
 
         <li class="dropdown">
-            <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu-sidebar">
-                <i class='bx bx-file icon'></i><span>Reports</span></a>
+            <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu-sidebar
+            {% if sideb == 'transaction_reports' %} active 
+            {% elif sideb == 'service_reports' %} active
+            {% elif sideb == 'product_reports' %} active
+            {% endif %}">
+                <i class="bx bx-file icon {% if sideb == 'transaction_reports' %} activeicon
+                {% elif sideb == 'service_reports' %} activeicon
+                {% elif sideb == 'product_reports' %} activeicon
+                {% endif %}"></i>
+                </i><span>Reports</span></a>
             <ul class="collapse list-unstyled menu" id="homeSubmenu2">
                 <li>
-                    <a href="{% url 'head_service_reports' %}" >Services Reports</a>
+                    <a href="{% url 'head_service_reports' %}">Services Reports</a>
                 </li>
                 <li>
-                    <a href="{% url 'head_product_reports' %}">Product Reports</a>
+                    <a href="{% url 'head_product_reports' %}">Inventory Reports</a>
                 </li>
+
+
                 <li>
-                    <a href="{% url 'inventory_summary' %}" target="_blank">Inventory Summary</a>
-                </li>
-                <li>
-                    <a href="{% url 'all_products_reports' %}" target="_blank">Inventory Reports</a>
-                </li>
-                <li>
-                    <a href="{% url 'head_transaction_reports' %}" >Transaction Reports</a>
+                    <a href="{% url 'head_transaction_reports' %}">Transaction Reports</a>
                 </li>
             </ul>
         </li>
 
 
-        <li class="dropdown">
-            <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu-sidebar">
-                <i class='bx bx-history icon'></i><span>History</span></a>
-            <ul class="collapse list-unstyled menu" id="pageSubmenu3">
-                <li>
-                    <a href="#">Transaction History</a>
-                </li>
-                <li>
-                    <a href="#">Appointment History</a>
-                </li>
 
-            </ul>
-        </li>
     </ul>
 
     <div class="bottom-content">
