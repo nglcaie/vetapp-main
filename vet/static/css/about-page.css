@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@1,100&family=Cedarville+Cursive&family=Cormorant+Garamond:wght@300&family=Inter:wght@100;200&family=Nunito:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@1,100&family=Cedarville+Cursive&family=Cormorant+Garamond:wght@300&family=Inter:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@1,100&family=Cedarville+Cursive&family=Cormorant+Garamond:wght@300&family=Inter:wght@100;200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@1,100&family=Cedarville+Cursive&family=Cormorant+Garamond:wght@300&family=Inter:wght@100;200&family=Nunito:wght@400;800&display=swap');
+/*font weight 500*/
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@1,100&family=Cedarville+Cursive&family=Cormorant+Garamond:wght@300&family=Inter:wght@100;200&family=Nunito:wght@400;500;800&display=swap');
+
+
+body {
+    background-image: url('/static/image/landing-bg.png');
+    overflow-y: hidden;
+ 	overflow-x: hidden;
+	margin: 0px;
+	position: relative;
+    width: 1366px;
+    background-repeat: no-repeat;
+    background-size: auto;
+    height: 786px;
+    
+}
+
+body::after{
+	content: '';
+	display: block;
+	height: 500px;
+}
+
+
+
+/**************** NAV BAR ****************/
+
+
+.navbar{
+    height: 96px;
+    background-image: url('/static/image/navbarbg.png');
+    background-repeat: no-repeat;
+    background-color: white;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+    margin-top: 0%;
+	margin-left: 570px;  
+}
+  
+li {
+    font-family: 'Nunito';
+	float: left;
+	margin: 40px -15px 0px 0px;
+	font-style: normal;
+	font-weight: 800;
+	font-size: 15px;
+    /****margin-left: 84px; kapag 1920 x 1080***/
+    margin-left: 74px;
+}
+
+
+a:link {
+    color: black;
+    text-decoration: none;
+    
+}
+  
+a:visited {
+    color: black;
+    text-decoration: none;
+    
+}
+  
+  
+li a:hover{
+	color: #49C1E6;
+}
+  
+li.dropdown {
+	display: inline-block;
+}
+
+/* bone img */
+.navbar li a span {
+    display: none;
+}
+
+.navbar li a:hover span {
+    display: block;
+    position: absolute;
+    top: -80px;
+}
+
+button{
+    font-family: 'Nunito';
+    font-weight: 800;
+    color: white;
+    border-color: #49C1E6;
+    border-style: solid;
+    height: 40px;
+    width: 74px;
+    left: 1195px;
+    margin-top: -15px;
+    border-radius: 39px;
+    padding: 10px, 15px, 10px, 15px;
+    background-color: #49C1E6;
+}
+
+.button:hover {
+    color:#49C1E6;
+    background-color: white;
+    border-color: #49C1E6;
+    transition: 0.7s;
+}
+
+.welcome-banner{
+    margin-top: 279px;
+    margin-left: 110px;
+}
+span{
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 60px;
+    line-height: 63px;
+    margin-top: 100px;
+}
+
+.lorem-ipsum{
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+
+    color: #000000;
+}
+
+.forms-bg{
+    margin-top: 60px;
+    margin-left: 100px;
+}
+
+/**************** END OF NAV BAR ****************/
+
+/**************** CONTENT ***********************/
+.about-banner{
+    margin-top: 100px;
+    text-align: center;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 60px;
+}
+.button2{
+    font-family: 'Inter';
+    font-weight: 800;
+    font-style: normal;
+    color: white;
+    border-color: #49C1E6;
+    border-style: solid;
+    height: 40px;
+    width: 202px;
+    margin-left: 0px;
+    margin-top: -10px;
+    border-radius: 20px;
+    padding: 10px, 15px, 10px, 15px;
+    background: #49C1E6;
+}
+
+.button2:hover {
+    color: #0F416F;
+    background-color: white;
+    border-color: #0F416F;
+    transition: 0.7s;
+}
+
+.wa-ve{
+    bottom: 0;
+}
+

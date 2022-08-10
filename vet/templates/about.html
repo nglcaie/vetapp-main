@@ -1,0 +1,201 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=5" />
+
+  <title>Landing Page</title>
+
+  <!--  CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,700">
+ 
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet"href="{% static 'css/header-2.css' %}">
+
+
+      <!----===== Boxicons CSS ===== -->
+      <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<style>
+  .about-banner {
+    margin-top: 100px;
+    text-align: center;
+    font-family: 'poppins';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 60px;
+  }
+
+  .know-our-services-BTN {
+    font-size: 14px;
+    font-family: 'poppins';
+    font-weight: 800;
+    font-style: normal;
+    color: white;
+    border-color: #49C1E6;
+    border-style: solid;
+    height: 40px;
+    width: 202px;
+    margin-left: 0px;
+    margin-top: -10px;
+    border-radius: 20px;
+    padding: 10px, 15px, 10px, 15px;
+    background: #49C1E6;
+  }
+
+  .know-our-services-BTN:hover {
+    color: #0F416F;
+    background-color: white;
+    border-color: #0F416F;
+    transition: 0.7s;
+  }
+
+  .lorem-ipsum {
+    font-family: 'poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+
+    color: #000000;
+  }
+</style>
+
+<body class="websiteBody" style="background-image: url(background.png);">
+
+
+
+
+
+  <div id="Frame" class="Frame">
+
+        <!-- Header Start -->
+        <header class="site-header">
+          <div class="wrapper site-header__wrapper">
+            <a href="#" class="brand"><img src="{% static 'image/logo.png' %}" height="50px"></a>
+            <nav class="nav">
+              <button class="nav__toggle" aria-expanded="false" type="button">
+                <i class='bx bx-menu' style="color: #fff; font-size: 30px;"></i>
+              </button>
+              <ul class="nav__wrapper">
+                <li class="nav__item x"><a href="{% url 'index' %}">Home</a></li>
+                <li class="nav__item x"><a href="{% url 'aboutUs' %}">About</a></li>
+                <li class="nav__item x"><a  href="{% url 'services' %}">Services</a></li>
+                <li class="nav__item x"><a href="{% url 'contact_us' %}">Contacts</a></li>
+                <li class="nav__item" ><a href="{% url 'login' %}"> <button class="button" type="button">Log in</button></a></li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+        <!-- Header End -->
+
+
+
+    <!-------------------------------- CONTENT --------------------------------------->
+
+    <div class="content row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+
+            <!--INPUT YOUR CSS CODES HERE-->
+      <div class="about-banner">
+        <span class="about-banner"> About Us </span><br><br>
+        <p class="lorem-ipsum"> Dagupan Veterinary Clinic is a privately owned
+          company that started in 1989.<br> In 2007, the clinic was renamed Dagupan Animal Clinic.
+          Small animal companions <br>such as hamsters, rabbits, and some exotic animals are among<br>
+          the company's expertise.</p>
+
+
+
+        <a href="{% url 'services' %}"><button class="know-our-services-BTN" type="button">Know our Services</button></a>
+      </div>
+      </div>
+
+  
+
+
+    </div>
+
+
+    <div>
+      <br> <br> 
+      <img src="{% static 'image/wave.png' %}" width="100%">
+    </div>
+
+
+    <!-------------------------------- FOOTER -------------------------------->
+
+    <footer>
+      <table class="footer-table">
+        <tr>
+          <th style="width:35%">
+            <p class="name-footer">Dagupan Animal Clinic </p>
+          </th>
+          <th style="width:25%"><b>Contact Information</b> </th>
+          <th style="width:13%"> Opening Hours</th>
+          <th style="width: 10%"> Navigate</th>
+          <th> Social Media</th>
+        </tr>
+        <tr>
+          <td>
+            Privately owned clinic catering primary services and <br> activities for small companion
+            animals.
+            <br><br><br><br><br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <b>© 2022 Dagupan Animal Clinic. All Right Reserved.</b>
+          </td>
+          <td class="words">
+            <img src="{% static 'image/loc.png' %}" style="vertical-align: middle"> &nbsp;&nbsp; 1743 Dagupan St.,
+            Tondo,
+            Manila,
+            Philippines <br>
+            <br><img src="{% static 'image/phone.png' %}" style="vertical-align: middle"> &nbsp;&nbsp;Res Tel. Nos:
+            703-7067 /
+            255-5953 / 703-5519 <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Clinic Nos. 0927-113-9135 / 0933-823-9772
+          </td>
+          <td>
+            Monday to Saturday <br>
+            8:30 am - 5:30 pm <br> <br>
+            Sunday <br>
+            9:00 am -12:00 pm
+          </td>
+          <td>
+            <a href="#">Home </a> <br>
+            <a href="#">About </a> <br>
+            <a href="#">Services </a> <br>
+            <a href="#">Products </a> <br>
+            <a href="#">Contact </a> <br>
+            <a href="#">Log-in </a> <br>
+          </td>
+          <td>
+            <img src="{% static 'image/fb.png' %}" style="vertical-align: middle">&nbsp;&nbsp;<a href="#">
+              Facebook</a>
+          </td>
+        </tr>
+      </table>
+    </footer>
+
+    <!-------------------------------- END OF FOOTER -------------------------------->
+  </div>
+
+
+
+</body>
+
+</html>

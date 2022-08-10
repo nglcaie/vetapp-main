@@ -1,0 +1,521 @@
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+
+<div class="alert alert-danger alert-dismissible fade show " role="alert">
+    <label class="error">
+        {{message}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+
+{% endif %}
+
+{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+<div class="alert  alert-success alert-dismissible fade show " role="alert">
+    <label class="success">
+        {{message}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+{% endif %}
+
+{% endfor %}
+{% endif %}
+<Style>
+    .bodyhead {
+       font-family: 'Poppins';
+       font-style: normal;
+       font-weight: 500;
+       font-size: 29px;
+       color: #0F416F;
+ 
+ 
+    }
+ 
+    .bodyhead .back {
+       font-size: 30px;
+       padding-right: 20px;
+       color: #0F416F;
+    }
+ 
+    /*table*/
+ 
+    /*table scroll*/
+    .tablepanel::-webkit-scrollbar {
+       width: 0px;
+       border-radius: 0 0px 10px 0;
+    }
+ 
+    .tablepanel::-webkit-scrollbar-thumb {
+       border-radius: 0 0px 10px 0;
+    }
+ 
+ 
+    .tablepanel {
+ 
+       width: 100%;
+       height: auto;
+       margin: auto;
+       border: solid 1px #B0B0B0;
+ 
+ 
+       /**height: 170px;**/
+ 
+ 
+ 
+ 
+       background: #FFFFFF;
+ 
+    }
+ 
+    .table-inner .table_data td,
+    .table-inner .table_head th {
+       padding-left: 30px;
+    }
+ 
+ 
+ 
+    .table-inner table .table_head th {
+       font-size: 17.5px;
+    }
+ 
+    .table-inner table tr th {
+       font-family: 'Poppins';
+       font-style: normal;
+       font-weight: 600;
+       font-size: 16px;
+       line-height: 30px;
+       align-items: center;
+       color: #FFFFFF;
+    }
+ 
+    .table_head {
+       color: #ffff;
+       height: 40px;
+       background-color: #8292A0;
+    }
+ 
+    .table_headd {
+       position: sticky;
+       top: 0;
+       cursor: context-menu;
+       height: 40px;
+       background-color: #EFF1F3;
+       border-radius: 0px 10px 10px 0px;
+       color: #8292A0;
+       ;
+    }
+ 
+    .table-inner .table_data {
+ 
+       border-bottom: 1px solid #B0B0B0;
+    }
+ 
+    .table-inner .table_data td {
+       font-family: 'Poppins';
+       font-style: normal;
+       font-weight: 400;
+       font-size: 14px;
+       padding-top: 8px;
+       padding-bottom: 8px;
+ 
+       width: 30px;
+ 
+    }
+ 
+    .table-inner {
+       width: 100%;
+    }
+ 
+    .table-inner .table_headd th {
+       padding-left: 30px;
+       color: #0F416F;
+       font-weight: 600;
+       font-size: 15px;
+    }
+ 
+ 
+    .field-label {
+       font-family: 'Poppins';
+       font-style: normal;
+       font-weight: 500;
+       font-size: 15px;
+ 
+       color: #0F416F;
+    }
+ 
+ 
+    .chargesliplabel {
+       font-family: 'Poppins';
+       font-style: normal;
+       font-weight: 600;
+       font-size: 15px;
+       line-height: 19px;
+       color: #0F416F;
+ 
+       padding-right: 10px;
+ 
+    }
+ 
+    .chargeslipfield {
+       font-family: 'Poppins';
+       font-style: normal;
+       font-weight: 500;
+       font-size: 14px;
+       line-height: 19px;
+ 
+ 
+       padding-right: 10px;
+    }
+ 
+    .chargesliplabel1 {
+       font-family: 'Poppins';
+       font-style: normal;
+       font-weight: 400;
+       font-size: 13px;
+       line-height: 22px;
+ 
+       color: #0F416F;
+ 
+ 
+ 
+ 
+    }
+ 
+    .lbl1 {
+       width: 220px;
+    }
+ 
+    .icon1 {
+       font-family: 'Poppins';
+ 
+       font-size: 20px;
+       color: #0F416F;
+ 
+ 
+    }
+ 
+    .printBTN span {
+       font-family: 'Poppins';
+       font-weight: 500;
+       font-size: 15px;
+       color: #0F416F;
+       display: absolute;
+       top: 0;
+ 
+ 
+    }
+ 
+    .printBTN {
+       float: right;
+       padding-top: 5px;
+       line-height: 20px;
+       border-radius: 10px;
+       border: none;
+       color: #0F416F;
+       height: 30px;
+       width: 100px;
+       background-color: #CEE8FC;
+       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+ </Style>
+
+
+<head>
+    <link rel="stylesheet" href="{% static '\css\secretary\billing\billing_view.css' %}">
+</head>
+
+
+
+<!--head-->
+<div class="bodyhead">Charge Slip</div>
+<!--END head-->
+
+<div class="row">
+    <div class="col-12">
+       <form action='' method="post">
+          <!--bago toh-->
+          {% csrf_token %}
+          <button type="submit" class="printBTN" name="filter" value="Report" target="_blank"><i
+                class='bx bx-printer icon1'>&nbsp;<span>Print</span></i></button> <br>
+       </form>
+    </div>
+ </div>
+ <br>
+
+{%if chargeslip.status == 'Fully Paid' %}
+
+{% else %}
+
+<a href="{% url 'transact_payment' chargeslip.id  %}" class="addUserBTN">Create Billing</a><br>
+{% endif %}
+<hr>
+
+
+
+
+
+<div class="row"
+    style="background-color: white; height: auto;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border-radius: 15px; padding: 80px;">
+    <table style="width: 100%; margin-bottom: 3%;  border-bottom: 1px solid  #b0b0b0;">
+        <tr>
+            <td>
+                <img src="{% static 'image/logo.png' %}" width="120px" style="margin-bottom: 5%;">
+            </td>
+            <td class="field-label" style="text-align:right; font-size:15px">
+                Transaction Code: {{chargeslip.code}}
+            </td>
+        </tr>
+    </table>
+
+
+
+
+    <div class="tablepanel">
+
+        <table class="table-inner" style=" width: 100%;">
+
+            <!-- TABLE HEAD -->
+            <tr class="table_head">
+                <th colspan="4">Services</th>
+            </tr>
+            <!-- END TABLE HEAD -->
+
+
+            <!-- TABLE HEAD -->
+            <tr class="table_headd">
+
+                <th style="color: #0F416F;">Code</th>
+                <th style="color: #0F416F;">Service</th>
+                <th style="color: #0F416F;">Price</th>
+                <th style="color: #0F416F;">Total</th>
+
+            </tr>
+            <!-- END TABLE HEAD -->
+
+            <!-- TABLE DATA -->
+
+
+            {% for service in servicequery %}
+            <tr class="table_data">
+                <td>{{service.servicecode}}</td>
+                <td>{{service.service}}</td>
+                <td>{{service.service.price}}</td>
+                <td>{{service.service.price}}</td>
+
+            </tr>
+            {% endfor %}
+
+
+            <!--END TABLE DATA-->
+        </table>
+    </div>
+
+    <div class="tablepanel">
+        <table class="table-inner" style=" width: 100%;">
+
+            <!-- TABLE HEAD -->
+            <tr class="table_head">
+                <th colspan="4">Products</th>
+            </tr>
+            <!-- END TABLE HEAD -->
+
+
+            <!-- TABLE HEAD -->
+            <tr class="table_headd">
+
+                <th style="color: #0F416F;">Code</th>
+                <th style="color: #0F416F;">Service</th>
+                <th style="color: #0F416F;">Price</th>
+                <th style="color: #0F416F;">Total</th>
+
+            </tr>
+            <!-- END TABLE HEAD -->
+
+            <!-- TABLE DATA -->
+
+
+            {% for product in productquery %}
+            <tr class="table_data">
+                <td>{{product.product}} </td>
+                <td>{{product.quantity}} </td>
+                <td>{{product.product.product.price}}</td>
+                <td>{{product.total}}</td>
+
+            </tr>
+            {% endfor %}
+
+
+            <!--END TABLE DATA-->
+        </table>
+    </div>
+    <br><br><br>
+
+    <div class="tablepanel" style="border: none; padding-top: 50px;">
+        <table class="table-inner" style=" width: 100%;">
+
+
+            <!-- TABLE DATA -->
+
+
+            <tr>
+                <td colspan="2" style="width: 250px;"></td>
+                <td style="width: 220px"> <label class="chargesliplabel">TOTAL SERVICE AMOUNT: </label> </td>
+                <td> <label class="chargeslipfield">{{all_service_total}}</label></td>
+            </tr>
+
+            <tr>
+                <td colspan="2"></td>
+                <td> <label class="chargesliplabel">TOTAL PRODUCT AMOUNT:</label> </td>
+                <td> {%if all_prod_total == 0 %}
+                    {% else %}
+                    <label class="chargeslipfield">{{all_prod_total}}</label><br>
+                    {% endif %}
+                </td>
+            </tr>
+
+
+            <tr>
+                <td colspan="2"></td>
+                <td> <label class="chargesliplabel ttl" style="font-weight:700">TOTAL AMOUNT:</label></td>
+                <td> <label class="chargeslipfield">{{chargeslip.totalAmount}}</label></td>
+            </tr>
+
+
+            <tr>
+                <td colspan="2"></td>
+                <td> <label class="chargesliplabel bs">Balance:</label></td>
+                <td> <label class="chargeslipfield">{{chargeslip.balance}}</label></td>
+            </tr>
+
+            <tr>
+                <td colspan="2"></td>
+                <td> <label class="chargesliplabel bs">Status:</label></td>
+                <td> <label class="chargeslipfield">{{chargeslip.status}}</label></td>
+            </tr>
+
+
+
+            <!--END TABLE DATA-->
+        </table>
+    </div>  </div>
+
+
+    <hr>
+    <div class="row"
+       style="background-color: white; height: auto;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border-radius: 15px; padding: 80px;">
+       <table style="width: 100%; margin-bottom: 3%;  border-bottom: 1px solid  #b0b0b0;">
+          <tr>
+             <td>
+                <img src="{% static 'image/logo.png' %}" width="120px" style="margin-bottom: 5%;">
+             </td>
+             <td class="field-label" style="text-align:left; font-size:15px; font-weight: 700;">
+                Payment Transaction
+             </td>
+          </tr>
+       </table>
+    
+       <p style="text-align:left; font-size:15px; font-weight: 700;">Balance: {{chargeslip.balance}}</p>
+       <table class="table-inner">
+    
+          <!-- TABLE HEAD -->
+          <tr class="table_head">
+             <th colspan="4"> Payment Transaction</th>
+          </tr>
+          <!-- END TABLE HEAD -->
+    
+    
+          <!-- TABLE DATA -->
+    
+          <style>
+             .transaction {
+                width: 500px;
+             }
+    
+             .transaction tr {
+                line-height: 10px;
+             }
+    
+             .transaction tr .label {
+                font-weight: 600;
+             }
+          </style>
+    
+          {% for trans in transact %}
+          <tr class="table_data" style="height: 20px;">
+             <td>
+                <table class="transaction">
+                   <tr>
+                      <td class="label">
+                         Date:
+                      </td>
+                      <td>
+                         {{trans.date|date:"N d Y"}}
+                      </td>
+    
+                   </tr>
+                   <tr>
+                      <td class="label">
+                         Total Amount:
+                      </td>
+                      <td>
+                         {{trans.grandTotal}}
+                      </td>
+                   </tr>
+                   <tr>
+                      <td class="label">
+                         Tendered Amount:
+                      </td>
+                      <td>
+                         {{trans.tenderedAmount}}
+                      </td>
+    
+                   </tr>
+    
+                   <tr>
+                      <td class="label">
+                         Change Amount:
+                      </td>
+                      <td>
+                         {{trans.changeAmount}}
+                      </td>
+    
+                   </tr>
+    
+                   <tr>
+                      <td class="label">
+                         Staff:
+                      </td>
+                      <td>
+                         {{trans.staff}}
+                      </td>
+    
+                   </tr>
+    
+    
+                </table>
+    
+    
+          </tr>
+          {% endfor %}
+    
+    
+          <!--END TABLE DATA-->
+       </table>
+    
+       <br>
+    
+       {% endblock%}
+
+
+

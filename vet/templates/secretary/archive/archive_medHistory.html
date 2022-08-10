@@ -1,0 +1,78 @@
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+
+
+<head>
+    <link rel="stylesheet" href="{% static '\css\secretary\archive\archive.css' %}">
+</head>
+
+<!--head-->
+<div class="bodyhead">Recovery of Pet Medical Records</div>
+<!--END head-->
+
+{% csrf_token %}
+
+{% for message in messages %}
+<div class="alert  alert-success alert-dismissible fade show " role="alert">
+    <label class="success">
+        {{message}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+{% endfor %}
+
+<!--===== pet owner =====-->
+
+<!----===================================-->
+
+<div class="tablepanel">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+
+            <th>Code</th>
+            <th>Pet-Pet Owner</th>
+            <th>Date of Deleted</th>
+            <th>Action</th>
+
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for hist in history %}
+
+        <tr class="table_data">
+
+            <td>{{hist.code}}</td>
+            <td>{{hist.pet}}</td>
+            <td>{{hist.date_of_delete}}</td>
+            
+
+            <td>
+                <a href="{% url 'recover_history' hist.id %}" class="addUserBTN">Restore</a>
+             
+
+            </td>
+
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+<!--======END petowner======-->
+
+
+
+
+{% endblock %}

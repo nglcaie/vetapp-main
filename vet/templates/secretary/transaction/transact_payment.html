@@ -1,0 +1,280 @@
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <!--head-->
+    <div class="bodyhead">Payment</div>
+    <!--END head-->
+
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        .container {
+            height: 650px;
+
+            width: 100%;
+            float: left;
+
+        }
+
+        /*head and back*/
+        .bodyhead {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 29px;
+            color: #0F416F;
+            padding-bottom: 50px;
+
+        }
+
+        .bodyhead .back {
+            font-size: 25px;
+            padding-right: 20px;
+        }
+
+        .form-container {
+
+            margin-left: 50px;
+            height: 520px;
+        }
+
+        .field-label {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 17px;
+
+            color: #585858;
+        }
+
+        .form-control {
+
+            width: 100%;
+            height: 33px;
+
+
+            padding-left: 10px;
+            padding-right: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+
+            background: #FFFFFF;
+            border: 1px solid #B0B0B0;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 5px;
+        }
+
+        /**buttons**/
+
+        .submitBTN {
+            font-size: 14px;
+            text-decoration: none;
+            color: #f8f8f8;
+            background-color: #0F416F;
+            border-radius: 20px;
+            width: 80px;
+            height: 31px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border: none;
+            margin-bottom: 10px;
+            margin-right: 5px;
+        }
+
+        .cancelBTN {
+            font-size: 14px;
+            text-decoration: none;
+            color: #f8f8f8;
+            background: #6E8BA7;
+            border-radius: 20px;
+            padding: 5px 15px 5px 15px;
+
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border: none;
+            margin-right: 5px;
+
+        }
+
+        .cancelBTN:hover {
+            color: #ffff;
+
+        }
+
+        /**messages*/
+        .alert {
+            height: 55px;
+            width: 490px;
+            vertical-align: center;
+        }
+
+        .error {
+            font-size: 13px;
+            color: red;
+        }
+
+
+        .success {
+            font-size: 13px;
+            color: green;
+            width: 200px;
+
+        }
+
+        .closebtn {
+            font-size: 20px;
+
+        }
+    </style>
+
+    <div class="container">
+
+        <!----======== FORM ======== -->
+        <form method="POST" action="">
+            {% csrf_token %}
+
+            <div class="form-container">
+                {% if messages %}
+                {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+
+                <div class="alert alert-danger alert-dismissible fade show " role="alert">
+                    <label class="error">
+                        {{message}}
+                    </label>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true" class="closebtn">&#10799;</span>
+                    </button>
+                </div>
+
+                {% endif %}
+
+
+
+                {% endfor %}
+                {% endif %}
+
+                <div class=" row">
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 mt-1">
+
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <label>Total Amount</label>
+                            </div>
+                            <div class="col-lg-7 col-md-7col-sm-7">
+                                <input class="form-control"  type="number" id="grandTotal" value={{chargeslip.balance}} name="grandTotal">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6"> </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 mt-1">
+
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <label>Tendered Amount</label>
+                            </div>
+                            <div class="col-lg-7 col-md-7col-sm-7">
+                                <input class="form-control"  placeholder="0.00" type="number" id="tenderedAmount" name="tenderedAmount" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6"> </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 mt-1">
+
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <label>Change</label>
+                            </div>
+                            <div class="col-lg-7 col-md-7col-sm-7">
+                                <input class="form-control" placeholder="0.00" type="number" id="change" name="change">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6"> </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 mt-1">
+
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <label>Balance </label>
+                            </div>
+                            <div class="col-lg-7 col-md-7col-sm-7">
+                                <input class="form-control"  placeholder="0.00" type="number" id="balance" name="balance">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6"> </div>
+
+
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 mt-5" style="text-align:right;"><button type="submit"
+                            class="submitBTN">Pay</button>
+                    </div>
+
+                    <div cclass="col-lg-6 col-md-6 col-sm-6">
+
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+
+
+
+                    </div>
+
+
+                </div>
+
+
+        </form>
+        <!----======== END FORM ======== -->
+
+    </div>
+
+
+
+</body>
+
+
+<script>
+    $('#grandTotal, #tenderedAmount').on("paste keyup",
+
+        function () {
+
+            var change = parseInt($("#tenderedAmount").val()) - parseInt($("#grandTotal").val());
+
+            if (change < 0) {
+                balance = change * -1;
+                change = 0;
+            }
+            else {
+                balance = 0;
+            }
+            $("#change").val((isNaN(change) ? '' : change));
+            $("#balance").val((isNaN(balance) ? '' : balance));
+        }
+
+    );
+
+</script>
+
+</html>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'veterinarian\veterinarianHome.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<a href="{% url 'vet_pet_add' %}" class="addUserBTN">Add Pet</a><br>
+<form method = "get">
+    <input type="text"  name="searchthis" placeholder="Search">
+    <button type="submit" id="submit">Submit</button>
+    </form>
+<table border="1">
+<tr>
+{% for pets in allpets %}
+<td>
+Owner: {{pets.petOwner}}
+</td>
+<td>
+Pet Name: {{pets.petName}}
+</td>
+<td>
+Date of Birth: {{pets.dob}}
+</td>
+<td>
+    <a href="{% url 'create_pet_record' pets.id %}" class="addUserBTN">Create Record</a><br>
+</td>
+<td>
+    <a href="{% url 'view_record' pets.id %}" class="addUserBTN">View Record</a><br>
+</td>
+</tr>
+{%endfor%}
+
+</table>
+{% endblock %}

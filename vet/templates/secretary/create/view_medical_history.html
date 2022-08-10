@@ -1,0 +1,524 @@
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'filepath' %}">
+</head>
+
+<style>
+    .pg-head {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 29px;
+        color: #0F416F;
+        padding-bottom: 10px;
+    }
+
+    .tablehead {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 22px;
+        color: #0F416F;
+        padding-left: 5px;
+
+
+    }
+
+    .editBTN {
+        font-size: 14px;
+        text-decoration: none;
+        color: #f8f8f8;
+        background-color: #0F416F;
+        border-radius: 20px;
+        padding: 5px 40px;
+
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .editBTN:hover {
+        color: #fff
+    }
+
+
+    /*table scroll*/
+
+    .scroll::-webkit-scrollbar {
+        width: 1px;
+        height: 10px;
+
+        border-radius: 20px;
+
+
+
+    }
+
+    .scroll::-webkit-scrollbar-thumb {
+
+        border-radius: 20px;
+        background-color: #0f416f57;
+        padding-bottom: 20px;
+    }
+
+
+    .tablepanel1 {
+        overflow-y: scroll;
+        width: 100%;
+        height: 500px;
+        border: 1px solid #0F416F;
+        padding: 30px;
+        padding-left: 10px;
+
+        /**height: 170px;**/
+
+        border-radius: 20px;
+        margin-bottom: 2%;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    }
+
+    .tablepanel2 {
+        overflow-y: scroll;
+        width: 100%;
+        height: 213px;
+        border: 1px solid #0F416F;
+        padding: 30px;
+        padding-left: 10px;
+
+        /**height: 170px;**/
+
+        border-radius: 20px;
+        margin-bottom: 2%;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    }
+
+
+    .tablepanel3 {
+        overflow-y: scroll;
+        width: 100%;
+        height: 300px;
+        border: 1px solid #0F416F;
+        padding: 30px;
+        padding-left: 10px;
+
+        /**height: 170px;**/
+
+        border-radius: 20px;
+        margin-bottom: 2%;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    }
+
+
+    .tablepanel4 {
+        overflow-y: scroll;
+        width: 100%;
+        height: 280px;
+        border: 1px solid #0F416F;
+        padding: 30px;
+        padding-left: 10px;
+
+        /**height: 170px;**/
+
+        border-radius: 20px;
+        margin-bottom: 2%;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    }
+
+    /**label txt**/
+    .label1 {
+        font-weight: 600;
+        color: #0F416F;
+
+    }
+
+    .bold-blue {
+        font-size: 15px;
+        font-weight: 500;
+        color: #0F416F;
+        line-height: 10px;
+    }
+
+    .data {
+        font-size: 14px;
+    }
+
+    /**tables**/
+
+    .table-main-info {
+        width: 100%;
+        ;
+    }
+
+    .table-main-info-inner {
+        width: 100%;
+    }
+
+    .table-main-info-inner tr td {
+        width: 40%;
+    }
+</style>
+
+<div class="pg-head">
+    <a href="{% url 'view_all_medical_history'  medHist.pet.id %}"><i class='bx bx-arrow-back back'
+            style="color: #0F416F;;"></i></a> Pet Medical Record
+</div>
+
+<div style="width: 100%; text-align: right; height: 50px;">
+    <a href="{% url 'update_medical_history' medHist.id %}" class="editBTN">Edit Record</a>
+</div>
+
+<!--Table 1-->
+<div class="tablepanel1 scroll">
+
+    <!-- Med Record Number | Date | Veterinarian-->
+    <table style="width: 100%;">
+        <tr>
+            <td style="width: 10%; text-align: center;padding-bottom: 60px;">
+
+                <img src="{% static 'image/paw.png' %}" width="35px;">
+            </td>
+            <td style=" border-bottom: 1px solid #0F416F;">
+                <label class="bold-blue">Medical Record: </label> <label class="data">{{medHist.id}}</label><br>
+
+                <label class="bold-blue"> Date:</label>
+                <label class="data">{{medHist.date}}</label> <br>
+                <label class="bold-blue">Veterinarian:</label>
+                <label class="data"> {{medHist.vet}}</label> <br><br>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table-main-info">
+        <tr>
+            <td style="width: 1%; ">
+
+            </td>
+            <td>
+                <br>
+                <label class="bold-blue"> Pet: </label> <label class="data">{{medHist.pet.petName}}</label> <br>
+                <label class="bold-blue">Weight: </label> <label class="data">{{medHist.weight}}</label>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 1%; ">
+
+            </td>
+            <td>
+                <table class="table-main-info-inner">
+                    <tr>
+                        <td>
+                            <label class="bold-blue">Symptoms: </label> <label class="data">{{medHist.symptoms}}</label>
+                            <br>
+                        </td>
+                        <td>
+                            <label class="bold-blue">Treatment: </label> <label
+                                class="data">{{medHist.treatment}}</label> <br>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+
+            </td>
+
+
+
+        </tr>
+
+        <tr>
+            <td style="width: 1%; ">
+
+            </td>
+            <td>
+                <table class="table-main-info-inner">
+                    <tr>
+                        <td class="label1">
+                            Prescriptions
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="bold-blue"> Prescription: </label> <label
+                                class="data">{{medHist.prescription}}</label> <br>
+                        </td>
+                        <td>
+                            <label class="bold-blue"> Instruction: </label> <label
+                                class="data">{{medHist.instruction}}</label>
+                        </td>
+
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width: 10%; ">
+
+            </td>
+            <td>
+                <br>
+                <table class="table-main-info-inner">
+                    <tr>
+                        <td class="label1" colspan="2">
+                            Recommended Plan
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="bold-blue">Date of Return:</label> <label
+                                class="data">{{medHist.dateofReturn}}</label>
+                        </td>
+                        <td>
+                            <label class="bold-blue"> Reason:</label> <label class="data">{{medHist.reason}}</label>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+
+
+            </td>
+        </tr>
+
+
+    </table>
+</div>
+<!--END Table 1-->
+<br>
+<div class="row">
+   
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="tablehead">Availed Services</div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6" style="text-align: right; height: 50px;">
+        <a href="{% url 'add_medical_service' medHist.id %}" class="editBTN">Edit Record</a>
+    </div>
+</div>
+
+
+
+<!--Table 2-->
+<div class="tablepanel2 scroll">
+    <table style="width: 100%;">
+        <tr>
+            <td style="width: 10%; text-align: center;">
+                <img src="{% static 'image/paw.png' %}" width="35px;">
+            </td>
+            <td>
+
+                <label class="label1">Other Service</label><br>
+
+            </td>
+        </tr>
+    </table>
+    <!--  Date | Service -->
+    {% for meds in availed %}
+    <table style="width: 100%;">
+        <tr>
+            <td style="width: 10%; text-align: center;">
+
+            </td>
+            <td style=" border-bottom: 1px solid #0F416F;">
+                <label class="bold-blue">Service: </label> <label class="data">{{meds.service}}</label><br>
+                <label class="bold-blue"> Date: </label> <label class="data">{{meds.dateofService}}</label><br>
+
+
+            </td>
+        </tr>
+    </table>
+
+    <table class="table-main-info" style="border-bottom: 1px solid #B0B0B0 ">
+
+        <tr>
+            <td style="width: 10%; ">
+            </td>
+            <td>
+                <br>
+                <table class="table-main-info-inner">
+                    <tr>
+                        <td>
+                            <label class="bold-blue"> Veterinarian: </label> <label class="data">{{meds.vet}}</label>
+                        </td>
+                        <td>
+                            <label class="bold-blue">Remarks: </label> <label
+                                class="data">{{meds.interpretation}}</label> <br>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+            </td>
+        </tr>
+    </table>
+    <br>
+    {% endfor %}
+</div>
+
+<!--END Table 2-->
+
+
+<!--Table 3-->
+<div class="tablepanel4 scroll">
+    <!--  Date | Service -->
+
+
+    <table style="width: 100%;">
+        <tr>
+            <td style="width: 10%; text-align: center;">
+                <img src="{% static 'image/paw.png' %}" width="35px;">
+            </td>
+            <td>
+
+                <label class="label1">Laboratory Test</label><br>
+
+            </td>
+        </tr>
+    </table>
+
+    {% for meds in labtest %}
+    <table style="width: 100%;">
+        <tr>
+            <td style="width: 10%; text-align: center;">
+
+            </td>
+            <td style=" border-bottom: 1px solid #0F416F;">
+
+                <label class="bold-blue"> Service: </label> <label class="data">{{meds.service}}</label><br>
+                <label class="bold-blue"> Date of Service: </label> <label
+                    class="data">{{meds.dateofResult}}</label><br>
+
+            </td>
+        </tr>
+    </table>
+
+    <table class="table-main-info" style="border-bottom: 1px solid #B0B0B0 ">
+        <tr>
+            <td style="width: 1%; ">
+            </td>
+            <td>
+                <label class="bold-blue"> Date of Result: </label> <label class="data">{{meds.dateofResult}}</label>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width: 10%; ">
+            </td>
+            <td>
+                <table class="table-main-info-inner">
+                    <tr>
+                        <td>
+                            <label class="bold-blue"> Veterinarian: </label> <label class="data">{{meds.vet}}</label>
+
+                        </td>
+                        <td>
+                            <label class="bold-blue"> Remarks: </label> <label
+                                class="data">{{meds.interpretation}}</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="bold-blue"> DateofReturn: </label> <label
+                                class="data">{{meds.dateofReturn}}</label>
+
+                        </td>
+                        <td>
+                            <label class="bold-blue">Reason: </label> <label class="data">{{meds.reason}}</label>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+            </td>
+            <br>
+        </tr>
+
+    </table>
+
+    {% endfor %}
+</div>
+
+<!--END Table 3-->
+
+
+<!--Table 4-->
+<div class="tablepanel3 scroll">
+
+    <table style="width: 100%;">
+        <tr>
+            <td style="width: 10%; text-align: center;">
+                <img src="{% static 'image/paw.png' %}" width="35px;">
+            </td>
+            <td>
+
+                <label class="label1">Vaccination</label><br>
+
+            </td>
+        </tr>
+    </table>
+
+    <!--  Date | Service -->
+    {% for meds in vaccination %}
+    <table style="width: 100%;">
+        <tr>
+            <td style="width: 10%; text-align: center;">
+
+            </td>
+            <td style=" border-bottom: 1px solid #0F416F;">
+
+                <label class="bold-blue"> Service: </label> <label class="data">{{meds.service}}</label><br>
+                <label class="bold-blue"> Date of Service: </label> <label
+                    class="data">{{meds.dateofService}}</label><br>
+
+            </td>
+        </tr>
+    </table>
+
+    <table class="table-main-info" style="border-bottom: 1px solid #B0B0B0 ">
+        <tr>
+            <td style="width: 10%; ">
+            </td>
+            <td>
+                <label class="bold-blue"> Veterinarian: </label> <label class="data">{{meds.vet}}</label>
+                <label class="bold-blue"> Date of Result: </label> <label class="data">{{meds.dateofResult}}</label>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width: 10%; ">
+            </td>
+            <td>
+                <table class="table-main-info-inner">
+                    <tr>
+                        <td>
+                            <label class="bold-blue"> DateofReturn: </label> <label class="data">
+                                {{meds.dateofReturn}}</label>
+
+                        </td>
+                        <td>
+                            <label class="bold-blue">Reason: </label> <label class="data">{{meds.reason}}</label>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+            </td>
+            <br>
+        </tr>
+        <br>
+    </table>
+
+    {% endfor %}
+</div>
+
+<!--END Table 4-->
+
+
+
+
+{% endblock %}

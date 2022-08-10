@@ -1,0 +1,440 @@
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<head>
+    <link rel="stylesheet" href="{% static '\css\secretary\create\user_profilee.css' %}">
+</head>
+
+
+<div class="bodyhead" style="font-weight: 600;">User Profile</div>
+
+
+{% csrf_token %}
+
+{% for message in messages %}
+<div class="alert  alert-success alert-dismissible fade show " role="alert">
+    <label class="success">
+        {{message}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+{% endfor %}
+
+<!--===== ALL USER PROFILE =====-->
+
+
+<table class="table_container">
+    <td colspan="2" style="padding-top: 10px;">
+
+        <form method="get">
+            <table>
+                <tr>
+                    <td style="padding: 0px;">
+                        <input type="text" class="searchbar" name="searchthis1" placeholder="search">
+
+                    </td>
+                    <td style=" padding: 0px;">
+                        <button type="submit" class="searchBTN" id="submit"><i class='bx bx-search'></i></button>
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+
+    </td>
+    </tr>
+</table>
+<!--END petowner table-->
+<br>
+
+
+
+<div class="tablepanel tablee">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>User Account</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Contact</th>
+            <th>Action</th>
+        </tr>
+        <!-- END TABLE HEAD -->
+        <!-- TABLE DATA -->
+
+        <!-- for loop for ALL USER @PIA HERE -->
+        {% for profile in unconnected_profile %}
+
+        <tr class="table_data">
+
+            <td> {{profile.useracc}}</td>
+            <td> {{profile.firstName}}</td>
+            <td> {{profile.lastName}}</td>
+            <td> {{profile.contactNum}}</td>
+
+            <td>
+                <table class="actionbtn">
+                    <tr>
+
+                        <td>
+                            <a href="{% url 'update_profile' profile.id %}" class="updateBTN"> <i
+                                    class='bx bxs-edit updateBTN1'></i></a>
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_profile' profile.id %}" class="deleteBTN"><i
+                                    class='bx bxs-trash deleteBTN1'></i></a>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+
+
+
+<!--===== END ALL USER PROFILE =====-->
+<hr>
+
+<!--END Pet Owner Profile (No Accounts) table-->
+<table class="table_container">
+
+    <tr>
+        <td class="table_for">
+            Pet Owner (No Accounts)
+        </td>
+    </tr>
+
+</table>
+<!--END Pet Owner Profile (No Accounts) table-->
+<br>
+<!--Pet Owner Profile (No Accounts)-->
+<div class="tablepanel tablee">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>User Account</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Contact</th>
+            <th>Action</th>
+        </tr>
+        <!-- END TABLE HEAD -->
+        <!-- TABLE DATA -->
+        {% for profile in unconnected_profile %}
+
+        <tr class="table_data">
+
+            <td> {{profile.useracc}}</td>
+            <td> {{profile.firstName}}</td>
+            <td> {{profile.lastName}}</td>
+            <td> {{profile.contactNum}}</td>
+
+            <td>
+                <table class="actionbtn">
+                    <tr>
+
+                        <td>
+                            <a href="{% url 'update_profile' profile.id %}" class="updateBTN"> <i
+                                    class='bx bxs-edit updateBTN1'></i></a>
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_profile' profile.id %}" class="deleteBTN"><i
+                                    class='bx bxs-trash deleteBTN1'></i></a>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+<table class="table_container" style="width:270px">
+
+    <!--Species-->
+    <tr>
+        <td class="table_for">
+            Pet Owner
+        </td>
+        <td style="text-align: right;">
+            <a href="{% url 'add_petowner_profile' %}" class="addUserBTN">Add Profile</a>
+        </td>
+
+    </tr>
+
+</table>
+
+
+
+<br>
+
+<div class="tablepanel tablee">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>User Account</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Contact</th>
+            <th>Action</th>
+
+        </tr>
+        <!-- END TABLE HEAD -->
+        <!-- TABLE DATA -->
+        {% for profile in petowner_profile %}
+
+        <tr class="table_data">
+
+            <td> {{profile.useracc}}</td>
+            <td> {{profile.firstName}}</td>
+            <td> {{profile.lastName}}</td>
+            <td> {{profile.contactNum}}</td>
+
+            <td>
+                <table class="actionbtn">
+                    <tr>
+
+                        <td>
+                            <a href="{% url 'update_petownerprofile' profile.id %}" class="updateBTN"> <i
+                                    class='bx bxs-edit updateBTN1'></i></a>
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_profile' profile.id %}" class="deleteBTN"><i
+                                    class='bx bxs-trash deleteBTN1'></i></a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+
+<br>
+
+<table class="table_container" style="width:270px">
+
+    <tr>
+        <td class="table_for">
+            Veterinarian
+        </td>
+        <td style="text-align: right;">
+            <a href="{% url 'add_veterinarian_profile' %} " class="addUserBTN">Add Profile</a>
+        </td>
+
+    </tr>
+
+</table>
+
+<br>
+
+<div class="tablepanel tablee">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>User Account</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Contact</th>
+            <th>Action</th>
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for profile in veterinarian_profile %}
+
+        <tr class="table_data">
+            <td> {{profile.useracc}}</td>
+            <td> {{profile.firstName}}</td>
+            <td> {{profile.lastName}}</td>
+            <td> {{profile.contactNum}}</td>
+
+            <td>
+                <table class="actionbtn">
+                    <tr>
+
+                        <td>
+                            <a href="{% url 'update_vet_profile' profile.id %}" class="updateBTN"> <i
+                                    class='bx bxs-edit updateBTN1'></i></a>
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_vet_profile' profile.id %}" class="deleteBTN"><i
+                                    class='bx bxs-trash deleteBTN1'></i></a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+
+</div>
+<!--======END Veterinarian======-->
+
+
+
+<table class="table_container" style="width:300px">
+
+    <tr>
+        <td class="table_for">
+            Head Veterinarian
+        </td>
+        <td style="text-align: right;">
+            <a href="{% url 'add_headveterinarian_profile' %} " class="addUserBTN">Add Profile</a>
+        </td>
+
+    </tr>
+
+</table>
+
+<br>
+<div class="tablepanel tablee">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>User Account</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Contact</th>
+            <th>Action</th>
+
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for profile in head_profile %}
+
+        <tr class="table_data">
+
+            <td> {{profile.useracc}}</td>
+            <td> {{profile.firstName}}</td>
+            <td> {{profile.lastName}}</td>
+            <td> {{profile.contactNum}}</td>
+
+            <td>
+                <table class="actionbtn">
+                    <tr>
+
+                        <td>
+                            <a href="{% url 'update_headvet_profile' profile.id %}" class="updateBTN"> <i
+                                    class='bx bxs-edit updateBTN1'></i></a>
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_vet_profile' profile.id %}" class="deleteBTN"><i
+                                    class='bx bxs-trash deleteBTN1'></i></a>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+
+</div>
+<!--======END Head Veterinarian======-->
+
+
+<table class="table_container" style="width:270px">
+
+    <tr>
+        <td class="table_for">
+            Secretary
+        </td>
+        <td style="text-align: right;">
+            <a href="{% url 'add_sec_profile' %} " class="addUserBTN">Add Profile</a>
+        </td>
+
+    </tr>
+
+</table>
+
+<br>
+
+<div class="tablepanel tablee">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>User Account</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Contact</th>
+            <th>Action</th>
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for profile in secretary_profile %}
+
+        <tr class="table_data">
+
+            <td> {{profile.useracc}}</td>
+            <td> {{profile.firstName}}</td>
+            <td> {{profile.lastName}}</td>
+            <td> {{profile.contactNum}}</td>
+            <td>
+                <!-- TABLE DATA -->
+
+                <table class="actionbtn">
+                    <tr>
+
+                        <td>
+                            <a href="{% url 'update_sec_profile' profile.id %}" class="updateBTN"> <i
+                                    class='bx bxs-edit updateBTN1'></i></a>
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_sec_profile' profile.id %}" class="deleteBTN"><i
+                                    class='bx bxs-trash deleteBTN1'></i></a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+
+</div>
+
+<!--END USER PROFILE-->
+
+
+{% endblock %}

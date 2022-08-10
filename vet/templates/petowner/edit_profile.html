@@ -1,0 +1,235 @@
+{% extends 'petowner/petOwnerHome.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+
+    .rounded-pfpp{
+        height:100px;
+        width: 100px;
+        border-radius: 100%;
+        border: 5px solid #0F416F;
+    }
+    
+        .bodyhead {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 29px;
+            color: #0F416F;
+    
+    
+        }
+    
+        .bodyhead .back {
+            font-size: 30px;
+            padding-right: 20px;
+            color: #0F416F;
+        }
+    
+        .createBTN {
+            font-size: 14px;
+            text-decoration: none;
+            color: #f8f8f8;
+            background-color: #0F416F;
+            border-radius: 20px;
+            width: 150px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border: none;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+    
+        .addUserBTN {
+            background: #CEE8FC;
+    
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 27px;
+            padding-right: 20px;
+            padding-left: 20px;
+            border-radius: 20px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            color: #0F416F;
+        }
+    
+        .addUserBTN:hover {
+            color: #0F416F;
+        }
+    
+        .cant {
+            font-size: 13px;
+        }
+    
+    
+    
+        .form-control {
+            border: 1px solid #B0B0B0;
+            height: 33px;
+    
+            font-size: 15px;
+    
+        }
+    
+        .container2 {
+            width: 90%;
+    
+            padding-right: 30px;
+            margin: auto;
+        }
+    
+        .error {
+            font-size: 13px;
+            color: red;
+        }
+    
+        .uploadBTN {
+            height: 40px;
+    
+        }
+    
+        input[type=file]::file-selector-button {
+            border: 2px none;
+            border-radius: 5px;
+            background-color: #0F416F;
+            transition: 1s;
+            height: 30px;
+            width: 120px;
+            font-size: 14px;
+            color: #ffff;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+    
+        .field-label {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 15px;
+            color: #585858;
+            line-height: 19px;
+        }
+    </style>
+<!--bago toh-->
+
+<div class="container" style="float: left;">
+    <!--BODY HEAD-->
+    <div class="bodyhead">  <a href="{% url 'petOwnerHome' %}"><i class='bx bx-arrow-back back'></i></a>Edit
+        Profile</div>
+    <!--END BODY HEAD-->
+
+    <form action="" method="post" enctype="multipart/form-data">
+        <style>    /**messages*/
+            .alert {
+                height: 50px;
+                width: 100%;
+                vertical-align: center;
+            }
+        
+            .error {
+                font-size: 13px;
+                color: red;
+            }
+        
+            
+            .success {
+                font-size: 13px;
+                color: green;
+                width: 200px;
+        
+            }
+        
+            .closebtn {
+                font-size: 20px;
+            }
+        </style>
+        
+        {% csrf_token %}
+        <div class="container2">
+            {% if messages %}
+            {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            
+            <div class="alert alert-danger alert-dismissible fade show " role="alert">
+                <label class="error">
+                    {{form.kind.errors}}
+                    {{form.breed.errors}}
+                </label>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true" class="closebtn">&#10799;</span>
+                </button>
+            </div>
+            
+            {% endif %}
+            
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div class="alert  alert-success alert-dismissible fade show " role="alert">
+                <label class="success">
+                    {{message}}
+                </label>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true" class="closebtn">&#10799;</span>
+                </button>
+            </div>
+            {% endif %}
+            
+            {% endfor %}
+            {% endif %}
+
+        <div class="container2">
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <img src="/media/{{updprofile.user_image}}" class="rounded-pfpp">
+
+                    <br><label class="field-label">User Image</label><br>
+                    <input type="file" name="image" id="image" class="uploadBTN">
+
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <label class="field-label">Gender</label> <br>
+                    {{form.gender}}
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <label class="field-label">Contact Number</label><br>
+
+                    {{form.contactNum}}
+                    {% if messages %}
+                    {% for message in messages %}
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+
+                    <label class="error">{{form.contactNum.errors}}</label>
+
+                    {% endif %}
+
+                    {% endfor %}
+                    {% endif %}
+
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <label class="field-label">Address</label> <br>
+                    {{form.address}}
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: right;">
+
+                    <button type="submit" class="createBTN">Update Profile</button>
+                    <br>
+                </div>
+
+
+            </div>
+        </div>
+
+    </form>
+
+</div>
+{% endblock %}

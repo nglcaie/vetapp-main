@@ -1,0 +1,76 @@
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+
+
+<head>
+    <link rel="stylesheet" href="{% static '\css\secretary\archive\archive.css' %}">
+</head>
+
+<!--head-->
+<div class="bodyhead">Recovery of Pets</div>
+<!--END head-->
+
+{% csrf_token %}
+
+{% for message in messages %}
+<div class="alert  alert-success alert-dismissible fade show " role="alert">
+    <label class="success">
+        {{message}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+{% endfor %}
+
+<!--===== pet owner =====-->
+
+<!----===================================-->
+
+<div class="tablepanel">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+
+            <th>Pet Owner</th>
+            <th>Pet Name</th>
+            <th>Date of Inactivity</th>
+            <th>Action</th>
+
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for pets in deletedpets %}
+
+        <tr class="table_data">
+
+            <td> {{pets.petOwner}}</td>
+            <td>{{pets.petName}}</td>
+            <td>{{pets.date_of_delete}}</td>
+
+            <td>
+                <a href="{% url 'recover_pets' pets.id %}" class="addUserBTN">Activate</a>
+
+            </td>
+
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+<!--======END petowner======-->
+
+
+
+
+{% endblock %}

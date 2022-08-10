@@ -1,0 +1,270 @@
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include 'secretary/sidebar_secretary.html' %}
+
+
+
+<!--Body Head-->
+<div class="bodyhead">Recovery of Accounts</div>
+
+<!--User Info-->
+
+<br>
+<table class="createAcc">
+
+    <!--Pet Owners-->
+    <tr>
+        <td>
+
+            Pet Owners
+        </td>
+    </tr>
+</table>
+<div class="tablepanel tablee">
+    <table class="table_2" style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Username</th>
+            <th>Email</th>
+            <th>Date of inactivity</th>
+            <th>Recover</th>
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for user in petowners %}
+
+        <tr class="table_data">
+
+            <td> {{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.date_of_inactive}}</td>
+
+            <td>
+                <a href="{% url 'recover_user' user.id %}">Set to active</a>
+
+            </td>
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+<!--======END Pet Owners======-->
+
+
+<table class="createAcc">
+    <!--Veterinarian-->
+    <tr>
+        <td>
+            Veterinarian
+        </td>
+    </tr>
+</table>
+<div class="tablepanel tablee">
+    <table class="table_2" style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Username</th>
+            <th>Email</th>
+            <th>Date of inactivity</th>
+            <th>Recover</th>
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for user in veterinarian %}
+
+        <tr class="table_data">
+
+            <td> {{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.date_of_inactive}}</td>
+
+            <td>
+                <a href="{% url 'recover_user' user.id %}">Set to active</a>
+
+            </td>
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+
+</div>
+<!--======END Veterinarian======-->
+
+<table class="createAcc">
+    <!--Veterinarian-->
+    <tr>
+        <td>
+            Head Veterinarian
+        </td>
+    </tr>
+</table>
+<div class="tablepanel tablee">
+    <table class="table_2" style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Username</th>
+            <th>Email</th>
+            <th>Date of inactivity</th>
+            <th>Recover</th>
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for user in headvet %}
+
+        <tr class="table_data">
+
+            <td> {{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.date_of_inactive}}</td>
+
+
+            <td>
+                <a href="{% url 'recover_user' user.id %}">Set to active</a>
+
+            </td>
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+<!--======END Head Veterinarian======-->
+
+<table class="createAcc">
+    <!--Veterinarian-->
+    <tr>
+        <td>
+            Secretary
+        </td>
+    </tr>
+</table>
+<div class="tablepanel tablee">
+    <table class="table_2" style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Username</th>
+            <th>Email</th>
+            <th>Date of inactivity</th>
+            <th>Recover</th>
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for user in secretary %}
+
+        <tr class="table_data">
+
+            <td> {{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.date_of_inactive}}</td>
+
+
+            <td>
+                <a href="{% url 'recover_user' user.id %}">Set to active</a>
+
+            </td>
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+<!--======END Head Secretary======-->
+
+<table class="createAcc">
+    <!--Veterinarian-->
+    <tr>
+        <td>
+            Pets
+        </td>
+    </tr>
+</table>
+<div class="tablepanel tablee">
+    <table class="table_2" style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Pet Owner</th>
+            <th>Pet Name</th>
+            <th>Date of inactivity</th>
+            <th>Recover</th>
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for pets in deletedpets %}
+
+        <tr class="table_data">
+
+            <td> {{pets.petOwner}}</td>
+            <td>{{pets.petName}}</td>
+            <td>{{pets.date_of_delete}}</td>
+
+
+            <td>
+                <a href="{% url 'recover_pets' pets.id %}">Restore</a>
+
+            </td>
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+
+
+
+
+<div class="tablepanel tablee">
+    <table class="table_2" style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Medical History Code</th>
+            <th>Pet</th>
+            <th>date_of_delete</th>
+            <th>Recover</th>
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for hist in history %}
+
+        <tr class="table_data">
+
+            <td> {{hist.code}}</td>
+            <td>{{hist.pet}}</td>
+            <td>{{hist.date_of_inactive}}</td>
+
+
+            <td>
+                <a href="{% url 'recover_history' hist.id %}">Set to active</a>
+
+            </td>
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+
+
+{% endblock %}

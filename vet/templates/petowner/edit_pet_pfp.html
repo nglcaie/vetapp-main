@@ -1,0 +1,485 @@
+{% extends 'petowner/petOwnerHome.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+  /**submit btn**/
+  .deleteBTN {
+      font-size: 15px;
+      text-decoration: none;
+      color: #f8f8f8;
+      background-color: #0F416F;
+      border-radius: 20px;
+      padding: 3px 20px 3px 20px;
+      border: none;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      width: 115px;
+      margin-top: 20px;
+      font-weight: 500;
+      cursor: pointer;
+  }
+
+  .cancelBTN {
+      font-size: 15px;
+      text-decoration: none;
+      color: #0F416F;
+      background-color: white;
+      border: 2px solid #0F416F;
+      border-radius: 20px;
+      padding: 3px 20px 3px 20px;
+
+      width: 200px;
+      height: 40px;
+      font-weight: 500;
+      margin-top: 20px;
+
+
+  }
+
+  .cancelBTN:hover {
+      color: #0F416F;
+  }
+
+  .delete {
+      position: relative;
+      z-index: 15;
+      background: #FFFFFF;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 30px;
+      margin: auto;
+      margin-top: 10px;
+      width: 500px;
+      height:210px;
+      padding-left: 50px;
+
+
+      
+
+
+
+  }
+
+  .delete-inner {
+      padding-top: 40px;
+  }
+
+
+  p {
+
+      color: #585858;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 500;
+  }
+
+  .body-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+
+      opacity: 0;
+      z-index: 2;
+      transition: all 150ms linear;
+      background-color: #0f416f42;
+
+      transform: translatex(0%);
+      opacity: 1;
+      display: block;
+      visibility: visible;
+      z-index: 15;
+
+  }
+
+  /**form container**/
+
+  .container {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      padding-bottom: 30px;
+      padding-top: 180px;
+  }
+</style>
+
+
+
+<div class="body-overlay"></div>
+
+
+<style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+:root::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  :root {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+  }
+
+
+  
+    .pg-head {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 40px;
+        color: #0F416F;
+        padding-bottom: 10px;
+    }
+
+
+    /**PET INFO**/
+    .boxx {
+        background-color: white;
+        padding: 15px;
+        border-radius: 20px;
+        border: 1px solid #0F416F;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        width: 45%;
+
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .left {
+        width: 13%;
+    }
+
+    .right {
+        width: 82%;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    tr {
+        height: 32px;
+    }
+
+    tr,
+    td {
+        padding-left: 15px;
+    }
+
+    .bold-blue {
+        font-weight: 500;
+        color: #0F416F;
+    }
+
+    /** END OF PET INFO**/
+
+    /** RECORD OF PETNAME **/
+    /*table*/
+
+
+    /* Google Font Import - Poppins */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+
+
+    .bodyhead {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 29px;
+        color: #0F416F;
+        padding-bottom: 50px;
+
+    }
+
+    
+.bodyhead .back {
+    font-size: 25px;
+    padding-right: 20px;
+}
+
+    /*add pets*/
+
+
+    .table_for {
+
+        color: #585858;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 19px;
+        line-height: 33px;
+
+
+    }
+
+
+    /*table*/
+
+    /*table scroll*/
+    .tablepanel::-webkit-scrollbar {
+        width: 0px;
+        border-radius: 0 0px 10px 0;
+    }
+
+    .tablepanel::-webkit-scrollbar-thumb {
+        border-radius: 0 0px 10px 0;
+    }
+
+
+    .tablepanel {
+        overflow-y: scroll;
+        width: 90%;
+        height: 190px;
+
+        /**height: 170px;**/
+        border-radius: 0px 0px 15px 15px;
+        margin-bottom: 2%;
+
+        background: #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    }
+
+
+
+    .tablepanel .table-inner .table_data td,
+    .tablepanel .table-inner .table_head th {
+        padding-left: 30px;
+    }
+
+
+    .tablepanel .table-inner .table_data td .actionbtn tr td {
+        padding-left: 15px;
+    }
+
+    .tablepanel table .table_head th {
+        font-size: 15.5px;
+    }
+
+    .tablepanel table tr th {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 30px;
+        align-items: center;
+        color: #FFFFFF;
+    }
+
+
+    .table_head {
+        position: sticky;
+        top: 0;
+        cursor: context-menu;
+
+        height: 40px;
+        background-color: #8292A0;
+        border-radius: 0px 10px 10px 0px;
+
+
+    }
+
+    .tablepanel .table_data {
+
+        border-bottom: 1px solid #B0B0B0;
+    }
+
+    .tablepanel .table_data td {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+
+    }
+
+    .rounded-pfp-pet{
+        height:100px;
+        width: 100px;
+        border-radius: 100%;
+        border: 5px solid #0F416F;
+    }
+
+    .field-label {
+      font-size: 12px;
+    }
+
+    .uploadBTN {
+            height: 40px;
+    
+        }
+    
+        input[type=file]::file-selector-button {
+            border: 2px none;
+            border-radius: 5px;
+            background-color: #0F416F;
+            transition: 1s;
+            height: 30px;
+            width: 120px;
+            font-size: 14px;
+            color: #ffff;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+</style>
+
+
+<!--BODY HEAD-->
+<div class="bodyhead"> <a href="{% url 'petOwnerDashBoard' %}"><i class='bx bx-arrow-back back'
+            style="color: #0F416F;;"></i></a>My Pet's Record</div>
+<!--END BODY HEAD-->
+
+<img src="/media/{{param.pet_image}}" class="rounded-pfp-pet"></a> <!--bago toh pet 2-->
+<a href="{% url 'edit_pet_pfp' param.id %}" class="createBTNn">Edit Picture</a><br><br> <!--bago toh pet 2-->
+
+<div style="padding-left: 20px;">
+
+    <style>
+        .boxx .row {
+            width: 100%;
+        }
+    </style>
+
+    <div class="row boxx">
+        <!--Owner-->
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <img src="{% static 'image/paw.png' %}" width="35px;">
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <label class="bold-blue"> Owner: </label>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                {{param.petOwner.firstName}} {{param.petOwner.lastName}} <br>
+            </div>
+        </div>
+
+        <!--Pet Name-->
+
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <label class="bold-blue"> Pet Name: </label>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                {{param.petName}}
+            </div>
+        </div>
+
+
+        <!--Date of Birth-->
+
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <label class="bold-blue"> Date of Birth: </label>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                {{param.dob}} <br>
+            </div>
+        </div>
+
+
+        <!--Gender-->
+
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <label class="bold-blue"> Gender </label>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                {{param.sex}}
+            </div>
+        </div>
+
+
+        <!--Species-->
+
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <label class="bold-blue"> Species: </label>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                {{param.species}} <br>
+            </div>
+        </div>
+
+        <!--Color Marking -->
+
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <label class="bold-blue"> Color Marking </label>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                {{param.colorMarking}} <br>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!--END Record of Petname-->
+<br>
+<!--Record of Petname-->
+<div class="tablepanel">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Date</th>
+            <th>Veterinarian</th>
+        </tr>
+        <!-- END TABLE HEAD -->
+        <!-- TABLE DATA -->
+        {% for record in records %}
+
+        <tr class="table_data">
+
+            <td><a href="{% url 'owner_view_per_record' record.id %}"> {{record.date}} </a></td>
+            <td><a href="{% url 'owner_view_per_record' record.id %}"> {{record.vet}} </a></td>
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+
+<div class="container">
+  <div class="delete">
+
+      <div class="delete-inner">
+        <form action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          
+          <input type="file" name="image" id="image" class="uploadBTN">
+          {{form}}
+          <br>
+
+
+          <label class="field-label">Pic must have 1:1 ratio (recommended)</label><br>
+          <button type="submit" class="deleteBTN">Update</button>
+          <a href="{% url 'view_pet_history' param.id %}" class="cancelBTN">Cancel</a>
+      </form>
+
+
+     
+      </div>
+
+
+  </div>
+</div>
+
+{% endblock %}

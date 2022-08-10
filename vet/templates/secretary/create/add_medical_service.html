@@ -1,0 +1,539 @@
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<head>
+    <link rel="stylesheet" href="filepath">
+</head>
+<style>
+    /* Google Font Import - Poppins */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+    .addUserBTN1 {
+        font-size: 14px;
+        text-decoration: none;
+        color: #f8f8f8;
+        background-color: #0F416F;
+        border-radius: 20px;
+        padding: 3px 50px 3px 50px;
+
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    }
+
+    .addUserBTN1:hover {
+        color: #ffff;
+
+    }
+
+    .bodyhead {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 29px;
+
+        color: #0F416F;
+
+
+    }
+
+    /*add pets*/
+
+    .table_container 
+    {
+
+       width: 400px;
+    }
+    .table_container .table_for {
+
+        color: #585858;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 33px;
+
+
+    }
+
+    .addUserBTN {
+        font-size: 14px;
+        text-decoration: none;
+        color: #f8f8f8;
+        background-color: #0F416F;
+        border-radius: 20px;
+        padding: 3px 20px 3px 20px;
+
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    }
+
+    .addUserBTN:hover {
+        color: #ffff;
+
+    }
+
+    /*search bar*/
+
+    .searchbar {
+        border-radius: 10px;
+        border-color: #0F416F;
+        border-radius: 10px 0px 0px 10px;
+        border-style: solid none solid solid;
+        padding-left: 20px;
+        padding-right: 20px;
+        outline: none;
+
+
+    }
+
+    .searchBTN {
+        border-radius: 10px;
+        border-color: #0F416F;
+        border-radius: 0px 10px 10px 0px;
+        border-style: solid solid solid solid;
+        background: #E7ECF1;
+        width: 40px;
+
+        outline: none;
+
+    }
+
+    .bx-search {
+        color: #0F416F;
+        font-size: 20px;
+        vertical-align: middle;
+    }
+
+    /*table*/
+
+    /*table scroll*/
+    .tablepanel::-webkit-scrollbar {
+        width: 0px;
+        border-radius: 0 0px 10px 0;
+    }
+
+    .tablepanel::-webkit-scrollbar-thumb {
+        border-radius: 0 0px 10px 0;
+    }
+
+
+    .tablepanel {
+        overflow-y: scroll;
+        width: 100%;
+
+        height: 220px;
+
+        /**height: 170px;**/
+
+        border-radius: 0px 0px 15px 15px;
+        margin-bottom: 2%;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    }
+
+    .tablepanel .table-inner .table_data td,
+    .tablepanel .table-inner .table_head th {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .tablepanel .table-inner .table_data .table_data1 {
+        width: 40%;
+    }
+
+    .tablepanel .table-inner .table_head th {
+        width: 10%;
+    }
+
+
+
+    .tablepanel .table-inner .table_data td .actionbtn tr td {
+        padding-right: 9px;
+        padding-left: 9px;
+    }
+
+    .tablepanel table .table_head th {
+        font-size: 17.5px;
+    }
+
+
+
+
+    .tablepanel table tr th {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 30px;
+        align-items: center;
+        color: #FFFFFF;
+    }
+
+
+    .table_head {
+        position: sticky;
+        top: 0;
+        cursor: context-menu;
+
+        height: 40px;
+        background-color: #8292A0;
+        border-radius: 0px 10px 10px 0px;
+
+
+    }
+
+    .tablepanel .table_data {
+
+        border-bottom: 1px solid #B0B0B0;
+    }
+
+    .tablepanel .table_data td {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+
+    }
+
+
+    /*action*/
+
+
+    .updateBTN1 {
+        text-decoration: none;
+        font-size: 18px;
+
+        background: #CEFCE0;
+        padding: 5px;
+        border-radius: 5px;
+        color: #2B956B;
+
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .updateBTN {
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .deleteBTN1 {
+        text-decoration: none;
+        font-size: 18px;
+        padding: 5px;
+        border-radius: 5px;
+
+        background: #FCCECE;
+        color: rgba(230, 13, 13, 0.88);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .deleteBTN {
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .addrecordBTN1 {
+        text-decoration: none;
+        font-size: 18px;
+        padding: 5px;
+        border-radius: 5px;
+
+        background-color: #CEE8FC;
+        color: #0F416F;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+
+    .cancelBTN:hover {
+        color: #ffff;
+
+    }
+
+    .addrecordBTN {
+        text-decoration: none;
+        border-radius: 5px;
+
+    }
+
+    /**message**/
+
+    .alert .success {
+        font-size: 15px;
+    }
+</style>
+
+<!--head-->
+<div class="bodyhead">Services</div>
+<!--END head-->
+
+
+{% csrf_token %}
+
+{% for message in messages %}
+<div class="alert  alert-success alert-dismissible fade show " role="alert">
+    <label class="success">
+        {{message}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+{% endfor %}
+<br>
+
+<table class="table_container">
+
+    <tr>
+        <td class="table_for">
+            Availed Service
+        </td>
+        <td>
+            <a href="{% url 'availed_service' medHist.id %}" class="addUserBTN">Add Services</a><br>
+        </td>
+
+    </tr>
+
+</table>
+<!--END Availed Services-->
+<br>
+
+<!--===== Availed Services =====-->
+<!--Availed Services-->
+
+<div class="tablepanel">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Date</th>
+            <th>Service</th>
+            <th>Remarks</th>
+            <th>Veterinarian</th>
+            <th style=" padding-left: 45px;">Actions</th>
+
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+
+        {% for meds in availed %}
+
+        <tr class="table_data">
+
+            <td> {{meds.dateofService}}</td>
+            <td>{{meds.service}}</td>
+            <td>{{meds.interpretation}} </td>
+            <td>{{meds.vet}}</td>
+
+
+            <td>
+
+                <table class="actionbtn">
+                    <tr>
+                        <td>
+                            <a href="{% url 'edit_availed_service' medHist.id meds.id %}" class="updateBTN"> <i
+                                    class='bx bxs-edit updateBTN1'></i></a><br>
+
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_availed_service' medHist.id meds.id %}" class="deleteBTN"><i
+                                    class='bx bxs-trash deleteBTN1'></i></a>
+
+                        </td>
+
+                    </tr>
+                </table>
+
+            </td>
+
+
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+<!--======END Availed Services======-->
+
+
+
+
+<!--===== Laboratory Test =====-->
+<!--Laboratory Test-->
+
+<table class="table_container">
+
+    <tr>
+        <td class="table_for">
+            Laboratory Tests
+        </td>
+        <td>
+            <a href="{% url 'availed_labTest' medHist.id  %}" class="addUserBTN">Add Laboratory Tests</a><br>
+        </td>
+
+    </tr>
+
+</table>
+<!--END Laboratory Test-->
+<br>
+
+<div class="tablepanel">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Date</th>
+            <th>Service</th>
+            <th>Result</th>
+            <th>Remarks</th>
+           
+            <th>Veterinarian</th>
+            <th style=" padding-left: 45px;">Actions</th>
+
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+
+
+        {% for meds in labtest %}
+
+        <tr class="table_data">
+
+            <td>{{meds.dateofService}} </td>
+            <td>{{meds.service}} </td>
+            <td>{{meds.dateofResult}} </td>
+            <td>{{meds.interpretation}} </td>
+          
+            <td>{{meds.vet}} </td>
+
+            <td>
+
+                <table class="actionbtn">
+                    <tr>
+                        <td>
+                            <a href="{% url 'edit_lab_test' medHist.id meds.id %}" class="updateBTN"> <i
+                                    class='bx bxs-edit updateBTN1'></i></a><br>
+
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_availed_service' medHist.id meds.id %}" class="deleteBTN"><i
+                                    class='bx bxs-trash deleteBTN1'></i></a>
+
+                        </td>
+
+                    </tr>
+                </table>
+
+            </td>
+
+
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+<!--======END Laboratory Test=====-->
+<table class="table_container">
+
+    <tr>
+        <td class="table_for">
+            Vaccination
+        </td>
+        <td>
+            <a href="{% url 'availed_vaccination' medHist.id  %}"  class="addUserBTN">Add Vaccination</a><br>
+        </td>
+
+    </tr>
+
+</table>
+<br>
+
+<!--===== Vaccination =====-->
+<!--Vaccination-->
+
+<div class="tablepanel">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Date</th>
+            <th>Vaccine</th>
+            <th>Remarks</th>
+            <th>Return</th>
+            <th>Reason</th>
+            <th>Veterinarian</th>
+            <th style=" padding-left: 45px;">Actions</th>
+
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+
+
+        {% for meds in vaccination %}
+
+        <tr class="table_data">
+
+            <td>{{meds.dateofService}} </td>
+            <td>{{meds.service}} </td>
+            <td>{{meds.interpretation}} </td>
+            <td>{{meds.dateofReturn}} </td>
+            <td>{{meds.reason}} </td>
+            <td>{{meds.vet}} </td>
+
+            <td>
+
+                <table class="actionbtn">
+                    <tr>
+                        <td>
+                            <a href="{% url 'edit_vaccination' medHist.id meds.id %}" class="updateBTN"> <i
+                                    class='bx bxs-edit updateBTN1'></i></a><br>
+
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_availed_service' medHist.id meds.id %}" class="deleteBTN"><i
+                                    class='bx bxs-trash deleteBTN1'></i></a>
+
+                        </td>
+
+                    </tr>
+                </table>
+
+            </td>
+
+
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+<!--======END Vaccination=====-->
+
+
+<table style="float:right">
+    <tr>
+
+        <td>
+            
+<a href="{% url 'view_medical_history' medHist.id  %}" class="addUserBTN1">Done</a><br>
+        </td>
+    </tr>
+</table>
+
+</div>
+
+
+{% endblock %}

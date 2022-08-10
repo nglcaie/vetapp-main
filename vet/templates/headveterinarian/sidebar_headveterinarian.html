@@ -1,0 +1,191 @@
+{% load static %}
+
+
+<nav id="sidebar" class="sideb">
+
+    <!-- sidebar head -->
+    <div class="sidebar-header">
+        <h3>
+            <table>
+                <tr>
+                    <td>
+                        <img src="{% static 'image/dog.png' %}">
+                    </td>
+                    <td class="clinic-name">
+                        <span class="dagupan">Dagupan</span>
+                        <span class="a-clinic">Animal Clinic</span>
+                    </td>
+                </tr>
+            </table>
+        </h3>
+    </div>
+    <!-- END sidebar head-->
+
+
+
+    <ul class="list-unstyled components">
+
+        <!-- menu button-->
+        <div>
+            <button type="button" id="sidebarCollapse">
+                <span><i class='bx bx-menu icon'></i></span>
+            </button>
+
+            <li style="border-bottom: 1px solid #eee;">
+                <a href="#"><i class='bx bx-user icon' style="color: transparent;"></i><span>Menu</span></a>
+            </li>
+        </div>
+        <!-- END menu button-->
+
+
+
+        <li>
+            <a href="{% url 'headVetHome' %}" class="menu-sidebar 
+            {% if sideb == 'headVetHome' %} active 
+            {% elif sideb == 'edit_headvet_profile' %} active 
+            {% elif sideb == 'headvetChangePass' %} active 
+            
+            {% endif %}">
+
+                <i class="bx bx-user icon  
+            {% if sideb == 'headVetHome' %} activeicon
+            {% elif sideb == 'edit_headvet_profile' %} activeicon
+            {% elif sideb == 'headvetChangePass' %} activeicon 
+          
+            {% endif %}"></i><span>Profile</span></a>
+        </li>
+
+        <li>
+            <a href="{% url 'headvetDashBoard' %}" class="menu-sidebar
+                
+                {% if sideb == 'headvetDashboard' %} active 
+                {% elif sideb == 'headvetDashboard_one' %} active
+                {% endif %}">
+
+                <i class="bx bx-home-alt icon
+
+                    {% if sideb == 'headvetDashboard' %} activeicon
+                    {% elif sideb == 'headvetDashboard_one' %} activeicon
+                    {% endif %}"></i><span>Dashboard</span></a>
+        </li>
+
+        <li>
+            <a href="{% url 'head_patientsTab' %}" class="menu-sidebar 
+            {% if sideb == 'head_patientsTab' %} active 
+            {% elif sideb == 'head_vet_add_pets' %} active 
+            {% elif sideb == 'head_view_record' %} active
+            {% elif sideb == 'head_view_per_record' %} active
+            {% elif sideb == 'head_vet_update_medical_history' %} active
+            {% elif sideb == 'head_vet_add_medical_service' %} active
+
+            {% elif sideb == 'head_vet_availed_service' %} active
+            {% elif sideb == 'head_vet_edit_availed_service' %} active
+            {% elif sideb == 'head_vet_delete_availed_service' %} active
+
+            {% elif sideb == 'head_vet_availed_labTest' %} active
+            {% elif sideb == 'head_vet_edit_lab_test' %} active
+            {% elif sideb == 'head_vet_delete_availed_lab' %} active
+
+
+            {% elif sideb == 'head_vet_availed_vaccination' %} active
+            {% elif sideb == 'head_vet_edit_vaccination' %} active
+            {% elif sideb == 'head_vet_delete_availed_vaccine' %} active
+    
+            {% elif sideb == 'head_serviceInvoice' %} active
+
+           
+            {% endif %}">
+
+                <i class="bx bxs-dog icon 
+            {% if sideb == 'head_patientsTab' %} activeicon 
+            {% elif sideb == 'head_vet_add_pets' %} activeicon
+            {% elif sideb == 'head_view_record' %} activeicon
+            {% elif sideb == 'head_view_per_record' %} activeicon
+            {% elif sideb == 'head_vet_update_medical_history' %} activeicon
+            {% elif sideb == 'head_vet_add_medical_service' %} activeicon
+
+            {% elif sideb == 'head_vet_availed_service' %} activeicon
+            {% elif sideb == 'head_vet_edit_availed_service' %} activeicon
+            {% elif sideb == 'head_vet_delete_availed_service' %} activeicon
+
+
+            {% elif sideb == 'head_vet_availed_labTest' %} activeicon
+            {% elif sideb == 'head_vet_edit_lab_test' %} active
+            {% elif sideb == 'head_vet_delete_availed_lab' %} activeicon
+
+
+                  
+            {% elif sideb == 'head_vet_availed_vaccination' %} activeicon
+            {% elif sideb == 'head_vet_edit_vaccination' %} activeicon
+            {% elif sideb == 'head_vet_delete_availed_vaccine' %} activeicon
+            
+            {% elif sideb == 'head_serviceInvoice' %} activeicon
+
+            
+
+            {% endif %}"></i><span>Patients</span></a>
+        </li>
+        <i class=""></i>
+
+        <li class="dropdown">
+            <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu-sidebar
+            {% if sideb == 'headvet_upcoming_app' %} active 
+            {% endif %}">
+                <i class="bx bx-calendar-alt icon
+                {% if sideb == 'headvet_upcoming_app' %} activeicon 
+                {% endif %}">
+                </i><span>Schedule</span></a>
+            <ul class="collapse list-unstyled menu" id="homeSubmenu1">
+                <li>
+                    <a href="{% url 'headvet_upcoming_app' %}">Upcoming Appointments</a>
+                </li>
+            </ul>
+        </li>
+
+
+        <li class="dropdown">
+            <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu-sidebar">
+                <i class='bx bx-file icon'></i><span>Reports</span></a>
+            <ul class="collapse list-unstyled menu" id="homeSubmenu2">
+                <li>
+                    <a href="#">Services Reports</a>
+                </li>
+                <li>
+                    <a href="#">Inventory Reports</a>
+                </li>
+                <li>
+                    <a href="{% url 'sec_transaction' %}">Transaction Reports</a>
+                </li>
+            </ul>
+        </li>
+
+
+        <li class="dropdown">
+            <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu-sidebar">
+                <i class='bx bx-history icon'></i><span>History</span></a>
+            <ul class="collapse list-unstyled menu" id="pageSubmenu3">
+                <li>
+                    <a href="#">Transaction History</a>
+                </li>
+                <li>
+                    <a href="#">Appointment History</a>
+                </li>
+
+            </ul>
+        </li>
+    </ul>
+
+    <div class="bottom-content">
+        <ul>
+            <li class="">
+                <a href="{% url 'logout' %}" class="menu-sidebar">
+                    <i class='bx bx-log-out icon'></i>
+                    <span class="text nav-text">Logout</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+</nav>
+<!-- END Sidebar -->

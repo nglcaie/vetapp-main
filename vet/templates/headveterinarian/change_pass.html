@@ -1,0 +1,183 @@
+{% extends 'headveterinarian\headVetHome.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    .bodyhead {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 29px;
+        color: #0F416F;
+        padding-bottom: 50px;
+
+    }
+
+    .bodyhead .back {
+        font-size: 25px;
+        padding-right: 20px;
+    }
+
+    .field-label {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 15px;
+
+        color: #585858;
+        line-height: 12px;
+    }
+
+    .form-container {
+
+        margin-left: 50px;
+        height: 500px;
+        width: 70%;
+    }
+
+    #id_new_password2,
+    #id_new_password1,
+    #id_old_password {
+
+        width: 100%;
+        height: 30px;
+
+
+        padding-left: 10px;
+        padding-right: 10px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 15px;
+
+        background: #FFFFFF;
+        border: 1px solid #B0B0B0;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 5px;
+       
+    }
+
+    .createBTN {
+        font-size: 14px;
+        text-decoration: none;
+        color: #f8f8f8;
+        background-color: #0F416F;
+        border-radius: 20px;
+        width: 150px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border: none;
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+
+    /**messages*/
+    .alert {
+        height: 73px;
+        width: 83%;
+        vertical-align: center;
+    }
+
+    .error {
+        font-size: 13px;
+        color: red;
+    }
+
+    
+    .success {
+        font-size: 13px;
+        color: green;
+        width: 200px;
+
+    }
+
+    .closebtn {
+        font-size: 20px;
+    }
+</style>
+
+<!--BODY HEAD-->
+<div class="bodyhead"> <a href="{% url 'headVetHome' %}"><i class='bx bx-arrow-back back'
+            style="color: #0F416F;;"></i></a>Change Password</div>
+<!--END BODY HEAD-->
+
+
+<form id="pwform" method="POST">
+  {%csrf_token%}
+    <div class="form-container">
+
+      
+        {% if messages %}
+{% for message in messages %}
+{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+
+<div class="alert alert-danger alert-dismissible fade show " role="alert">
+    <label class="error">
+        {{form.kind.errors}}
+        {{form.breed.errors}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+
+{% endif %}
+
+{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+<div class="alert  alert-success alert-dismissible fade show " role="alert">
+    <label class="success">
+        {{message}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+{% endif %}
+
+{% endfor %}
+{% endif %}
+        <!-- Cuurent Password -->
+        <div class="psub row">
+            <div class="ptext col-lg-5 col-md-5 col-sm-5 ">
+                <label class="field-label" for="pcur">Current Password</label>
+            </div>
+
+            <div class="pfield col-lg-5 col-md-5 col-sm-5">
+                {{form.old_password}}
+               <label class="error">{{form.old_password.errors}}</label> 
+            </div>
+        </div>
+
+        <!-- New Password -->
+        <div class="psub row">
+            <div class="ptext col-lg-5 col-md-5 col-sm-5">
+                <label class="field-label" for="pnew">New Password</label>
+            </div>
+            <div class="pfield col-lg-5">
+                {{form.new_password1}}<br>
+                <label class="error"> {{form.new_password1.errors}}</label>
+            </div>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="psub row">
+            <div class="ptext col-lg-5 col-md-5 col-sm-5 ">
+                <label class="field-label" for="pcon">Re-type New Password</label>
+            </div>
+            <div class="pfield col-lg-5 col-md-5 col-sm-5">
+                {{form.new_password2}}
+                <label class="error"> {{form.new_password2.errors}}</label>
+
+            </div>
+        </div>
+
+
+
+        <div class="psub row">
+            <div class="col-lg-5 col-md-5 col-sm-5"></div>
+            <div class="col-lg-5 col-md-5 col-sm-5" style="text-align: right" id="pbuttons">
+                <button type="submit" class="createBTN">Change Password</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock%}

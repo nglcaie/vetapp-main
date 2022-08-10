@@ -1,0 +1,25 @@
+.container1{
+    width: 90%;
+    padding-top: 100px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: auto;
+
+}
+
+.container2{
+    width: 90%;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: auto;
+}
+.createBTN {
+    text-decoration: none;
+    color: #f8f8f8;
+    background-color: #0F416F;
+    border-radius: 20px;
+    border: none;
+    padding: 5px 20px 5px 20px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}

@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="delete">
+
+        <div class="delete-inner">
+            <p>Are you sure you want to unrestrict {{getProf}}?</p>
+
+            {% for message in messages %}
+            {{message}}
+            {% endfor %}
+
+
+            <form method="POST">
+                {% csrf_token %}
+                <input type="submit" class="deleteBTN" name="Confirm" value="Unrestrict">
+                <a href="{% url 'restricted' %}" class="cancelBTN">Cancel</a>
+            </form>
+        </div>
+
+
+    </div>
+</div>

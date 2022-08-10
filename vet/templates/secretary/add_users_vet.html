@@ -1,0 +1,170 @@
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<style>
+    /* Google Font Import - Poppins */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+    .bodyhead {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 29px;
+        color: #0F416F;
+        padding-bottom: 50px;
+    }
+
+    .bodyhead .back {
+        font-size: 25px;
+        padding-right: 20px;
+    }
+
+    .container {
+        height: 650px;
+
+        width: 100%;
+        float: left;
+        padding-right: 50px;
+    }
+
+    .row {
+        width: 100%;
+        margin-left: 40px;
+        padding-top: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        background: rgba(193, 208, 214, 0.5);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 30px;
+    }
+
+    .row .field {
+        padding-top: 30px;
+    }
+
+
+   
+
+    .createBTN {
+        font-size: 14px;
+        text-decoration: none;
+        color: #f8f8f8;
+        background-color: #0F416F;
+        border-radius: 20px;
+        padding: 3px 20px 3px 20px;
+
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border: none;
+       
+        margin-bottom: 10px;
+        margin-right: 5px;
+
+    }
+
+    .cancelBTN {
+        font-size: 14px;
+        text-decoration: none;
+        color: #f8f8f8;
+        background: #6E8BA7;
+        border-radius: 20px;
+        padding: 5px 20px 5px 20px;
+
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border: none;
+        margin-right: 5px;
+    }
+
+    .cancelBTN:hover {
+        color: #ffff;
+       
+    }
+
+    /**message**/
+    .error {
+        font-size: 14px;
+        color: red;
+    }
+
+    .field-label {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 15px;
+        color: #585858;
+    }
+</style>
+
+
+    <div class="container">
+        <!--BODY HEAD-->
+        <div class="bodyhead"> <a href="{% url 'create_accounts' %}"><i class='bx bx-arrow-back back'
+                    style="color: #0F416F;;"></i></a>Create User</div>
+        <!--END BODY HEAD-->
+        <form method="POST" action="">
+            {% csrf_token %}
+
+            {% for message in messages %}
+            {{message}}
+            {% endfor %}
+
+            <div class="row">
+
+                <div class="col-lg-6 col-md-6 col-sm-6 field">
+                    <label class="field-label"> Email</label><br>
+                    {{register.email}}
+                    <label class="error">
+                        {{register.email.errors}}
+                    </label>
+
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 field">
+
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <label class="field-label"> Password</label><br>
+                    {{register.password1}}
+
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <label class="field-label">Confirm Password</label><br>
+                    {{register.password2}}
+
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <label class="error">
+                        {{register.password1.errors}}
+                        {{register.password2.errors}}
+                    </label>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <label class="field-label"> Veterinarian</label>
+                    {{register.is_veterinarian}}<br>
+                </div>
+               
+               
+                <div class="col-lg-6 col-md-6 col-sm-6 field">
+
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 field" style="text-align: right;">
+                    <div>
+                        <button type="submit" class="createBTN">Create</button> <a href="{% url 'create_accounts' %}"
+                        class="cancelBTN">Cancel</a><br><br>
+                    </div>
+                 
+                </div>
+
+
+
+            </div>
+    </div>
+
+    </form>
+
+
+
+{% endblock %}
+      

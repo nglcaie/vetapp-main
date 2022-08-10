@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/*
+** The Header Media Queries **
+** Tweak as per your needs **
+*/
+.brand {
+  font-weight: bold;
+  font-size: 20px;
+  padding-left: 20px;
+  
+}
+
+.nav__wrapper .nav__item a {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  color: black;
+
+  text-decoration: none;
+
+}
+
+.nav__wrapper .nav__item a:hover {
+  color: #49C1E6;
+}
+
+.nav__wrapper .x a {
+  padding: 30px;
+  padding-left: 10px;
+}
+
+
+.site-header {
+  position: relative;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  
+}
+
+.site-header__wrapper {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+@media (min-width: 600px) {
+  .site-header__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 600px) {
+  .nav__wrapper {
+    display: flex;
+  }
+}
+
+@media (max-width: 599px) {
+  .nav__wrapper {
+    position: absolute;
+    text-align: center;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: 13;
+    background-color: #d9f0f7;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  }
+
+  .nav__wrapper.active {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav__item a {
+  display: block;
+  padding: 1.5rem 1rem;
+}
+
+.nav__toggle {
+  display: none;
+  margin-top: 10px;
+  border: none;
+  background-color: #0F416F;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+@media (max-width: 599px) {
+  .nav__toggle {
+    display: block;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+  .websiteBody {
+    margin: 0;
+    background-image: url('/static/image/background.png');
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .websiteBody::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .websiteBody {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  .Frame {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    margin-left: 0;
+    min-width: 200px;
+    max-width: 1382px;
+    margin: auto;
+    background-image: url('/static/image/background.png');
+
+    overflow: hidden;
+
+  }
+
+
+  /**************** NAV BAR ****************/
+
+
+  .nav-item a {
+    color: black;
+    text-decoration: none;
+
+  }
+
+  .nav-item a:hover {
+    color: #49C1E6;
+  }
+
+  /* bone img */
+  .navbar li a span {
+    margin-top: -10px;
+    margin-bottom: -100px;
+  }
+
+
+  .navbar li a span {
+    display: none;
+    margin-top: -10px;
+  }
+
+  .navbar ul li a:hover span {
+    display: block;
+    margin-top: -10px;
+  }
+
+  .button {
+    font-family: 'poppins';
+    font-weight: 800;
+    color: white;
+    border-color: #49C1E6;
+    border-style: solid;
+    border-radius: 39px;
+ 
+    padding: 5px 20px 5px 20px;
+ 
+    background-color: #49C1E6;
+  }
+
+
+  .button:hover {
+    color: #49C1E6;
+    background-color: white;
+    border-color: #49C1E6;
+    transition: 0.7s;
+  }
+
+  .navbar .container-fluid .collapse .navbar-nav {
+    text-align: right;
+  }
+
+
+
+  /**************** END OF NAV BAR ****************/
+
+  /**************** CONTENT ***********************/
+
+
+  /*** blue forms ***/
+
+  .blue {
+    width: 399px;
+    height: 402px;
+
+    margin-top: 50px;
+    
+    background: rgba(193, 208, 214, 0.5);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+
+  }
+
+  .login-table {
+    width: 100%;
+    text-align: center;
+
+  }
+
+
+  .header {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 38px;
+    color: #0F416F;
+    padding-top: 30px;
+    padding-bottom: 10px;
+  }
+
+  /** form-field **/
+
+  .forms {
+    padding: 10px;
+    border: 3px solid #fff;
+    border-radius: 20px;
+    width: 300px;
+    height: 36.45px;
+    font-family: poppins;
+    font-size: 12px;
+  }
+
+  ::placeholder {
+    color: black;
+    font-family: poppins;
+  }
+
+  .button2 {
+    font-family: 'Inter';
+    font-weight: 800;
+    color: white;
+    border-color: #0F416F;
+    border-style: solid;
+    height: 40px;
+    width: 143.63px;
+
+    border-radius: 20px;
+    padding: 10px, 15px, 10px, 15px;
+    background: #0F416F;
+  }
+
+  .button2:hover {
+    color: #0F416F;
+    background-color: white;
+    border-color: #0F416F;
+    transition: 0.7s;
+  }
+
+  .forgot-pass {
+    text-align: left;
+    padding-left: 50px;
+
+  }
+
+  .forgot-pass a {
+    color: #0F416F;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    text-align: left;
+  }
+
+  .forgot-pass a:hover {
+    color: #0F416F;
+    text-decoration: none;
+  }
+
+  .error {
+    padding-top: 15px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    align-items: center;
+    text-align: center;
+  }
+
+  /*** END blue forms ***/
+
+
+  /**************** END OF CONTENT ****************/
+
+
+  /**************** FOOTER ****************/
+
+  footer {
+    bottom: 0;
+    width: 100%;
+    height: 350px;
+    padding: 30px;
+    background-color: #F7F7F7;
+    color: black;
+    text-align: center;
+  }
+
+  .footer-table {
+    width: 100%;
+  }
+
+  .footer-table a {
+    color: black;
+    text-decoration: none;
+  }
+
+  .footer-table a:hover {
+    color: black;
+    text-decoration: none;
+  }
+
+  .footer-table th {
+    font-family: 'Poppins';
+    text-align: left;
+    margin: auto;
+  }
+
+
+  .footer-table td {
+    padding: 0px, 0px, 0px, 0px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 12px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    color: black;
+  }
+
+  .name-footer {
+    color: #49C1E6;
+    font-size: 25px;
+  }
+
+  .welcome-banner {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 800;
+
+    line-height: 70px;
+    padding-top: 50px;
+
+  }
+
+  .dagupan {
+    font-size: 60px;
+    color: #0F416F;
+
+  }
+
+  .lorem-ipsum {
+    line-height: 20px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+
+    color: #000000;
+  }
+
+  /**************** END OF FOOTER ****************/

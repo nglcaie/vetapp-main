@@ -1,0 +1,250 @@
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+
+<div class="alert alert-danger alert-dismissible fade show " role="alert">
+    <label class="error">
+        {{message}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+
+{% endif %}
+
+{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+<div class="alert  alert-success alert-dismissible fade show " role="alert">
+    <label class="success">
+        {{message}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+{% endif %}
+
+{% endfor %}
+{% endif %}
+
+<style>
+
+
+    .addUserBTN {
+        font-size: 14px;
+        text-decoration: none;
+        color: #f8f8f8;
+        background-color: #0F416F;
+        border-radius: 20px;
+      
+        padding: 5px 20px 5px 20px;
+
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    }
+
+    .addUserBTN:hover {
+        color: #f8f8f8;
+    }
+
+
+    .addUserBTN1 {
+        font-size: 14px;
+        text-decoration: none;
+        color: #0F416F;
+        font-weight: 500;
+        border-radius: 20px;
+      
+        padding: 5px 20px 5px 20px;
+
+        background-color: #CEE8FC;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+
+    }
+
+    .addUserBTN1:hover {
+        color: #f8f8f8;
+    }
+
+    /**Dropdown**/
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    .dropbtnn {
+        background-color: #0F416F;
+        color: rgb(255, 255, 255);
+
+        width: 170px;
+
+        font-size: 14px;
+        border-radius: 20px;
+
+        border: none;
+        cursor: pointer;
+        font-family: 'poppins';
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      
+    }
+
+    .dropdownn {
+        position: relative;
+        display: inline-block;
+
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-size: 13px;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1
+    }
+
+    .dropdownn:hover .dropdown-content {
+        display: block;
+    }
+
+
+</style>
+
+
+<head>
+    <link rel="stylesheet" href="{% static '\css\secretary\billing\billing.css' %}">
+</head>
+
+
+<!--head-->
+<div class="bodyhead">Billing</div>
+<!--END head-->
+
+<a href="{% url 'transaction_reports' %}" class="addUserBTN">View Transaction Reports</a>
+
+
+<div class="dropdownn">
+
+    <button class="dropbtnn">Billing Reports</button>
+    {% if flag == 1 %}
+    <div class="dropdown-content">
+        <a href="{% url 'fully_chargeSlip_reports' %}" target="_blank">All</a>
+        <a href="{% url 'fully_today_chargeSlip_reports' %}" target="_blank">Today</a>
+        <a href="{% url 'fully_last_seven_chargeSlip_reports' %}" target="_blank">7 days ago</a>
+        <a href="{% url 'fully_last_thirty_chargeSlip_reports' %}" target="_blank">30 days ago</a>
+        <a href="{% url 'fully_a_year_ago_chargeSlip_reports' %}" target="_blank">A year ago</a>
+        <a href="{% url 'fully_more_chargeSlip_reports' %}" target="_blank">More that a year ago</a>
+    </div>
+    {% elif flag == 2%}
+    <div class="dropdown-content">
+        <a href="{% url 'partial_chargeSlip_reports' %}" target="_blank">All</a>
+        <a href="{% url 'partial_today_chargeSlip_reports' %}" target="_blank">Today</a>
+        <a href="{% url 'partial_last_seven_chargeSlip_reports' %}" target="_blank">7 days ago</a>
+        <a href="{% url 'partial_last_thirty_chargeSlip_reports' %}" target="_blank">30 days ago</a>
+        <a href="{% url 'partial_a_year_ago_chargeSlip_reports' %}" target="_blank">A year ago</a>
+        <a href="{% url 'partial_more_chargeSlip_reports' %}" target="_blank">More that a year ago</a>
+    </div>
+    {% elif flag == 3%}
+    <div class="dropdown-content">
+        <a href="{% url 'Unpaid_chargeSlip_reports' %}" target="_blank">All</a>
+        <a href="{% url 'Unpaid_today_chargeSlip_reports' %}" target="_blank">Today</a>
+        <a href="{% url 'Unpaid_last_seven_chargeSlip_reports' %}" target="_blank">7 days ago</a>
+        <a href="{% url 'Unpaid_last_thirty_chargeSlip_reports' %}" target="_blank">30 days ago</a>
+        <a href="{% url 'Unpaid_a_year_ago_chargeSlip_reports' %}" target="_blank">A year ago</a>
+        <a href="{% url 'Unpaid_more_chargeSlip_reports' %}" target="_blank">More that a year ago</a>
+    </div>
+    {%else%}
+    <div class="dropdown-content">
+        <a href="{% url 'chargeSlip_reports' %}" target="_blank">All</a>
+        <a href="{% url 'today_chargeSlip_reports' %}" target="_blank">Today</a>
+        <a href="{% url 'last_seven_chargeSlip_reports' %}" target="_blank">7 days ago</a>
+        <a href="{% url 'last_thirty_chargeSlip_reports' %}" target="_blank">30 days ago</a>
+        <a href="{% url 'a_year_ago_chargeSlip_reports' %}" target="_blank">A year ago</a>
+        <a href="{% url 'more_chargeSlip_reports' %}" target="_blank">More that a year ago</a>
+    </div>
+    {% endif %}
+</div>
+
+<div class="dropdownn">
+
+    <button class="dropbtnn">Filter Status</button>
+    <div class="dropdown-content">
+        <a href="{% url 'billing' %}">All</a>
+        <a href="{% url 'fully_billing' %}">Fully Paid</a>
+        <a href="{% url 'partial_billing' %}">Partially Paid</a>
+        <a href="{% url 'unpaid_billing' %}">Unpaid</a>
+
+    </div>
+</div>
+
+<a href="{% url 'outside_buyer' %}" class="addUserBTN1"> Create Product Slip</a>
+
+<br>
+<hr>
+
+
+
+
+
+<div class="tablepanel">
+    <table class="table-inner" style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Code</th>
+            <th>Customer</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Action</th>
+
+        </tr>
+        <!-- END TABLE HEAD -->
+
+        <!-- TABLE DATA -->
+
+        {% for chargeslip in all_chargeslip %}
+        <tr class="table_data">
+            <td><a href="{% url 'chargeslip_view' chargeslip.id %}"> {{chargeslip.code}} </a></td>
+            <td>
+                {%if chargeslip.petowner == None %}
+                Outside Buyer
+                {% else %}
+                {{chargeslip.petowner}}
+                {% endif %}</td>
+            <td>{{chargeslip.date|date:"N d Y"}} </td>
+            <td>{{chargeslip.status}}</td>
+            <td>{%if chargeslip.status == 'Unpaid' %}
+                <a href="{% url 'chargeslip_edit' chargeslip.id %}"><i class='bx bxs-edit updateBTN1'></i></a>
+                {% else %}
+                {% endif %}<br>
+
+            </td>
+        </tr>
+        {% endfor %}
+
+        <!--END TABLE DATA-->
+    </table>
+</div>
+<!--======END Billing======-->
+
+<br>
+
+
+
+{% endblock%}

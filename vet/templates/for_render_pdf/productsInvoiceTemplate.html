@@ -1,0 +1,137 @@
+{% load static %}
+
+<style>
+    .header-table {
+        width: 100%;
+        border-bottom: 1px solid #b0b0b0;
+        text-align: center;
+    }
+
+    .header-table tr th .clinics {
+        font-size: 15px;
+        letter-spacing: 5px;
+    }
+
+    .contact-info {
+        font-size: 10px;
+
+    }
+
+    .pdf-type {
+        font-size: 15px;
+        font-weight: 600px;
+
+    }
+
+    .data-table {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 12px;
+
+
+
+    }
+
+    .data-table .dt-head th {
+        text-align: left;
+        padding-right: 10px;
+        padding-left: 10px;
+        height: 30px;
+        border: 1px solid #b0b0b0;
+        line-height: 5px;
+
+    }
+
+    .data-table tr td {
+        padding-right: 10px;
+        padding-left: 10px;
+        border: 1px solid #b0b0b0;
+
+        height: 20px;
+        line-height: 5px;
+
+    }
+</style>
+<br>
+<!--BODY SUB-HEAD-->
+<table class="header-table">
+    <tr>
+        <th>
+            <label class="clinics">DAGUPAN ANIMAL CLINIC</label><br><br>
+            <label class="contact-info" contact-info>
+                1775 Dagupan St., Tondo Manila<BR>
+                Res Tel. Nos: 703-7067 / 255-5953 / 703-5519 <BR>
+                0927-113-9135 / 0933-823-9772<BR>
+            </label>
+
+            <hr>
+        </th>
+
+    </tr>
+</table>
+
+<br><br><br><br><br>
+<!--END BODY SUB-HEAD-->
+
+
+<label class="pdf-type">PRODUCT REPORT</label><br><br>
+
+
+
+<table class="data-table">
+    <tr class="dt-head">
+        <th>
+            Product
+        </th>
+        <th>
+            Manufacturing Date
+        </th>
+        <th>
+            Expiration Date
+        </th>
+        <th>
+            Quanitiy
+        </th>
+        <th>
+            Price
+        </th>
+    </tr>
+    {%for sched in services %}
+    <tr>
+
+        <td>{{sched.chargeslip.code}}
+        </td>
+        <td>
+            {{sched.date}}
+        </td>
+        <td>
+            {{sched.product}}
+        </td>
+        <td>
+            {{sched.quantity}}
+        </td>
+        <td>
+            {{sched.total}} 
+        </td>
+       
+    </tr>
+    {%endfor %}
+
+    <tr>
+        <td colspan="3">
+
+        </td>
+        <td>
+            Total Amount
+        </td>
+        <td>
+             {{total}}
+        </td>
+    </tr>
+
+
+
+</table>
+
+

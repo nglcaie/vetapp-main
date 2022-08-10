@@ -1,0 +1,75 @@
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+
+{% block content %}
+
+{% for message in messages %}
+{{message}}
+{% endfor %}
+
+<!----CSS---->
+<link rel="stylesheet" href="{% static '\css\secretary\create\add_profile.css' %}">
+<!----END CSS---->
+
+<div style="height: auto;">
+
+    <div class="container1">
+        <a href="{% url 'add_petowner_account1' updprofile.id %}" class="addUserBTN">Add Account</a>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="container2">
+
+            <div class=" row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    Email<br> 
+                    {{form.useracc}}
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 ">
+                    First Name<br>
+                    {{form.firstName}}
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    Last Name<br>
+                    {{form.lastName}}
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    Gender<br>
+                    {{form.gender}}
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    Contact Number<br>
+                    {{form.contactNum}}
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    Address <br>
+                    {{form.address}}
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                 
+                    <button type="submit" class="createBTN">Create Profile</button>
+                    <br>
+                </div>
+
+
+            </div>
+        </div>
+
+    </form>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#useracc').select2();
+    });
+</script>
+
+{% endblock %}

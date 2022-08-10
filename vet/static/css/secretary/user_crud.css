@@ -1,0 +1,188 @@
+/* Google Font Import - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+.bodyhead {
+    font-size: 30px;
+    font-weight: 500;
+    color: #0F416F;
+}
+
+.addUserBTN {
+    text-decoration: none;
+    color: #f8f8f8;
+    background-color: #0F416F;
+    border-radius: 20px;
+    padding: 5px 10px 5px 10px;
+}
+
+.addPetsBTN {
+    text-decoration: none;
+    color: #f8f8f8;
+    background-color: #0f416fb6;
+    border-radius: 20px;
+    padding: 1px 8px 1px 8px;
+}
+
+.createAcc {
+    background-color: rgba(255, 255, 255, 0);
+
+}
+
+.createAcc td {
+    padding: 10px
+}
+
+/*****PRODUCT TABLE*****/
+
+.tablepanel {
+    overflow-y: scroll;
+    width: 100%;
+    height: 170px;
+    margin: auto;
+
+
+    border: 3px solid #0F416F;
+    border-radius: 15px 15px 15px 15px;
+    margin-bottom: 2%;
+
+}
+
+.tablepanel::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 0 8px 8px 0;
+
+}
+
+.tablepanel::-webkit-scrollbar-thumb {
+    border-radius: 0 8px 8px 0;
+}
+
+
+.tablee {
+
+    width: 100%;
+    background-color: white;
+}
+
+.table_head {
+    position: sticky;
+    top: 0;
+    cursor: context-menu;
+    width: 100%;
+    height: 50px;
+    color: #0F416F;
+    ;
+    font-size: 16px;
+    background-color: white;
+
+}
+
+.table_data {
+    font-size: 15px;
+    text-align: center;
+}
+
+.table_data a {
+    font-size: 19px;
+    color: #707070;
+}
+
+/***** END PRODUCT TABLE*****/
+
+
+
+.form-control {
+    background-color: #ffffff;
+    width: 230px;
+    height: 30px;
+
+    border: 1px solid #0F416F;
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    color: #707070;
+}
+
+.form-controll {
+    background-color: #ffffff;
+    width: 230px;
+    height: 27px;
+
+    border: 1px solid #9e9e9ed3;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    color: #707070;
+}
+
+.pet_createBTN {
+    text-decoration: none;
+    color: #f8f8f8;
+    background-color: #0F416F;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 25px 5px 25px;
+
+    width: 120px;
+    height: 40px;
+
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+}
+
+.deleteBTN {
+    text-decoration: none;
+    color: #f8f8f8;
+    background-color: #0F416F;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 25px 5px 25px;
+
+    width: 120px;
+    height: 40px;
+
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+}
+
+/******User Profile********/
+
+/*search bar*/
+
+.searchbar {
+    border-radius: 10px;
+    border-color: #0F416F;
+    border-radius: 10px 0px 0px 10px;
+    border-style: solid none solid solid;
+}
+
+.searchbtn {
+    border-radius: 10px;
+    border-color: #0F416F;
+    border-radius: 0px 10px 10px 0px;
+    border-style: solid solid solid solid;
+    background: #E7ECF1;
+    width: 40px;
+    margin-left: -5px;
+}
+
+.bx-search {
+    color: #0F416F;
+    font-size: 20px;
+    vertical-align: middle;
+}

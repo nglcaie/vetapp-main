@@ -1,0 +1,375 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=5" />
+
+  <title>Landing Page</title>
+
+  <!--  CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,700">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/header-1.css' %}">
+
+
+  <!----===== Boxicons CSS ===== -->
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<style>
+  .center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+  .lorem-ipsum-2 {
+    font-family: 'poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+  }
+
+  .what-we-do {
+    font-family: 'poppins';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 55px;
+    color: #0F416F;
+    text-align: center;
+  }
+
+  .paw {
+    align-items: center;
+    text-align: center;
+  }
+
+  .description {
+    font-family: 'poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+    text-align: center;
+    margin-top: -70px;
+
+    color: #000000;
+  }
+
+  .service-name {
+
+    font-family: 'poppins';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 24px;
+    align-items: center;
+    text-align: center;
+
+    color: #49C1E6;
+  }
+
+
+
+  /**************** END OF CONTENT ****************/
+
+
+  /**************** FOOTER ****************/
+
+  footer {
+    bottom: 0;
+    width: 100%;
+    height: 350px;
+    padding: 30px;
+    background-color: #F7F7F7;
+    color: black;
+    text-align: center;
+  }
+
+  .footer-table {
+    width: 100%;
+  }
+
+  .footer-table a {
+    color: black;
+    text-decoration: none;
+  }
+
+  .footer-table a:hover {
+    color: black;
+    text-decoration: none;
+  }
+
+  .footer-table th {
+    font-family: 'poppins';
+    text-align: left;
+    margin: auto;
+  }
+
+
+  .footer-table td {
+    padding: 0px, 0px, 0px, 0px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 12px;
+    font-family: 'poppins';
+    font-style: normal;
+    font-weight: 400;
+    color: black;
+  }
+
+  .name-footer {
+    color: #49C1E6;
+    font-size: 25px;
+  }
+
+  .welcome-banner {
+    font-family: 'poppins';
+    font-style: normal;
+    font-weight: 800;
+
+    line-height: 70px;
+    margin-top: 50px;
+    color: #0F416F;
+    padding-left: 100px;
+  }
+
+
+  /**************** END OF FOOTER ****************/
+  .about-banner {
+    margin-top: 100px;
+    text-align: center;
+    font-family: 'poppins';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 60px;
+  }
+
+  .know-our-services-BTN {
+    font-size: 14px;
+    font-family: 'poppins';
+    font-weight: 800;
+    font-style: normal;
+    color: white;
+    border-color: #49C1E6;
+    border-style: solid;
+    height: 40px;
+    width: 202px;
+    margin-left: 0px;
+    margin-top: -10px;
+    border-radius: 20px;
+    padding: 10px, 15px, 10px, 15px;
+    background: #49C1E6;
+  }
+
+  .know-our-services-BTN:hover {
+    color: #0F416F;
+    background-color: white;
+    border-color: #0F416F;
+    transition: 0.7s;
+  }
+
+  .lorem-ipsum {
+    font-family: 'poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+
+    color: #000000;
+  }
+</style>
+
+<body class="websiteBody" style="background-image: url(background.png);">
+
+
+
+
+
+  <div id="Frame" class="Frame">
+
+    <!-- Header Start -->
+    <header class="site-header">
+      <div class="wrapper site-header__wrapper">
+        <a href="#" class="brand"><img src="{% static 'image/logo.png' %}" height="50px"></a>
+        <nav class="nav">
+          <button class="nav__toggle" aria-expanded="false" type="button">
+            <i class='bx bx-menu' style="color: #fff; font-size: 30px;"></i>
+          </button>
+          <ul class="nav__wrapper">
+            <li class="nav__item x"><a href="{% url 'index' %}">Home</a></li>
+            <li class="nav__item x"><a href="{% url 'aboutUs' %}">About</a></li>
+            <li class="nav__item x"><a href="{% url 'services' %}">Services</a></li>
+            <li class="nav__item x"><a href="{% url 'contact_us' %}">Contacts</a></li>
+            <li class="nav__item"><a href="{% url 'login' %}"> <button class="button" type="button">Log in</button></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- Header End -->
+
+
+
+    <!-------------------------------- CONTENT --------------------------------------->
+
+    <!-------------------------------- CONTENT --------------------------------------->
+    <div class="content row">
+
+
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <div class="q-cat" style="text-align: center">
+          <br>
+          <img src="{% static 'image/cat.png' %}">
+        </div>
+      </div>
+
+
+      <div class="col-lg-5 col-md-5 col-sm-5 pt-5" style="padding: 40px; margin-top: 50px;">
+
+        <h1 style="font-family: 'poppins';font-weight: 700; color:#0F416F; text-align: left; font-size: 40px;">
+          Servicing your pet <br> with style </h1>
+        <br>
+        <p class="lorem-ipsum"> Servicing your pet with a style in Dagupan Veterinary Clinic!
+          We offers variety of services that your pet can experience
+          starting from grooming, consultation, vaccinarion,
+          and many more </p><br>
+
+        <A href="{% url 'aboutUs' %}"><button class="button2" type="button">Discover More</button></A>
+
+
+      </div>
+
+
+    </div>
+
+    <div class="wa-ve">
+      <img src="{% static 'image/wave.png' %}" width="100%">
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: center;">
+        <p class="paw"><img src="{% static 'image/paw.png' %}"> </p><br>
+        <p class="what-we-do">What we do</p><br>
+        <p class="lorem-ipsum-2"> We offers variety of services that your pet can experience <br>
+          starting from grooming, consultation, vaccinarion, <br>
+          and many more </p><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-4" style="text-align: center;">
+        <img src="{% static 'image/cons.png' %}">
+        <p class="service-name" style="margin-top: -60px;">Consultation</p><br><br><br>
+
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4" style="text-align: center;">
+        <img src="{% static 'image/vaxx.png' %}" style="margin-top: -60px;">
+        <p class="service-name">Vaccination</p><br><br><br>
+
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4" style="text-align: center;">
+        <img src="{% static 'image/lab-t.png' %}"><br>
+        <p class="service-name" style="margin-top: -90px;">Laboratory Tests</p><br><br><br>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6" style="text-align: center;"> <img src="{% static 'image/groom.png' %}">
+        <p class="service-name" style="margin-top: -100px;">Grooming</p><br>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6" style="text-align: center;"><img src="{% static 'image/surgery.png' %}">
+        <p class="service-name" style="margin-top: -100px;">Surgery</p><br>
+      </div>
+
+    </div>
+
+    <br><br><br>
+  </div>
+
+  <!-------------------------------- FOOTER -------------------------------->
+
+  <footer>
+    <table class="footer-table">
+      <tr>
+        <th style="width:35%">
+          <p class="name-footer">Dagupan Animal Clinic </p>
+        </th>
+        <th style="width:25%"><b>Contact Information</b> </th>
+        <th style="width:13%"> Opening Hours</th>
+        <th style="width: 10%"> Navigate</th>
+        <th> Social Media</th>
+      </tr>
+      <tr>
+        <td>
+          Privately owned clinic catering primary services and <br> activities for small companion
+          animals.
+          <br><br><br><br><br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <b>© 2022 Dagupan Animal Clinic. All Right Reserved.</b>
+        </td>
+        <td class="words">
+          <img src="{% static 'image/loc.png' %}" style="vertical-align: middle"> &nbsp;&nbsp; 1743 Dagupan St.,
+          Tondo,
+          Manila,
+          Philippines <br>
+          <br><img src="{% static 'image/phone.png' %}" style="vertical-align: middle"> &nbsp;&nbsp;Res Tel. Nos:
+          703-7067 /
+          255-5953 / 703-5519 <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Clinic Nos. 0927-113-9135 / 0933-823-9772
+        </td>
+        <td>
+          Monday to Saturday <br>
+          8:30 am - 5:30 pm <br> <br>
+          Sunday <br>
+          9:00 am -12:00 pm
+        </td>
+        <td>
+          <a href="#">Home </a> <br>
+          <a href="#">About </a> <br>
+          <a href="#">Services </a> <br>
+          <a href="#">Products </a> <br>
+          <a href="#">Contact </a> <br>
+          <a href="#">Log-in </a> <br>
+        </td>
+        <td>
+          <img src="{% static 'image/fb.png' %}" style="vertical-align: middle">&nbsp;&nbsp;<a href="#">
+            Facebook</a>
+        </td>
+      </tr>
+    </table>
+  </footer>
+
+  <!-------------------------------- END OF FOOTER -------------------------------->
+
+  </div>
+
+
+  <script src="{% static 'js/header-1.js' %}"></script>
+
+</body>
+
+</html>

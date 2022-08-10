@@ -1,0 +1,189 @@
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        
+    </head>
+
+<body>
+{% block content %}
+
+<style>
+    .addUserBTN {
+        font-size: 14px;
+        text-decoration: none;
+        color: #f8f8f8;
+        background-color: #0F416F;
+        border-radius: 20px;
+        padding: 2px 20px 2px 20px;
+
+        border: none;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    }
+
+    .addUserBTNn {
+        font-size: 14px;
+        text-decoration: none;
+        color: #f8f8f8;
+        background-color: #0F416F;
+        border-radius: 20px;
+        padding: 5px 50px 5px 50px;
+        width: 200px;
+        height: 20px;
+        border: none;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    }
+
+    .addUserBTN:hover {
+        color: #ffff;
+
+    }
+
+    .chargesliplabel {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 19px;
+        color: #0F416F;
+
+    }
+
+    .chargesliplabel1 {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 22px;
+
+        color: #0F416F;
+
+
+    }
+
+
+    .table-inner .table_data .tabletotal {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 15px;
+
+        color: #0F416F;
+    }
+
+    .total {
+        background-color: #EFF1F3;
+
+    }
+
+    .computations tr td {
+        padding-left: 10px;
+    }
+
+
+
+    .ttl {
+        font-weight: 600;
+    }
+
+    .bs {
+
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+
+        text-align: right;
+        color: #0F416F;
+    }
+</style>
+
+
+<head>
+    <link rel="stylesheet" href="{% static '\css\secretary\billing\edit_billing.css' %}">
+</head>
+
+<!--head-->
+<div class="bodyhead">Products Slip</div>
+<!--END head-->
+
+
+{% if messages %}
+{% for message in messages %}
+{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+
+<div class="alert alert-danger alert-dismissible fade show " role="alert">
+    <label class="error">
+        {{message}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+
+{% endif %}
+
+{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+<div class="alert  alert-success alert-dismissible fade show " role="alert">
+    <label class="success">
+        {{message}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+{% endif %}
+
+{% endfor %}
+{% endif %}
+
+<br>
+
+<form method="POST" action="">
+    <div class="row" style="  width: 100%;
+
+    margin: auto;">
+        {% csrf_token %}
+        <div class="col-lg-5 col-md-5 col-sm-5">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3"><label class="field-label">Product</label></div>
+
+                <div class="col-lg-9 col-md-9 col-sm-9">{{form.chargeslip}}{{form.product}}</div>
+            </div>
+        </div>
+
+        <div class="col-lg-5 col-md-5 col-sm-5">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3"><label class="field-label">Quantity</label></div>
+                <div class="col-lg-9 col-md-9 col-sm-9">{{form.quantity}}</div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2">
+            <button type="submit" class="addUserBTN">Submit</button>
+        </div>
+    </div>
+</form>
+
+
+<hr>
+
+
+
+{% endblock%}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+    // In your Javascript (external .js resource or <script> tag)
+    $(document).ready(function() {
+        $('#id_product').select2();
+    });
+</script>
+
+
+</body>
+</html>

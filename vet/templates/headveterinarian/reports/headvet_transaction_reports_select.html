@@ -1,0 +1,129 @@
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="{% static '\css\secretary\billing\billing_view_per_transactions.css' %}">
+</head>
+
+<!--ERROR and SUCCESS MESSAGES-->
+{% if messages %}
+{% for message in messages %}
+{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+
+<div class="alert alert-danger alert-dismissible fade show " role="alert">
+    <label class="error">
+        {{message}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+
+{% endif %}
+
+{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+<div class="alert  alert-success alert-dismissible fade show " role="alert">
+    <label class="success">
+        {{message}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+{% endif %}
+
+{% endfor %}
+{% endif %}
+<!--END ERROR and SUCCESS MESSAGES-->
+
+
+<!--BODY HEAD-->
+<div class="bodyhead"> <a href="{% url 'transaction_reports' %}"><i class='bx bx-arrow-back back'
+            style="color: #0F416F;;"></i></a>Transaction</div>
+<!--END BODY HEAD-->
+
+<!--BODY SUB-HEAD-->
+<table style="width: 100%; margin-bottom: 1%;  border-bottom: 1px solid  #b0b0b0;">
+    <tr>
+        <td>
+            <img src="{% static 'image/logo.png' %}" width="120px" style="margin-bottom: 5%;">
+        </td>
+        <td class="field-label" style="text-align:right; font-size:15px">
+            Transaction Code: {{trans.code}}
+        </td>
+    </tr>
+</table>
+<!--END BODY SUB-HEAD-->
+
+
+<!-- TABLE DATA -->
+<div class="tablepanel">
+    <table class="table-inner" style=" width: 100%;">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <label class="chargesliplabel">Charge Slip Code:</label>
+                        </td>
+                        <td>
+                            <label class="chargeslipfield"> {{trans.chargeslip.code}}</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="chargesliplabel">Date:</label>
+                        </td>
+                        <td>
+                            <label class="chargeslipfield"> {{trans.date|date:"N d Y"}}</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="chargesliplabel">Attending Staff:</label>
+                        </td>
+                        <td>
+                            <label class="chargeslipfield"> {{trans.staff}}</label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <br>
+                            <label class="chargesliplabel">Total Amount:</label>
+                        </td>
+                        <td>
+                            <br>
+                            <label class="chargeslipfield">{{trans.grandTotal}}<label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="chargesliplabel">TenderedAmount:</label>
+                        </td>
+                        <td>
+                            <label class="chargeslipfield"> {{trans.tenderedAmount}}</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="chargesliplabel">Change:</label>
+                        </td>
+                        <td>
+                            <label class="chargeslipfield">{{trans.changeAmount}}</label>
+                        </td>
+                    </tr>
+
+
+                </table>
+            </td>
+        </tr>
+
+    </table>
+</div>
+<!--END TABLE DATA-->
+
+
+{% endblock%}

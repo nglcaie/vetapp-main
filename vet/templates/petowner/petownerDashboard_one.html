@@ -1,0 +1,263 @@
+{% extends 'petowner/petOwnerHome.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    .rounded-pfp-pet {
+        height: 100px;
+        width: 100px;
+        border-radius: 100%;
+        border: 5px solid #0F416F;
+    }
+</style>
+<!--bago toh-->
+
+<head>
+    <link rel="stylesheet" href="{% static '\css\petowner\dashboard_petowner.css' %}">
+</head>
+
+
+<!--BODY HEAD-->
+<div class="bodyhead">Dashboard</div>
+<!--END BODY HEAD-->
+
+<div class="row">
+    <div class="col-lg-7 col-md-7 col-sm-7 col1">
+
+        <p class="my-pets">My Pets ({{petcount}})</p>
+        <!--bago toh pet-->
+        <div class="tablepanel">
+            <table class="table-inner" style=" width: 100%;">
+
+
+
+                <!-- TABLE DATA -->
+
+                <tr class="table_data">
+                    {% for pets in all_pets %}
+                    <!--bago toh pet-->
+                    <td>
+
+                        <table>
+                            <tr>
+                                <td style="text-align: center;">
+                                    <a href="{% url 'view_pet_history' pets.id %}"><img src="/media/{{pets.pet_image}}"
+                                            class="rounded-pfp-pet"></a> <br>
+                                    <!--bago toh pet-->
+
+                                    <a href="{% url 'view_pet_history' pets.id %}">{{pets.petName}}</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+
+                    {% endfor %}
+                    <!--bago toh pet-->
+                </tr>
+
+
+                <!--END TABLE DATA-->
+            </table>
+        </div>
+
+        <style>
+            .upa-head1 {
+                background: #0F416F;
+                border: 2px solid #EAEAEA;
+                border-radius: 20px;
+
+
+                padding: 15px;
+                padding-left: 20px;
+                color: #fff;
+                ;
+                font-size: 15px;
+                font-weight: 600;
+
+
+
+            }
+
+            .upa-head {
+
+                background: #FFFFFF;
+                border: 2px solid #EAEAEA;
+                border-radius: 20px;
+
+
+                padding: 15px;
+                padding-left: 20px;
+                color: #0F416F;
+                ;
+                font-size: 15px;
+                font-weight: 600;
+
+
+
+            }
+
+            .upa-head:hover {
+                background-color: #0f416f7f;
+                color: #fff;
+
+            }
+
+            .upa-sched {
+                background: #FFFFFF;
+                border: 2px solid #EAEAEA;
+                border-radius: 13px;
+                margin-top: 15px;
+                width: 100%;
+                padding: 10px;
+                padding-left: 20px;
+                color: #585858;
+                font-size: 12px;
+
+
+            }
+
+            .pymnt-remind {
+                background: #FFFFFF;
+                border: 2px solid #EAEAEA;
+                border-radius: 13px;
+                margin-top: 15px;
+                width: 100%;
+                height: 190px;
+                padding: 10px;
+                padding-left: 20px;
+                color: #585858;
+                font-size: 12px;
+
+                background: rgba(255, 255, 255, 0.5);
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                border-radius: 20px;
+            }
+
+            .notif-head {
+                width: 100%;
+
+            }
+
+            .notif-head tr td {
+                width: 50%;
+                padding: 5px;
+            }
+
+            .data-label {
+                color: #0F416F;
+                font-weight: 500;
+                line-height: 1px;
+            }
+
+            @media only screen and (max-width:992px) {
+
+
+                .upa-head {
+                    width: 100%;
+                    margin-top: 20px;
+                }
+
+                .col2 .user-details-container {
+                    margin-top: 40px;
+                    height: 300px;
+                    width: 100%;
+                }
+            }
+        </style>
+
+        <!--ROW 2-->
+        <div class="row">
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <Table class="notif-head">
+                    <tr>
+                        <td>
+                            <a href="{% url 'petOwnerDashBoard' %}">
+                                <div class="upa-head"> {{sched_count}} Upcoming Appointments</div>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'petOwnerDashBoard_one' %}">
+                                <div class="upa-head1"> {{charge_count}} Payment Reminders</div>
+                            </a>
+                        </td>
+                    </tr>
+                </Table>
+
+
+
+                <div class="tablepanel-sched">
+                    {%for charge in charge_in %}
+                    <div class="upa-sched">
+                        <label class="data-label"> Date:</label>
+                        {{charge.date}} <br>
+                        <label class="data-label"> Outstanding balance:</label>
+                        {{charge}}<br>
+                        <label class="data-label"> Status:</label>
+                        {{charge.status}} <br>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-5 col-md-5 col-sm-5 col2">
+        <div class="user-details-container">
+            <div>
+                <table class="user-details">
+                    <tr>
+                        <th class="user-details-head" colspan="2">
+                            My Information
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Email:</b>
+                        </td>
+                        <td> {{getProfile.useracc}}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Name:</b>
+                        </td>
+                        <td>
+                            {{getProfile.firstName}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> <b>Last:</b></td>
+                        <td> {{getProfile.lastName}}</td>
+                    </tr>
+                    <tr>
+                        <td> <b>Gender:</b></td>
+                        <td> {{getProfile.gender}}</td>
+                    </tr>
+                    <tr>
+                        <td><b> Contact:</b></td>
+                        <td> {{getProfile.contactNum}}</td>
+                    </tr>
+                    <tr>
+                        <td> <b> Address:</b></td>
+                        <td> {{getProfile.address}}</td>
+                    </tr>
+                </table>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

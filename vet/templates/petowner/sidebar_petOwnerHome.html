@@ -1,0 +1,149 @@
+{% load static %}
+
+{% block content %}
+
+
+
+<nav id="sidebar" class="sideb">
+
+    <!-- sidebar head -->
+    <div class="sidebar-header">
+        <h3>
+            <table>
+                <tr>
+                    <td>
+                        <img src="{% static 'image/dog.png' %}">
+                    </td>
+                    <td class="clinic-name">
+                        <span class="dagupan">Dagupan</span>
+                        <span class="a-clinic">Animal Clinic</span>
+                    </td>
+                </tr>
+            </table>
+        </h3>
+    </div>
+    <!-- END sidebar head-->
+
+
+
+    <ul class="list-unstyled components">
+
+        <!-- menu button-->
+        <div>
+            <button type="button" id="sidebarCollapse">
+                <span><i class='bx bx-menu icon'></i></span>
+            </button>
+
+            <li style="border-bottom: 1px solid #eee;">
+                <a href="#"><i class='bx bx-user icon' style="color: transparent;"></i><span>Menu</span></a>
+            </li>
+        </div>
+        <!-- END menu button-->
+
+
+
+        <li>
+            <a href="{% url 'petOwnerHome' %}" class="menu-sidebar 
+            {% if sideb == 'petOwnerHome' %} active 
+            {% elif sideb == 'edit_profile' %}  active
+            {% elif sideb == 'OwnerChangePass' %}  active
+        
+            {% endif %}">
+                <i class="bx bx-user icon 
+                    {% if sideb == 'petOwnerHome' %} activeicon 
+                    {% elif sideb == 'edit_profile' %}  activeicon
+                    {% elif sideb == 'OwnerChangePass' %}  activeicon
+                    
+                    {% endif %}"></i><span>Profile</span></a>
+        </li>
+        <li>
+            <a href="{% url 'petOwnerDashBoard' %}" class="menu-sidebar
+                {% if sideb == 'petOwnerDashBoard' %}  active
+                {% elif sideb == 'view_pet_history' %}  active
+                {% elif sideb == 'owner_view_per_record' %}  active
+                {% elif sideb == 'edit_pet_pfp' %}  active
+                
+                {% endif %}"> <i class="bx bx-home-alt icon
+                    {% if sideb == 'petOwnerDashBoard' %}  activeicon
+                    {% elif sideb == 'view_pet_history' %}  activeicon
+                    {% elif sideb == 'owner_view_per_record' %}  activeicon
+                    {% elif sideb == 'edit_pet_pfp' %}  activeicon
+                    {% endif %}"></i><span>Dashboard</span></a>
+        </li>
+
+        <li>
+            <a href="#" class="menu-sidebar"> <i class="bx bxs-dog icon"></i><span>Services</span></a>
+        </li>
+
+
+        <li class="dropdown">
+            <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu-sidebar
+            {% if sideb == 'choose_pet' %} active 
+            {% elif sideb == 'upcomming_app' %}  active
+            {% elif sideb == 'cancelled_appointments' %}  active
+            {% elif sideb == 'scheduling' %}  active
+            {% elif sideb == 'cancelled_app' %}  active
+            {% endif %}">
+
+
+                <i class="bx bx-calendar-alt icon
+                {% if sideb == 'choose_pet' %} activeicon
+                {% elif sideb == 'upcomming_app' %}  activeicon
+                {% elif sideb == 'cancelled_appointments' %}  activeicon
+                {% elif sideb == 'cancelled_app' %}  activeicon
+                {% elif sideb == 'scheduling' %}  activeicon
+                {% endif %}"></i><span>Schedule</span></a>
+            <ul class="collapse list-unstyled menu" id="homeSubmenu1">
+                <li>
+                    <a href="{% url 'choose_pet' %}">Set Appointment</a>
+                </li>
+                <li>
+                    <a href="{% url 'upcomming_app' %}">Upcoming Appointments</a>
+                </li>
+                <li>
+                    <a href="{% url 'cancelled_appointments' %}">Cancelled Appointments</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu-sidebar
+            {% if sideb == 'petowner_transaction_history' %} active 
+            {% elif sideb == 'view_transaction' %} active
+            
+            {% endif %}">
+                <i class="bx bx-history icon
+                
+                {% if sideb == 'petowner_transaction_history' %} activeicon
+                {% elif sideb == 'view_transaction' %} activeicon
+                {% endif %}
+               "></i><span>History</span></a>
+            <ul class="collapse list-unstyled menu" id="pageSubmenu2">
+                <li>
+                    <a href="{% url 'petowner_transaction_history' %}">Transaction History</a>
+                </li>
+                <li>
+                    <a href="#">Appointment History</a>
+                </li>
+
+            </ul>
+        </li>
+    </ul>
+
+    <div class="bottom-content">
+        <ul>
+            <li class="">
+                <a href="{% url 'logout' %}" class="menu-sidebar">
+                    <i class='bx bx-log-out icon'></i>
+                    <span class="text nav-text">Logout</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+</nav>
+<!-- END Sidebar -->
+
+
+{% endblock %}

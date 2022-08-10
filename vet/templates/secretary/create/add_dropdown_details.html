@@ -1,0 +1,460 @@
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<head>
+    <link rel="stylesheet" href="{% static '\css\secretary\create\add_details.css' %}">
+</head>
+
+
+<!--Body Head-->
+<div class="bodyhead" style="font-weight: 600;"> Details</div>
+<!--End Body Head-->
+{% csrf_token %}
+
+{% for message in messages %}
+<div class="alert  alert-success alert-dismissible fade show " role="alert">
+    <label class="success">
+        {{message}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+{% endfor %}
+
+<!--===== Species =====-->
+<!--Species-->
+<table class="table_container">
+
+    <tr>
+        <td class="table_for">
+            Species
+        </td>
+        <td style="text-align: right;">
+            <a href="{% url 'add_species' %}" class="addUserBTN">Add Data</a>
+        </td>
+
+    </tr>
+    <tr>
+
+        <td colspan="2" style="padding-top: 10px;">
+
+            <form method="get">
+                <table>
+                    <tr>
+                        <td style="padding: 0px;">
+                            <input type="text" class="searchbar" name="searchthis" placeholder="search">
+
+                        </td>
+                        <td style=" padding: 0px;">
+                            <button type="submit" class="searchBTN" id="submit"><i class='bx bx-search'></i></button>
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+
+        </td>
+    </tr>
+</table>
+<!--END Species table-->
+<br>
+
+
+
+<div class="tablepanel">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Species</th>
+            <th style=" padding-left: 45px;">Actions</th>
+
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for species in pet_species %}
+      
+        <tr class="table_data">
+            <td>{{species.species}}</td>
+
+            <td>
+
+                <table class="actionbtn">
+                    <tr>
+                        <td>
+                            <a href="{% url 'update_species' species.id %}" class="updateBTN"> <i
+                                    class='bx bxs-edit updateBTN1'></i></a>
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_species' species.id %}" class="deleteBTN"><i
+                                    class='bx bxs-trash deleteBTN1'></i></a>
+                        </td>
+
+                    </tr>
+                </table>
+
+            </td>
+
+
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+<!--======END Species======-->
+
+<!--===== Breed ======-->
+<!--  Breed table-->
+<table class="table_container">
+
+    <tr>
+        <td class="table_for">
+            Breed
+        </td>
+        <td style="text-align: right;">
+            <a href="{% url 'add_breed' %} " class="addUserBTN">Add Data</a>
+        </td>
+
+    </tr>
+    <tr>
+
+        <td colspan="2" style="padding-top: 10px;">
+
+            <form method="get">
+                <table>
+                    <tr>
+                        <td style="padding: 0px;">
+                            <input type="text" class="searchbar" name="searchthis" placeholder="search">
+
+                        </td>
+                        <td style=" padding: 0px;">
+                            <button type="submit" class="searchBTN" id="submit"><i class='bx bx-search'></i></button>
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+
+        </td>
+    </tr>
+</table>
+<!--END  Breed table-->
+<br>
+
+<div class="tablepanel tablee">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+          
+            <th>Breed</th>
+            <th style=" padding-left: 45px;">Actions</th>
+        </tr>
+        <!-- END TABLE HEAD -->
+
+       
+        <!-- TABLE DATA -->
+        {% for breed in breeds %}
+
+        <tr class="table_data">
+           
+            <td>{{breed.breed}}</td>
+            
+           
+            
+            <td>
+                <table class="actionbtn">
+                    <tr>
+                        <td>
+                            <a href="{% url 'breed_change' breed.id %}" class="updateBTN"> <i
+                                    class='bx bxs-edit updateBTN1'></i></a>
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_breed' breed.id %}" class="deleteBTN"><i
+                                    class='bx bxs-trash deleteBTN1'></i></a>
+                        </td>
+
+                    </tr>
+                </table>
+
+
+
+            </td>
+
+
+        </tr>
+        {% endfor %}
+        
+        <!--END TABLE DATA-->
+    </table>
+
+</div>
+<!--===== END Breed ======-->
+
+
+<!--===== Gender ======-->
+<!--  Gender table-->
+<table class="table_container">
+
+    <tr>
+        <td class="table_for">
+            Gender
+        </td>
+        <td style="text-align: right;">
+            <a href="{% url 'add_gender' %}" class="addUserBTN">Add Data</a>
+        </td>
+
+    </tr>
+    <tr>
+
+        <td colspan="2" style="padding-top: 10px;">
+
+            <form method="get">
+                <table>
+                    <tr>
+                        <td style="padding: 0px;">
+                            <input type="text" class="searchbar" name="searchthis" placeholder="search">
+
+                        </td>
+                        <td style=" padding: 0px;">
+                            <button type="submit" class="searchBTN" id="submit"><i class='bx bx-search'></i></button>
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+
+        </td>
+    </tr>
+</table>
+<!--END  Gender table-->
+<br>
+
+<div class="tablepanel tablee">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Gender</th>
+            <th style=" padding-left: 45px;">Actions</th>
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for gender in genders %}
+
+        <tr class="table_data">
+            <td>{{gender.gender}}</td>
+
+            <td>
+                <table class="actionbtn">
+                    <tr>
+                        <td>
+                            <a href="{% url 'update_gender' gender.id %}" class="updateBTN"> <i
+                                    class='bx bxs-edit updateBTN1'></i></a>
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_gender' gender.id %}" class="deleteBTN"><i
+                                    class='bx bxs-trash deleteBTN1'></i></a>
+                        </td>
+
+                    </tr>
+                </table>
+
+
+
+            </td>
+
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+
+</div>
+<!--===== END Gender ======-->
+
+
+<!--===== Services  ======-->
+<!--  Services table-->
+<table class="table_container">
+
+    <tr>
+        <td class="table_for">
+            Services
+        </td>
+        <td style="text-align: right;">
+            <a href="{% url 'add_services' %}" class="addUserBTN">Add Data</a>
+        </td>
+
+    </tr>
+    <tr>
+
+        <td colspan="2" style="padding-top: 10px;">
+
+            <form method="get">
+                <table>
+                    <tr>
+                        <td style="padding: 0px;">
+                            <input type="text" class="searchbar" name="searchthis" placeholder="search">
+
+                        </td>
+                        <td style=" padding: 0px;">
+                            <button type="submit" class="searchBTN" id="submit"><i class='bx bx-search'></i></button>
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+
+        </td>
+    </tr>
+</table>
+<!--END  Services table-->
+<br>
+
+<div class="tablepanel tablee">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Services</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th style=" padding-left: 45px;">Actions</th>
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for serve in service %}
+
+        <tr class="table_data">
+            <td> {{serve.serviceName}} </td>
+            <td>{{serve.description}}</td>
+            <td>{{serve.price}}</td>
+
+            <td>
+                <table class="actionbtn">
+                    <tr>
+                        <td>
+                            <a href="{% url 'update_services' serve.id %}" class="updateBTN"> <i
+                                    class='bx bxs-edit updateBTN1'></i></a>
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_services' serve.id %}" class="deleteBTN"><i
+                                    class='bx bxs-trash deleteBTN1'></i></a>
+                        </td>
+
+                    </tr>
+                </table>
+
+
+
+            </td>
+
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+
+</div>
+<!--===== END Services ======-->
+
+
+<!--===== Product Type ======-->
+<!--  Product Type table-->
+<table class="table_container">
+
+    <tr>
+        <td class="table_for">
+            Product Type
+        </td>
+        <td style="text-align: right;">
+            <a href="{% url 'add_productType' %}" class="addUserBTN">Add Data</a>
+        </td>
+
+    </tr>
+    <tr>
+
+        <td colspan="2" style="padding-top: 10px;">
+
+            <form method="get">
+                <table>
+                    <tr>
+                        <td style="padding: 0px;">
+                            <input type="text" class="searchbar" name="searchthis" placeholder="search">
+
+                        </td>
+                        <td style=" padding: 0px;">
+                            <button type="submit" class="searchBTN" id="submit"><i class='bx bx-search'></i></button>
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+
+        </td>
+    </tr>
+</table>
+<!--END  Product Type table-->
+<br>
+
+<div class="tablepanel tablee">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Product Type</th>
+            <th style=" padding-left: 45px;">Actions</th>
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for prod in prodType %}
+
+        <tr class="table_data">
+            <td>{{prod.prodType}}</td>
+
+            <td>
+                <table class="actionbtn">
+                    <tr>
+                        <td>
+                            <a href="{% url 'update_productType' prod.id %}" class="updateBTN"> <i
+                                    class='bx bxs-edit updateBTN1'></i></a>
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_productType' prod.id %}" class="deleteBTN"><i
+                                    class='bx bxs-trash deleteBTN1'></i></a>
+                        </td>
+
+                    </tr>
+                </table>
+
+
+
+            </td>
+
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+
+</div>
+<!--===== END Product Type ======-->
+
+
+
+
+{% endblock %}

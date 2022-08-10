@@ -1,0 +1,125 @@
+<style>
+    .form-control {
+        background-color: #ffffff;
+        width: 230px;
+        height: 30px;
+
+        border: 1px solid #0F416F;
+        border-radius: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        font-family: 'Poppins', sans-serif;
+        font-size: 17px;
+        color: #707070;
+    }
+
+    .form-controll {
+        background-color: #ffffff;
+        width: 230px;
+        height: 27px;
+
+        border: 1px solid #9e9e9ed3;
+        border-radius: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        font-family: 'Poppins', sans-serif;
+        font-size: 17px;
+        color: #707070;
+    }
+
+    .pet_createBTN {
+        text-decoration: none;
+        color: #f8f8f8;
+        background-color: #0F416F;
+        border: none;
+        border-radius: 20px;
+        padding: 5px 25px 5px 25px;
+
+        width: 120px;
+        height: 40px;
+
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: 500;
+
+        cursor: pointer;
+
+    }
+</style>
+
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<!----CSS---->
+<link rel="stylesheet" href="{% static '\css\secretary\create\add_profile.css' %}">
+<!----END CSS---->
+
+<div style="height: auto;">
+
+
+    {% for own in qs %}
+    {{own}}
+    {% endfor %}
+    <form method="post">
+        {% csrf_token %}
+
+
+        {% for message in messages %}
+        {{message}}
+
+        <div class="container2">
+
+            <div class=" row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    Pet Owner<br>
+                    {{form.petOwner}}
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 ">
+                    Pet Name<br>
+                    {{form.petName}}
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    Date of Birth<br>
+                    {{form.dob}}
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    Gender<br>
+                    {{form.sex}}
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    Species<br>
+                    {{form.species}}
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    Breed<br>
+                    {{form.description}}
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    Color Marking<br>
+                    {{form.colorMarking}}
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <button type="submit" class="deleteBTN">Submit</button>
+                    <br>
+                </div>
+
+
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+
+{% endblock %}

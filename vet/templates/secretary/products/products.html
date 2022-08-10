@@ -1,0 +1,138 @@
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="{% static '\css\secretary\products\productss.css' %}">
+</head>
+
+<!--head-->
+<div class="bodyhead" style="font-weight: 600;">Products</div>
+<!--END head-->
+
+{% csrf_token %}
+
+{% for message in messages %}
+<div class="alert  alert-success alert-dismissible fade show " role="alert">
+    <label class="success">
+        {{message}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+{% endfor %}
+
+<!--===== products =====-->
+<!-- products head -->
+<table class="table_container" style="width: 100%;" >
+
+    <tr>
+
+        <td >
+            <a href="{% url 'add_product' %}" class="addUserBTN">Add Products</a>
+        </td>
+      
+
+    </tr>
+    <tr>
+
+        <td style="padding-top: 10px;">
+
+            <form method="get">
+                <table>
+                    <tr>
+                        <td style="padding: 0px;">
+                            <input type="text" class="searchbar" name="searchthis" placeholder="search">
+
+                        </td>
+                        <td style=" padding: 0px;">
+                            <button type="submit" class="searchBTN" id="submit"><i class='bx bx-search'></i></button>
+                        </td>
+                    </tr>
+
+                    
+                </table>
+
+            </form>
+          
+        </td>
+
+        <td style="text-align: right;">
+            <a href="{% url 'inventory_summary' %}" target="_blank" class="addUserBTN"> <i class='bx bxs-file-pdf pdf' ></i>  Products Summary</a>
+
+            <a href="{% url 'all_products_reports' %}" target="_blank" class="addUserBTN"><i class='bx bxs-file-pdf pdf'></i>  All Products</a>
+        </td>
+    </tr>
+</table>
+
+
+<!--END products head -->
+
+<hr>
+<div class="tablepanel">
+    <table class="table-inner " style=" width: 100%;">
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Status</th>
+
+            <th>Actions</th>
+
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for i in displayproducts %}
+
+        <tr class="table_data">
+            <td><a href="{% url 'available_products' i.id %}">{{i.product_name}}</a></td>
+            <td>{{i.product_type}}</td>
+            <td>{{i.description}}</td>
+            <td>{{i.price}}</td>
+            <td>{{i.total_quantity}}</td>
+
+            <td>
+                {% if i.status == "High in Stock" %}
+                <P style="color:green">{{i.status}}</P>
+                {% elif i.status == "No Stock" %}
+                <P style="color:rgb(255, 100, 100)">{{i.status}}</P>
+                {% elif i.status == "Low in Stock" %}
+                <P style="color:red">{{i.status}}</P>
+                {% else %}
+                <P style="color:rgb(237, 189, 33)">{{i.status}}</P>
+                {% endif %}
+            </td>
+
+            <td>
+
+                <table class="actionbtn">
+                    <tr>
+                        <td><a href="{% url 'add_available_products' i.id %}" class="addrecordBTN"><i
+                                    class='bx bx-plus-circle addrecordBTN1'></i></a></td>
+                        <td><a href="{% url 'update_product' i.id %}"><i class='bx bxs-edit updateBTN1'></i></td>
+                        <td><a href="{% url 'delete_product' i.id %}"><i class='bx bxs-trash deleteBTN1'></i></a></td>
+
+                    </tr>
+                </table>
+
+            </td>
+
+
+
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+
+
+
+{% endblock %}

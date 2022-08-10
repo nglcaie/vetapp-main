@@ -1,0 +1,235 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=5" />
+
+  <title>Services</title>
+
+  <!--  CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,700">
+  <link rel="stylesheet" href="{% static 'css/services.css' %}">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/services.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body class="websiteBody">
+
+  <div id="Frame" data-name="ABOUT US PAGE " class="Frame">
+
+
+    <!--------------------------------  NAVBAR --------------------------------------->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+
+        <a class="navbar-brand" href="#"><img src="{% static 'image/logo.png' %}" style="height: 60px;"></a>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">Home<span><img src="{% static 'image/bone.png' %}"
+                  alt="image"></span></a>
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'aboutUs' %}">About<span><img src="{% static 'image/bone.png' %}"
+                  alt="image"></span></a>
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'services' %}">Services<span><img src="{% static 'image/bone.png' %}"
+                  alt="image"></span></a>
+
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact_us' %}">Contacts<span><img src="{% static 'image/bone.png' %}"
+                  alt="image"></span></a>
+
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'login' %}"> <button class="button" type="button">Log in</button></a>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+    <!-------------------------------- END NAVBAR --------------------------------------->
+
+    <!-------------------------------- CONTENT --------------------------------------->
+    <div class="content">
+
+      <!--INPUT YOUR CSS CODES HERE-->
+      <table style=" width: 100%;">
+
+        <tr>
+          <td>
+            <div class="q-cat" style="text-align: center">
+              <br>
+              <img src="{% static 'image/cat.png' %}">
+            </div>
+          </td>
+
+          <td>
+            <table>
+              <tr>
+                <br>
+                <h1 style="font-family: 'Nunito';font-weight: 700; color:#0F416F; text-align: left; font-size: 40px;">
+                  Servicing your pet <br> with style </h1>
+              </tr>
+              <tr>
+                <p class="lorem-ipsum"> Servicing your pet with a style in Dagupan Veterinary Clinic <br>
+                  offers variety of services that your pet can experience <br>
+                  starting from grooming, consultation, vaccinarion, <br>
+                  and many more </p>
+              </tr>
+              <tr>
+                <br>
+                <br>
+                <A href="{% url 'aboutUs' %}"><button class="button2" type="button">Discover More</button></A>
+
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+
+    <div class="wa-ve">
+      <img src="{% static 'image/wave.png' %}" width="100%">
+    </div>
+
+    <div class="services-table" style="background-color: white; padding-bottom: 100px; padding-top: 50px;">
+      <table class="center">
+        <tr>
+          <p class="paw"><img src="{% static 'image/paw.png' %}"> </p><br>
+          <p class="what-we-do">What we do</p><br>
+          <p class="lorem-ipsum-2">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem <br>
+            ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+            Lorem ipsum Lorem ipsum Lorem</p>
+        </tr>
+        <tr>
+          <td>
+            <img src="{% static 'image/cons.png' %}">
+            <p class="service-name" style="margin-top: -60px;">Consultation</p><br><br><br>
+            <p class="description">Lorem ipsum dolor sit amet, <br>
+              consectetur adipiscing elit, sed <br>
+              do eiusmod tempor incididunt ut <br>
+              labore et dolore magna aliqua.<br>
+              Ut enim a</p>
+          </td>
+          <td>
+            <img src="{% static 'image/vaxx.png' %}" style="margin-top: -60px;">
+            <p class="service-name">Vaccination</p><br><br><br>
+            <p class="description">Lorem ipsum dolor sit amet, <br>
+              consectetur adipiscing elit, sed <br>
+              do eiusmod tempor incididunt ut <br>
+              labore et dolore magna aliqua.<br>
+              Ut enim a</p>
+          </td>
+          <td>
+            <img src="{% static 'image/lab-t.png' %}">
+            <p class="service-name" style="margin-top: -90px;">Laboratory Tests</p><br><br><br>
+            <p class="description">Lorem ipsum dolor sit amet, <br>
+              consectetur adipiscing elit, sed <br>
+              do eiusmod tempor incididunt ut <br>
+              labore et dolore magna aliqua.<br>
+              Ut enim a</p>
+          </td>
+        </tr>
+      </table>
+      <table class="center">
+        <tr>
+          <td>
+            <img src="{% static 'image/groom.png' %}">
+            <p class="service-name" style="margin-top: -100px;">Grooming</p><br><br><br>
+            <p class="description">Lorem ipsum dolor sit amet, <br>
+              consectetur adipiscing elit, sed <br>
+              do eiusmod tempor incididunt ut <br>
+              labore et dolore magna aliqua.<br>
+              Ut enim a</p>
+          </td>
+          <td>
+            <img src="{% static 'image/surgery.png' %}">
+            <p class="service-name" style="margin-top: -100px;">Surgery</p><br><br><br>
+            <p class="description">Lorem ipsum dolor sit amet, <br>
+              consectetur adipiscing elit, sed <br>
+              do eiusmod tempor incididunt ut <br>
+              labore et dolore magna aliqua.<br>
+              Ut enim a</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <!-------------------------------- FOOTER -------------------------------->
+
+    <footer>
+      <table class="footer-table">
+        <tr>
+          <th style="width:35%">
+            <p class="name-footer">Dagupan Animal Clinic </p>
+          </th>
+          <th style="width:25%"><b>Contact Information</b> </th>
+          <th style="width:13%"> Opening Hours</th>
+          <th style="width: 10%"> Navigate</th>
+          <th> Social Media</th>
+        </tr>
+        <tr>
+          <td>
+            Privately owned clinic catering primary services and <br> activities for small companion
+            animals.
+            <br><br><br><br><br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <b>© 2022 Dagupan Animal Clinic. All Right Reserved.</b>
+          </td>
+          <td class="words">
+            <img src="{% static 'image/loc.png' %}" style="vertical-align: middle"> &nbsp;&nbsp; 1743 Dagupan St.,
+            Tondo,
+            Manila,
+            Philippines <br>
+            <br><img src="{% static 'image/phone.png' %}" style="vertical-align: middle"> &nbsp;&nbsp;Res Tel. Nos:
+            703-7067 /
+            255-5953 / 703-5519 <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Clinic Nos. 0927-113-9135 / 0933-823-9772
+          </td>
+          <td>
+            Monday to Saturday <br>
+            8:30 am - 5:30 pm <br> <br>
+            Sunday <br>
+            9:00 am -12:00 pm
+          </td>
+          <td>
+            <a href="#">Home </a> <br>
+            <a href="#">About </a> <br>
+            <a href="#">Services </a> <br>
+            <a href="#">Products </a> <br>
+            <a href="#">Contact </a> <br>
+            <a href="#">Log-in </a> <br>
+          </td>
+          <td>
+            <img src="{% static 'image/fb.png' %}" style="vertical-align: middle">&nbsp;&nbsp;<a href="#">
+              Facebook</a>
+          </td>
+        </tr>
+      </table>
+    </footer>
+
+    <!-------------------------------- END OF FOOTER -------------------------------->
+
+  </div>
+
+
+
+</body>
+
+</html>

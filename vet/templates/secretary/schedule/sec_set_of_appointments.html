@@ -1,0 +1,359 @@
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<style>
+    .bodyhead {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 29px;
+        color: #0F416F;
+        padding-bottom: 10px;
+    }
+
+    /*table*/
+
+    /*table scroll*/
+    .tablepanel::-webkit-scrollbar {
+        width: 0px;
+        border-radius: 0 0px 10px 0;
+    }
+
+    .tablepanel::-webkit-scrollbar-thumb {
+        border-radius: 0 0px 10px 0;
+    }
+
+    /*end table scroll*/
+    .table_container tr .table_for {
+
+        color: #585858;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 33px;
+
+
+
+
+    }
+
+    .tablepanel {
+        overflow-y: scroll;
+        width: 90%;
+        height: 200px;
+
+        /**height: 170px;**/
+        border-radius: 0px 0px 15px 15px;
+        margin-bottom: 2%;
+
+        background: #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    }
+
+
+
+    .tablepanel .table-inner .table_data td,
+    .tablepanel .table-inner .table_head th {
+        padding-left: 30px;
+    }
+
+
+    .tablepanel .table-inner .table_data td .actionbtn tr td {
+        padding-left: 15px;
+    }
+
+    .tablepanel table .table_head th {
+        font-size: 15.5px;
+    }
+
+    .tablepanel table tr th {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 30px;
+        align-items: center;
+        color: #FFFFFF;
+    }
+
+
+    .table_head {
+        position: sticky;
+        top: 0;
+        cursor: context-menu;
+
+        height: 40px;
+        background-color: #8292A0;
+        border-radius: 0px 10px 10px 0px;
+
+
+    }
+
+    .tablepanel .table_data {
+
+        border-bottom: 1px solid #B0B0B0;
+    }
+
+    .tablepanel .table_data td {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+
+    }
+
+    .addUserBTN {
+        font-size: 12px;
+        text-decoration: none;
+        color: #f8f8f8;
+        background-color: #0F416F;
+        border-radius: 15px;
+
+        padding: 3px 20px 3px 20px;
+
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    }
+
+    .addUserBTN:hover {
+        color: #f8f8f8;
+    }
+
+    /**RESTRICTED**/
+    .restricted-container {
+        width: 70%;
+
+
+    }
+
+    .restricted {
+        color: red;
+    }
+
+    .restricted-user {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 15px;
+        color: #0F416F;
+
+
+
+    }
+</style>
+<!-- MESSAGES -->
+{% if messages %}
+{% for message in messages %}
+{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+
+<div class="alert alert-danger alert-dismissible fade show " role="alert">
+    <label class="error">
+        {{message}}
+
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+
+{% endif %}
+
+{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+<div class="alert  alert-success alert-dismissible fade show " role="alert">
+    <label class="success">
+        {{message}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+{% endif %}
+
+{% endfor %}
+{% endif %}
+<!-- END MESSAGES -->
+
+<div class="bodyhead">
+    Appointments
+</div>
+<br>
+<a href="{% url 'restricted' %}" class="restricted-user">Restricted Users</a>
+<hr style="margin-top:0px">
+
+<!-- Upcoming Appointments -->
+<table class="table_container" style="width:270px">
+
+    <tr>
+        <td class="table_for">
+            Upcoming Appointments
+        </td>
+    </tr>
+</table>
+
+<!--END  Upcoming Appointments -->
+
+<div class="tablepanel">
+
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Date</th>
+            <th>Time</th>
+            <th>Veterinarian</th>
+            <th colspan="2">Action</th>
+        </tr>
+        <!-- END TABLE HEAD -->
+
+        <!-- TABLE DATA -->
+
+        {%for sched in upcomingSched %}
+        <tr class="table_data">
+            <td> {{sched.slot.date|date:"N d Y"}} </td>
+            <td>{{sched.slot.timeIn|time:'h:i A'}} : {{sched.slot.timeOut|time:'h:i A'}} </td>
+            <td>{{sched.slot.vet}}</td>
+            <td><a href="{% url 'setarrived' sched.id %}" class="addUserBTN">Arrive</a> </td>
+            <td><a href="{% url 'setdidnotarrived' sched.id %}" class="addUserBTN">Did Not Arrive</a> </td>
+        </tr>
+        {% endfor %}
+
+        <!--END TABLE DATA-->
+    </table>
+</div>
+
+
+<!-- Cancelled Appointments -->
+<table class="table_container" style="width:270px">
+
+    <tr>
+        <td class="table_for">
+            Cancelled Appointments
+        </td>
+    </tr>
+</table>
+
+<!--END  Cancelled Appointments -->
+
+<div class="tablepanel">
+
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Date</th>
+            <th>Time</th>
+            <th>Veterinarian</th>
+
+        </tr>
+        <!-- END TABLE HEAD -->
+
+        <!-- TABLE DATA -->
+
+        {%for sched in cancelledSched %}
+        <tr class="table_data">
+            <td> {{sched.slot.date|date:"N d Y"}} </td>
+            <td>{{sched.slot.timeIn|time:'h:i A'}} : {{sched.slot.timeOut|time:'h:i A'}} </td>
+            <td>{{sched.slot.vet}}</td>
+
+        </tr>
+        {% endfor %}
+
+        <!--END TABLE DATA-->
+    </table>
+</div>
+<br>
+
+
+<!--  Arrived Appointments -->
+<table class="table_container" style="width:270px">
+
+    <tr>
+        <td class="table_for">
+            Arrived Appointments
+        </td>
+    </tr>
+</table>
+
+<!--END   Arrived Appointments -->
+
+
+<div class="tablepanel">
+
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Date</th>
+            <th>Time</th>
+            <th>Veterinarian</th>
+
+        </tr>
+        <!-- END TABLE HEAD -->
+
+        <!-- TABLE DATA -->
+
+        {%for sched in arrived %}
+        <tr class="table_data">
+            <td> {{sched.slot.date|date:"N d Y"}} </td>
+            <td>{{sched.slot.timeIn|time:'h:i A'}} : {{sched.slot.timeOut|time:'h:i A'}} </td>
+            <td>{{sched.slot.vet}}</td>
+
+        </tr>
+        {% endfor %}
+
+        <!--END TABLE DATA-->
+    </table>
+</div>
+<br>
+
+
+<!--   Did Not Arrived Appointments -->
+<table class="table_container" style="width:270px">
+
+    <tr>
+        <td class="table_for">
+            Did Not Arrived Appointments
+        </td>
+    </tr>
+</table>
+
+<!--END    Did Not Arrived Appointments -->
+
+<div class="tablepanel">
+
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Date</th>
+            <th>Time</th>
+            <th>Veterinarian</th>
+
+        </tr>
+        <!-- END TABLE HEAD -->
+
+        <!-- TABLE DATA -->
+
+        {%for sched in didnotarrived %}
+        <tr class="table_data">
+            <td> {{sched.slot.date|date:"N d Y"}} </td>
+            <td>{{sched.slot.timeIn|time:'h:i A'}} : {{sched.slot.timeOut|time:'h:i A'}} </td>
+            <td>{{sched.slot.vet}}</td>
+
+        </tr>
+        {% endfor %}
+
+        <!--END TABLE DATA-->
+    </table>
+</div>
+<br>
+
+
+{% endblock %}

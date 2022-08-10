@@ -1,0 +1,59 @@
+
+.bodyhead {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 29px;
+
+    color: #0F416F;
+}
+
+
+.bodyhead .back {
+    font-size: 30px;
+    padding-right: 20px;
+}
+
+.container1{
+    width: 90%;
+    padding-top: 100px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: auto;
+
+}
+
+.container2{
+    width: 90%;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: auto;
+}
+
+.deleteBTN {
+    text-decoration: none;
+    color: #f8f8f8;
+    background-color: #0F416F;
+    border-radius: 20px;
+    border: none;
+    padding: 5px 20px 5px 20px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    width: 164px;
+    height: 39.19px;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

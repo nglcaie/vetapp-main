@@ -1,0 +1,237 @@
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<head>
+    <link rel="stylesheet" href="{% static '\css\secretary\archive\archive.css' %}">
+</head>
+
+
+<!--head-->
+<div class="bodyhead">Recovery of Accounts</div>
+<!--END head-->
+
+{% csrf_token %}
+
+{% for message in messages %}
+<div class="alert  alert-success alert-dismissible fade show " role="alert">
+    <label class="success">
+        {{message}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+{% endfor %}
+
+<!--===== pet owner =====-->
+<!--petowner table-->
+<table class="table_container">
+    <tr>
+        <td class="table_for">
+            Pet Owners
+        </td>
+    </tr>
+
+</table>
+<!--END petowner table-->
+
+
+<!----===================================-->
+
+<div class="tablepanel">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+
+            <th>Email</th>
+            <th>Date of inactivity</th>
+            <th>Actions</th>
+
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for user in petowners %}
+
+        <tr class="table_data">
+
+            <td>{{user.email}}</td>
+            <td>{{user.date_of_inactive}}</td>
+
+            <td>
+                <a href="{% url 'recover_user' user.id %}" class="addUserBTN">Activate</a>
+
+            </td>
+
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+<!--======END petowner======-->
+
+
+<!--===== veterinarian =====-->
+<!--veterinarian table-->
+<table class="table_container">
+    <tr>
+        <td class="table_for">
+            Veterinarian
+        </td>
+    </tr>
+
+</table>
+<!--END veterinarian table-->
+
+
+
+<!----===================================-->
+<div class="tablepanel">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+
+            <th>Email</th>
+            <th>Date of inactivity</th>
+            <th>Actions</th>
+
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for user in veterinarian %}
+
+        <tr class="table_data">
+
+            <td>{{user.email}}</td>
+            <td>{{user.date_of_inactive}}</td>
+
+            <td>
+                <a href="{% url 'recover_user' user.id %}" class="addUserBTN">Activate</a>
+
+            </td>
+
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+<!--======END Veterinarian======-->
+
+
+<!--===== Head veterinarian =====-->
+<!--Head veterinarian table-->
+<table class="table_container">
+    <tr>
+        <td class="table_for">
+            Head Veterinarian
+        </td>
+    </tr>
+
+</table>
+<!--END Head veterinarian table-->
+
+
+
+<!----===================================-->
+<div class="tablepanel">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+
+            <th>Email</th>
+            <th>Date of inactivity</th>
+            <th>Actions</th>
+
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for user in headvet %}
+
+        <tr class="table_data">
+
+            <td>{{user.email}}</td>
+            <td>{{user.date_of_inactive}}</td>
+
+            <td>
+                <a href="{% url 'recover_user' user.id %}" class="addUserBTN">Activate</a>
+
+            </td>
+
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+<!--======END Head Veterinarian======-->
+
+
+<!--===== Head  Secretary =====-->
+<!--Head  Secretary table-->
+<table class="table_container">
+    <tr>
+        <td class="table_for">
+            Secretary
+        </td>
+    </tr>
+
+</table>
+<!--END Head  Secretary table-->
+
+
+
+<!----===================================-->
+<div class="tablepanel">
+    <table class="table-inner " style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+
+            <th>Email</th>
+            <th>Date of inactivity</th>
+            <th>Actions</th>
+
+        </tr>
+        <!-- END TABLE HEAD -->
+
+
+        <!-- TABLE DATA -->
+        {% for user in secretary %}
+
+        <tr class="table_data">
+
+            <td>{{user.email}}</td>
+            <td>{{user.date_of_inactive}}</td>
+
+            <td>
+                <a href="{% url 'recover_user' user.id %}" class="addUserBTN">Activate</a>
+
+            </td>
+
+
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+<!--======END Head Secretary======-->
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .deleteBTN{
+     text-decoration: none;
+     color: #f8f8f8;
+     background-color: #0F416F;
+     border: none;
+     border-radius: 20px;
+     padding: 5px 25px 5px 25px;
+
+     width: 120px;
+     height: 40px;
+
+     margin-top: 30px;
+     font-size: 18px;
+     font-weight: 500;
+
+     cursor: pointer;
+     
+    }
+     .cancelBTN{
+     text-decoration: none;
+     color:#0F416F;
+     background-color:white;
+     border: 2px solid #0F416F;
+     border-radius: 20px;
+     padding: 5px 25px 5px 25px;
+
+     width: 200px;
+     height: 40px;
+
+     margin-top: 30px;
+     
+
+ }
+</style>
+
+<p>Are you sure you want to delete {{pet.petName}}?</p>
+
+{% for message in messages %}
+{{message}} 
+{% endfor %}
+
+<form method = "POST">
+    {% csrf_token %}
+    <input type="submit" name="Confirm" class="deleteBTN"> 
+     <a href="{% url 'create_accounts' %} " class="cancelBTN">Cancel</a>
+</form>
+
+{% endblock %}

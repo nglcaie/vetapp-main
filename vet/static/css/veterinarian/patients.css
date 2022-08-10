@@ -1,0 +1,222 @@
+/* Google Font Import - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+
+
+.bodyhead {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 29px;
+
+    color: #0F416F;
+
+}
+
+/*add pets*/
+
+
+.table_for {
+
+    color: #585858;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 33px;
+
+
+}
+
+.addUserBTN {
+    font-size: 14px;
+    text-decoration: none;
+    color: #f8f8f8;
+    background-color: #0F416F;
+    border-radius: 20px;
+    padding: 3px 20px 3px 20px;
+
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+
+.addUserBTN:hover {
+   
+    color: #f8f8f8;
+
+
+}
+
+/*search bar*/
+
+.searchbar {
+    border-radius: 10px;
+    border-color: #0F416F;
+    border-radius: 10px 0px 0px 10px;
+    border-style: solid none solid solid;
+    padding-left: 20px;
+    padding-right: 20px;
+    outline: none;
+
+
+}
+
+.searchBTN {
+    border-radius: 10px;
+    border-color: #0F416F;
+    border-radius: 0px 10px 10px 0px;
+    border-style: solid solid solid solid;
+    background: #E7ECF1;
+    width: 40px;
+
+    outline: none;
+
+}
+
+.bx-search {
+    color: #0F416F;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+/*table*/
+
+/*table scroll*/
+.tablepanel::-webkit-scrollbar {
+    width: 0px;
+    border-radius: 0 0px 10px 0;
+}
+
+.tablepanel::-webkit-scrollbar-thumb {
+    border-radius: 0 0px 10px 0;
+}
+
+
+.tablepanel {
+    overflow-y: scroll;
+    width: 85%;
+    height: 290px;
+
+    /**height: 170px;**/
+
+
+
+    border-radius: 0px 0px 15px 15px;
+    margin-bottom: 2%;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+
+
+.tablepanel .table-inner .table_data td,
+.tablepanel .table-inner .table_head th {
+    padding-left: 30px;
+}
+
+
+.tablepanel .table-inner .table_data td .actionbtn tr td {
+    padding-left: 15px;
+}
+
+.tablepanel table .table_head th {
+    font-size: 17.5px;
+}
+
+.tablepanel table tr th {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 30px;
+    align-items: center;
+    color: #FFFFFF;
+}
+
+
+.table_head {
+    position: sticky;
+    top: 0;
+    cursor: context-menu;
+
+    height: 40px;
+    background-color: #8292A0;
+    border-radius: 0px 10px 10px 0px;
+
+
+}
+
+.tablepanel .table_data {
+
+    border-bottom: 1px solid #B0B0B0;
+}
+
+.tablepanel .table_data td {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+}
+
+
+/*action*/
+
+
+.updateBTN1 {
+    text-decoration: none;
+    font-size: 18px;
+
+    background: #CEFCE0;
+    padding: 5px;
+    border-radius: 5px;
+    color: #2B956B;
+
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.updateBTN {
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.deleteBTN1 {
+    text-decoration: none;
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 5px;
+
+    background: #FCCECE;
+    color: rgba(230, 13, 13, 0.88);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.deleteBTN {
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.addrecordBTN1 {
+    text-decoration: none;
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 5px;
+
+    background-color: #CEE8FC;
+    color: #0F416F;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.addrecordBTN {
+    text-decoration: none;
+    border-radius: 5px;
+
+}
+
+/**Tooltip**/

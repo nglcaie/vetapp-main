@@ -1,0 +1,283 @@
+{% extends 'veterinarian\veterinarianHome.html' %}
+{% load static %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="{% static '\css\secretary\create\add_medical_history.css' %}">
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+    /*container*/
+    body {
+        overflow: hidden;
+    }
+
+    .container {
+        height: 650px;
+        width: 100%;
+        float: left;
+    }
+
+    .row {
+        margin-top: 15px;
+    }
+
+    .space {
+        width: 100px;
+    }
+
+    /*header text and back*/
+    .bodyhead {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 29px;
+        color: #0F416F;
+        padding-bottom: 50px;
+    }
+
+    .bodyhead .back {
+        font-size: 25px;
+        padding-right: 20px;
+    }
+
+    /*buttons*/
+    .addrecBTN {
+        font-size: 14px;
+        text-decoration: none;
+        color: #FFFFFF;
+        background-color: #0F416F;
+        border-radius: 20px;
+        width: 130px;
+        height: 31px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border: none;
+        margin-bottom: 10px;
+        float: right;
+    }
+
+    /*forms*/
+    .form-container {
+        margin-left: 50px;
+        margin-top: -30px;
+    }
+
+    /*subtext*/
+    .subtext {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 19px;
+        color: #585858;
+
+    }
+
+
+    .form-control {
+        background-color: #ffffff;
+        width: 100%;
+        height: 35px;
+        border: 1px solid #9e9e9ed3;
+        border-radius: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 17px;
+        color: #4d4c4c;
+    }
+
+    .form-control-description {
+
+        width: 100%;
+        height: 220px;
+
+        padding-left: 10px;
+        padding-right: 10px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 17px;
+
+        background: #FFFFFF;
+        border: 1px solid #B0B0B0;
+
+        border-radius: 5px;
+    }
+</style>
+<div class="container">
+
+    <!--body head-->
+    <div class="bodyhead"> <a href="{% url 'services_veterinarian' %}"><i class='bx bx-arrow-back back'
+                style="color: #0F416F;;"></i></a>Pet Record</div>
+    <!--END body head-->
+
+    <form method="POST" action="">
+        {% csrf_token %}
+
+
+
+        <div class="form-container">
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <label>Pet Name</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            {{form.pet}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4col-sm-4">
+                            <label>Date of Visit</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            {{form.date}}
+                        </div>
+                    </div>
+                </div>
+                <!--Veterinarian-->
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <label>Veterinarian</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            {{form.vet}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                </div>
+            </div>
+
+
+            <br>
+
+
+            <div class="row">
+                <!--Weight-->
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <label>Weight</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            {{form.weight}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                </div>
+
+                <!--Symptoms-->
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <label>Symptoms</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            {{form.symptoms}}
+                        </div>
+                    </div>
+                </div>
+                <!--Treatment-->
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <label>Treatment</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            {{form.treatment}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <br>
+
+
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <!--Prescription Subutext-->
+                    <label class="subtext">Prescription</label>
+                </div>
+                <!--Prescription-->
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <label>Medicine</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            {{form.prescription}}
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!--Treatment-->
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <label>Instruction</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            {{form.instruction}}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!--Recommended Plan-->
+            <br><br>
+            <div class="subtext">Recommended Plan</div>
+
+            <div class="row">
+                <!--Date of Return-->
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <label>Date of Return</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            {{form.dateofReturn}}
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--Treatment-->
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <label>Reason</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            {{form.reason}}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--Add Record Button-->
+            <br>
+            <button type="submit" class="addrecBTN">Submit</button>
+            <br>
+            <br><br>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

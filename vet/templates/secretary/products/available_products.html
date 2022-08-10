@@ -1,0 +1,93 @@
+{% extends 'secretary\secretaryHome.html' %}
+{% load static %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="{% static '\css\secretary\products\productss.css' %}">
+</head>
+
+<!--head-->
+<div class="bodyhead"> <a href="{% url 'products' %}" ><i class='bx bx-arrow-back back'
+    style="color: #0F416F;;"></a></i>Available Products</div>
+<!--END head-->
+
+{% csrf_token %}
+
+{% for message in messages %}
+<div class="alert  alert-success alert-dismissible fade show " role="alert">
+    <label class="success">
+        {{message}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+{% endfor %}
+
+<!--===== available products =====-->
+<!-- available products head -->
+<table class="table_container">
+
+    <tr>
+
+        <td style="text-align: right;">
+
+            <a href="{% url 'add_available_products' prod.id %}" class="addUserBTN">Add Products</a>
+
+        </td>
+
+    </tr>
+    <tr>
+
+    </tr>
+</table>
+<!--END available products head -->
+
+<hr>
+
+<a href="{% url 'single_product_reports' prod.id  %}" target="_blank" class="addUserBTN">Product Report</a>
+<br>
+<div class="tablepanel">
+    <table class="table-inner " style=" width: 100%;">
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+
+            <th>Manufacturing Date</th>
+            <th>Expiration Date</th>
+            <th>Quantity</th>
+
+            <th>Actions</th>
+
+        </tr>
+        <!-- END TABLE HEAD -->
+
+        <!-- TABLE DATA -->
+        {% for i in products %}
+
+        <tr class="table_data">
+
+            <td>{{i.manuDate}}</td>
+            <td>{{i.expireDate}}</td>
+            <td>{{i.quantity}}</td>
+
+            <td>
+                <table class="actionbtn">
+                    <tr>
+                        <td><a href="{% url 'update_available_products' i.id i.product.id  %}"><i
+                                    class='bx bxs-edit updateBTN1'></i></td>
+                        <td><a href="{% url 'delete_available_products' i.id i.product.id  %}"><i
+                                    class='bx bxs-trash deleteBTN1'></i></a></td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+        {% endfor %}
+        <!--END TABLE DATA-->
+    </table>
+</div>
+
+
+
+{% endblock %}

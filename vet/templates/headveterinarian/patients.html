@@ -1,0 +1,111 @@
+{% extends 'headveterinarian\headVetHome.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<head>
+    <link rel="stylesheet" href="{% static '\css\veterinarian\patients.css' %}">
+</head>
+
+
+<!--head-->
+<div class="bodyhead" >Patients </div>
+<!--END head-->
+
+{% csrf_token %}
+
+{% for message in messages %}
+<div class="alert  alert-success alert-dismissible fade show " role="alert">
+    <label class="success">
+        {{message}}
+    </label>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="closebtn">&#10799;</span>
+    </button>
+</div>
+{% endfor %}
+
+<table class="table_container">
+
+    <!--Species-->
+    <tr>
+        <td class="table_for">
+            Pets
+        </td>
+        <td style="text-align: right;">
+            <a href="{% url 'head_vet_pet_add' %}" class="addUserBTN">Add Pets</a>
+        </td>
+
+    </tr>
+    <tr>
+
+        <td colspan="2" style="padding-top: 10px;">
+
+            <form method="get">
+                <table>
+                    <tr>
+                        <td style="padding: 0px;">
+                            <input type="text" class="searchbar" name="searchthis" placeholder="search">
+
+                        </td>
+                        <td style=" padding: 0px;">
+                            <button type="submit" class="searchBTN" id="submit"><i class='bx bx-search'></i></button>
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+
+        </td>
+    </tr>
+</table>
+
+<br>
+
+
+
+<div class="tablepanel">
+    <table class="table-inner" style=" width: 100%;">
+
+        <!-- TABLE HEAD -->
+        <tr class="table_head">
+            <th>Pet</th>
+            <th>Owner</th>
+            <th>Date of Birth</th>
+            <th>Action</th>
+
+        </tr>
+        <!-- END TABLE HEAD -->
+
+        <!-- TABLE DATA -->
+        {% for pets in allpets %}
+        <tr class="table_data">
+            <td> <a href="{% url 'head_view_record' pets.id %}" class="viewrecordBTN">{{pets.petName}}</a></td>
+            <td style=" width: 280px;"> {{pets.petOwner}} </td>
+            <td> <a href="#" class="viewrecordBTN">{{pets.dob}}</a></td>
+
+            <td style=" width: 280px;">
+                <table class="actionbtn"> 
+                    <tr>
+                        <td>
+                            <a href="{% url 'head_create_pet_record' pets.id %}" class="addrecordBTN"><i
+                                    class='bx bx-plus-circle addrecordBTN1'></i></a>
+                        </td>
+                        
+                    </tr>
+                </table>
+            </td>
+
+        </tr>
+        {% endfor %}
+
+        <!--END TABLE DATA-->
+    </table>
+</div>
+<!--======END Pets======-->
+
+<br>
+
+
+{% endblock %}
