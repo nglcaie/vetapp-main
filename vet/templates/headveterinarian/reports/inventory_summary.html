@@ -1,0 +1,13 @@
+TRY LANG TO
+
+
+{%for sched in services %}
+{{sched.product_name}} {{sched.total_quantity}} {{sched.status}}
+{%endfor %}
+
+
+<form action='' method="post"><!--bago toh-->
+
+    {% csrf_token %} 
+    <button type="submit" class="submitBTN" name="filter" value="Report">Print Report</button> <br>
+</form>

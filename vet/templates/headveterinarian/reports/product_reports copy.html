@@ -278,103 +278,25 @@
     }
 </style>
 
-{% if messages %}
-{% for message in messages %}
-{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-
-<div class="alert alert-danger alert-dismissible fade show " role="alert">
-    <label class="error">
-        {{message}}
-    </label>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true" class="closebtn">&#10799;</span>
-    </button>
-</div>
-
-{% endif %}
-
-{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-<div class="alert  alert-success alert-dismissible fade show " role="alert">
-    <label class="success">
-        {{message}}
-    </label>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true" class="closebtn">&#10799;</span>
-    </button>
-</div>
-{% endif %}
-
-{% endfor %}
-{% endif %}
-
 <!--BODY HEAD-->
-<div class="bodyhead"></a>Transaction Reports</div>
+<div class="bodyhead"></a>Product Reports</div>
 <!--END BODY HEAD-->
-<div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-6">
-        <div class="dropdownn">
 
-            <button class="dropbtnn">Print Reports</button>
-            <div class="dropdown-content">
-                <a href="{% url 'transaction_report' %}" target="_blank">All</a>
-                <a href="{% url 'today_transaction_reports' %}" target="_blank">Today</a>
-                <a href="{% url 'last_seven_transaction_reports' %}" target="_blank">7 days ago</a>
-                <a href="{% url 'last_thirty_transaction_reports' %}" target="_blank">30 days ago</a>
-                <a href="{% url 'a_year_ago_transaction_reports' %}" target="_blank">A year ago</a>
-                <a href="{% url 'more_transaction_reports' %}" target="_blank">More that a year ago</a>
-            </div>
-        </div>
-    </div>
+<div class="dropdownn">
 
-    <div class="col-lg-6 col-md-6 col-sm-6" style="text-align: right;">
-        <style>
-            .date {
-                width: 100%;
-                height: 35px;
-
-                padding: 0px 10px 0px 10px;
-                font-family: 'Poppins', sans-serif;
-                font-size: 15px;
-
-                background: #FFFFFF;
-                border: 1px solid #B0B0B0;
-
-                border-radius: 5px;
-
-            }
-
-            .icon1 {
-                font-family: 'Poppins';
-                padding-top: 5px;
-                font-size: 20px;
-                color: #0F416F;
-
-            }
-
-            .printBTN {
-                line-height: 20px;
-                border-radius: 10px;
-                border: none;
-                color: #0F416F;
-                height: 35px;
-                width: 50px;
-                background-color: #CEE8FC;
-                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            }
-        </style>
-
-        <form action='' method="post">
-            {% csrf_token %}
-            <div class="row">
-                <div class="col-lg-5 col-md-5 col-sm-5 pr-1 pl-1"> <input type="date" name="a" class="date"></div>
-                <div class="col-lg-5 col-md-5 col-sm-5 pr-1 pl-1"> <input type="date" name="b" class="date"></div>
-                <div class="col-lg-2 col-md-2 col-sm-2"> <button type="submit" class="printBTN" name="filter"
-                        value="Range"><i class='bx bx-printer icon1'></i></button></div>
-            </div>
-        </form>
+    <button class="dropbtnn">Print Reports</button>
+    <div class="dropdown-content">
+        <a href="{% url 'head_product_reports' %}" >All</a>
+        <a href="{% url 'head_today_product_reports' %}" >Today</a>
+        <a href="{% url 'head_last_seven_product_reports' %}">7 days ago</a>
+        <a href="{% url 'head_last_thirty_product_reports' %}">30 days ago</a>
+        <a href="{% url 'head_a_year_ago_product_reports' %}">A year ago</a>
+        <a href="{% url 'head_more_product_reports' %}">More that a year ago</a>
     </div>
 </div>
 
+
+<br>
 
 <hr>
 
@@ -387,6 +309,8 @@
             <th>Code</th>
             <th>Date</th>
             <th>Customer</th>
+            <th>Quantity</th>
+            <th>Total</th>
 
 
         </tr>
@@ -394,26 +318,29 @@
 
         <!-- TABLE DATA -->
 
-        {% for chargeslip in all_chargeslip %}
+        {% for service in services %}
         <tr class="table_data">
-            <td> <a href="{% url 'transaction_reports_select' chargeslip.id %}"> {{chargeslip.code}} </a>
+            <td> 
+                {{service.chargeslip.code}}
             </td>
             <td>
-                {{chargeslip.date|date:"N d Y"}}
+                  {{service.date}}
             </td>
             <td>
-                {%if chargeslip.chargeslip.petowner == None %}
-                Outside Buyer
-                {% else %}
-                {{chargeslip.chargeslip.petowner}}
-                {% endif %}
+                {{service.product}}<br>
+            </td>
+            <td>
+                {{service.quantity}} 
+            </td>
+            <td>
+                {{service.total}}
 
-                {% endfor %}
+              
 
             </td>
 
         </tr>
-
+  {% endfor %}
 
         <!--END TABLE DATA-->
     </table>
@@ -423,4 +350,40 @@
 <br>
 
 
+
+
+<br>
+<br><br>
+<br>
+<br><br>
+<br>
+<br><br>
+<br>
+<br><br>
+<br>
+<br><br>
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<form action="" method="post"><!--bago toh-->
+
+    {% csrf_token %}
+<input type="date" name="from_date" required>
+<input type="date" name="to_date" required>
+
+<button type="submit" class="submitBTN" name="filter" value="Submit">Submit</button> <br>
+</form>
+ <a href="{% url 'product_reports' %}" >All</a><br>
+ <a href="{% url 'today_product_reports' %}" >Today</a><br>
+ <a href="{% url 'last_seven_product_reports' %}">7 days ago</a><br>
+ <a href="{% url 'last_thirty_product_reports' %}">30 days ago</a><br>
+ <a href="{% url 'a_year_ago_product_reports' %}">A year ago</a><br>
+ <a href="{% url 'more_product_reports' %}">More that a year ago</a><br>
+<form action='' method="post"><!--bago toh-->
+
+ {% csrf_token %} 
+ <button type="submit" class="submitBTN" name="filter" value="Report" target="_blank">Print Report</button> <br>
+</form>
 {% endblock%}

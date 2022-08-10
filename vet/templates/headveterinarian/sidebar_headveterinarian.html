@@ -148,13 +148,19 @@
                 <i class='bx bx-file icon'></i><span>Reports</span></a>
             <ul class="collapse list-unstyled menu" id="homeSubmenu2">
                 <li>
-                    <a href="#">Services Reports</a>
+                    <a href="{% url 'head_service_reports' %}" >Services Reports</a>
                 </li>
                 <li>
-                    <a href="#">Inventory Reports</a>
+                    <a href="{% url 'head_product_reports' %}">Product Reports</a>
                 </li>
                 <li>
-                    <a href="{% url 'sec_transaction' %}">Transaction Reports</a>
+                    <a href="{% url 'inventory_summary' %}" target="_blank">Inventory Summary</a>
+                </li>
+                <li>
+                    <a href="{% url 'all_products_reports' %}" target="_blank">Inventory Reports</a>
+                </li>
+                <li>
+                    <a href="{% url 'head_transaction_reports' %}" >Transaction Reports</a>
                 </li>
             </ul>
         </li>

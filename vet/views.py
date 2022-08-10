@@ -4018,13 +4018,13 @@ def transaction_reports(request):
                 return HttpResponse('We had some errors <pre>' + html + '</pre>')
             return response
 
-    context={'sideb':'transaction_reports','all_chargeslip':all_chargeslip}
+    context={'sideb':'transaction_reports','all_chargeslip':all_chargeslip,'use':use}
     return render(request,'secretary/reports/transaction_reports.html',context) 
 
 def transaction_reports_select(request,pk):
     user = request.user.id
     trans = transaction.objects.get(id=pk)
-    context={'sideb' : 'transaction_reports_select','trans':trans}
+    context={'sideb' : 'transaction_reports_select','trans':trans,'user':user}
     return render(request,'secretary/reports/transaction_reports_select.html',context)   
 
 #service invoice report
@@ -4083,6 +4083,7 @@ def service_reports(request):
                 return HttpResponse('We had some errors <pre>' + html + '</pre>')
             return response
     context['services'] = services
+    context['use'] = use
     return render(request, 'secretary/reports/service_reports.html', context)
 
 def today_service_reports(request):
@@ -4139,6 +4140,7 @@ def today_service_reports(request):
                 return HttpResponse('We had some errors <pre>' + html + '</pre>')
             return response
     context['services'] = services
+    context['use'] = use
     return render(request, 'secretary/reports/service_reports.html', context)
 
 def seven_service_reports(request):
@@ -4196,6 +4198,7 @@ def seven_service_reports(request):
                 return HttpResponse('We had some errors <pre>' + html + '</pre>')
             return response
     context['services'] = services
+    context['use'] = use
     return render(request, 'secretary/reports/service_reports.html', context)
 
 def last_thirty_service_reports(request):
@@ -4253,6 +4256,7 @@ def last_thirty_service_reports(request):
                 return HttpResponse('We had some errors <pre>' + html + '</pre>')
             return response
     context['services'] = services
+    context['use'] = use
     return render(request, 'secretary/reports/service_reports.html', context)
 
 def a_year_ago_service_reports(request):
@@ -4310,6 +4314,7 @@ def a_year_ago_service_reports(request):
                 return HttpResponse('We had some errors <pre>' + html + '</pre>')
             return response
     context['services'] = services
+    context['use'] = use
     return render(request, 'secretary/reports/service_reports.html', context)
 
 def more_service_reports(request):
@@ -4367,6 +4372,7 @@ def more_service_reports(request):
                 return HttpResponse('We had some errors <pre>' + html + '</pre>')
             return response
     context['services'] = services
+    context['use'] = use
     return render(request, 'secretary/reports/service_reports.html', context)
 
 #product Invoice report
@@ -4424,6 +4430,7 @@ def product_reports(request):
                 return HttpResponse('We had some errors <pre>' + html + '</pre>')
             return response
     context['services'] = services
+    context['use'] = use
     return render(request, 'secretary/reports/product_reports.html', context)
 
 def today_product_reports(request):
@@ -4480,6 +4487,7 @@ def today_product_reports(request):
                 return HttpResponse('We had some errors <pre>' + html + '</pre>')
             return response
     context['services'] = services
+    context['use'] = use
     return render(request, 'secretary/reports/product_reports.html', context)
 
 def seven_product_reports(request):
@@ -4537,6 +4545,7 @@ def seven_product_reports(request):
                 return HttpResponse('We had some errors <pre>' + html + '</pre>')
             return response
     context['services'] = services
+    context['use'] = use
     return render(request, 'secretary/reports/product_reports.html', context)
 
 def last_thirty_product_reports(request):
@@ -4594,6 +4603,7 @@ def last_thirty_product_reports(request):
                 return HttpResponse('We had some errors <pre>' + html + '</pre>')
             return response
     context['services'] = services
+    context['use'] = use
     return render(request, 'secretary/reports/product_reports.html', context)
 
 def a_year_ago_product_reports(request):
@@ -4651,6 +4661,7 @@ def a_year_ago_product_reports(request):
                 return HttpResponse('We had some errors <pre>' + html + '</pre>')
             return response
     context['services'] = services
+    context['use'] = use
     return render(request, 'secretary/reports/product_reports.html', context)
 
 def more_product_reports(request):
@@ -4693,6 +4704,8 @@ def more_product_reports(request):
                 total = vars
             context['services'] = services
             context['total'] = total
+            context['today'] = today
+            context['user'] = user
             response = HttpResponse(content_type='application/pdf')
             response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
             # find the template and render it.
@@ -4706,6 +4719,7 @@ def more_product_reports(request):
                 return HttpResponse('We had some errors <pre>' + html + '</pre>')
             return response
     context['services'] = services
+    context['use'] = use
     return render(request, 'secretary/reports/product_reports.html', context)
 
 #chargeslip
@@ -5496,7 +5510,6 @@ def partial_more_chargeSlip_reports(request):
     return response
 
 
-
 def inventory_summary(request):
     context={}
     #lte,lt,gte,gt
@@ -5788,27 +5801,749 @@ def more_transaction_reports(request):
     return response
 
 
-def draft(request):
-    #starthr = int(inputIn[0])
-    #startmin = int(inputIn[1])
-    #print(starthr)
-    #print(startmin)
-    #endhr = int(inputOut[0])
-    #endmin = int(inputOut[1])
-   # print(endhr)
-    #print(endmin)
-    getDate = schedule_slot.objects.filter(date=date)
-    print('--')
-    #for a in getDate:
-        #print(a.timeIn)
-        #startdb=str(a.timeIn).split(':')
-        #endDb=str(a.timeOut).split(':')
-        #compareInhr = int(startdb[0])
-        #compareInmin = int(startdb[1])
-        #print(compareInhr)
-        #print(compareInmin )
-        #compareendhr = int(endDb[0])
-        #compareendmin = int(endDb[1])
-        #print(compareendhr)
-        #print(compareendmin)
-    return render('')
+
+#headvet
+
+def head_transaction_reports(request):
+    context={}
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    all_chargeslip = transaction.objects.filter(is_deleted=False)
+    if request.method == 'POST':
+        if request.POST['filter'] == "Range":
+            a = request.POST.get('a')
+            b = request.POST.get('b')
+            services = transaction.objects.filter(is_deleted=False,date__gte=a,date__lte=b)
+            total = 0
+            tender = 0
+            change = 0
+            for serve in services:
+                vars = serve.grandTotal + total
+                vars2 = serve.tenderedAmount + tender
+                var3 = serve.changeAmount + change
+                tender = vars2
+                total = vars
+                change=var3
+            context['services'] = services
+            context['total'] = total
+            context['tender'] = tender
+            context['change'] = change
+            context['user'] = user
+            context['today'] = today
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/transaction_reports.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+
+    context={'sideb':'transaction_reports','all_chargeslip':all_chargeslip,'use':use}
+    return render(request,'headveterinarian/reports/transaction_reports.html',context) 
+
+def head_transaction_reports_select(request,pk):
+    user = request.user.id
+    trans = transaction.objects.get(id=pk)
+    context={'sideb' : 'transaction_reports_select','trans':trans,'user':user}
+    return render(request,'headveterinarian/reports/transaction_reports_select.html',context)   
+
+#service invoice report
+
+def head_service_reports(request):
+    context={'sideb':'service_reports'}
+    #lte,lt,gte,gt
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    services = serviceInvoice.objects.all()
+    if request.method == 'POST':
+        if request.POST['filter'] == "Range":
+            a = request.POST.get('a')
+            b = request.POST.get('b')
+            services = serviceInvoice.objects.filter(is_deleted=False,date__gte=a,date__lte=b)
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['today'] = today
+            context['user'] = user
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/try.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+        if request.POST['filter'] == "Report":
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['user'] = user
+            context['today'] = today
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/try.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+    context['services'] = services
+    context['use'] = use
+    return render(request, 'headveterinarian/reports/service_reports.html', context)
+
+def head_today_service_reports(request):
+    context={}
+    #lte,lt,gte,gt
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    services = serviceInvoice.objects.filter(date=today)
+    if request.method == 'POST':
+        if request.POST['filter'] == "Range":
+            a = request.POST.get('a')
+            b = request.POST.get('b')
+            services = serviceInvoice.objects.filter(is_deleted=False,date__gte=a,date__lte=b)
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['today'] = today
+            context['user'] = user
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/try.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+        if request.POST['filter'] == "Report":
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['user'] = user
+            context['today'] = today
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/try.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+    context['services'] = services
+    context['use'] = use
+    return render(request, 'headveterinarian/reports/service_reports.html', context)
+
+def head_seven_service_reports(request):
+    context={}
+    #lte,lt,gte,gt
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    last_seven = date.today() - timedelta(7)
+    services = serviceInvoice.objects.filter(date__gte=last_seven)
+    if request.method == 'POST':
+        if request.POST['filter'] == "Range":
+            a = request.POST.get('a')
+            b = request.POST.get('b')
+            services = serviceInvoice.objects.filter(is_deleted=False,date__gte=a,date__lte=b)
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['today'] = today
+            context['user'] = user
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/try.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+        if request.POST['filter'] == "Report":
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['user'] = user
+            context['today'] = today
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/try.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+    context['services'] = services
+    context['use'] = use
+    return render(request, 'headveterinarian/reports/service_reports.html', context)
+
+def head_last_thirty_service_reports(request):
+    context={}
+    #lte,lt,gte,gt
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    last_thirty = date.today() - timedelta(30)
+    services = serviceInvoice.objects.filter(date__gte=last_thirty)
+    if request.method == 'POST':
+        if request.POST['filter'] == "Range":
+            a = request.POST.get('a')
+            b = request.POST.get('b')
+            services = serviceInvoice.objects.filter(is_deleted=False,date__gte=a,date__lte=b)
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['today'] = today
+            context['user'] = user
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/try.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+        if request.POST['filter'] == "Report":
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['user'] = user
+            context['today'] = today
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/try.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+    context['services'] = services
+    context['use'] = use
+    return render(request, 'headveterinarian/reports/service_reports.html', context)
+
+def head_a_year_ago_service_reports(request):
+    context={}
+    #lte,lt,gte,gt
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    a_year_ago = date.today() - timedelta(365)
+    services = serviceInvoice.objects.filter(date__gte=a_year_ago)
+    if request.method == 'POST':
+        if request.POST['filter'] == "Range":
+            a = request.POST.get('a')
+            b = request.POST.get('b')
+            services = serviceInvoice.objects.filter(is_deleted=False,date__gte=a,date__lte=b)
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['today'] = today
+            context['user'] = user
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/try.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+        if request.POST['filter'] == "Report":
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['user'] = user
+            context['today'] = today
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/try.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+    context['services'] = services
+    context['use'] = use
+    return render(request, 'headveterinarian/reports/service_reports.html', context)
+
+def head_more_service_reports(request):
+    context={}
+    #lte,lt,gte,gt
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    more = date.today() - timedelta(365)
+    services = serviceInvoice.objects.filter(date__lte=more)
+    if request.method == 'POST':
+        if request.POST['filter'] == "Range":
+            a = request.POST.get('a')
+            b = request.POST.get('b')
+            services = serviceInvoice.objects.filter(is_deleted=False,date__gte=a,date__lte=b)
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['today'] = today
+            context['user'] = user
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/try.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+        if request.POST['filter'] == "Report":
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['user'] = user
+            context['today'] = today
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/try.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+    context['services'] = services
+    context['use'] = use
+    return render(request, 'headveterinarian/reports/service_reports.html', context)
+
+#product Invoice report
+def head_product_reports(request):
+    context={'sideb':'product_reports'}
+    #lte,lt,gte,gt
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    services = productInvoice.objects.all()
+    if request.method == 'POST':
+        if request.POST['filter'] == "Range":
+            a = request.POST.get('a')
+            b = request.POST.get('b')
+            services = productInvoice.objects.filter(is_deleted=False,date__gte=a,date__lte=b)
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['today'] = today
+            context['user'] = user
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/productsInvoiceTemplate.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+        if request.POST['filter'] == "Report":
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['user'] = user
+            context['today'] = today
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/try.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+    context['services'] = services
+    context['use'] = use
+    return render(request, 'headveterinarian/reports/product_reports.html', context)
+
+def head_today_product_reports(request):
+    context={}
+    #lte,lt,gte,gt
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    services = productInvoice.objects.filter(date=today)
+    if request.method == 'POST':
+        if request.POST['filter'] == "Range":
+            a = request.POST.get('a')
+            b = request.POST.get('b')
+            services = productInvoice.objects.filter(is_deleted=False,date__gte=a,date__lte=b)
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['today'] = today
+            context['user'] = user
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/productsInvoiceTemplate.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+        if request.POST['filter'] == "Report":
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['user'] = user
+            context['today'] = today
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/try.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+    context['services'] = services
+    context['use'] = use
+    return render(request, 'headveterinarian/reports/product_reports.html', context)
+
+def head_seven_product_reports(request):
+    context={}
+    #lte,lt,gte,gt
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    last_seven = date.today() - timedelta(7)
+    services = productInvoice.objects.filter(date__gte=last_seven)
+    if request.method == 'POST':
+        if request.POST['filter'] == "Range":
+            a = request.POST.get('a')
+            b = request.POST.get('b')
+            services = productInvoice.objects.filter(is_deleted=False,date__gte=a,date__lte=b)
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['today'] = today
+            context['user'] = user
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/productsInvoiceTemplate.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+        if request.POST['filter'] == "Report":
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['user'] = user
+            context['today'] = today
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/try.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+    context['services'] = services
+    context['use'] = use
+    return render(request, 'headveterinarian/reports/product_reports.html', context)
+
+def head_last_thirty_product_reports(request):
+    context={}
+    #lte,lt,gte,gt
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    last_thirty = date.today() - timedelta(30)
+    services = productInvoice.objects.filter(date__gte=last_thirty)
+    if request.method == 'POST':
+        if request.POST['filter'] == "Range":
+            a = request.POST.get('a')
+            b = request.POST.get('b')
+            services = productInvoice.objects.filter(is_deleted=False,date__gte=a,date__lte=b)
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['today'] = today
+            context['user'] = user
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/productsInvoiceTemplate.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+        if request.POST['filter'] == "Report":
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['user'] = user
+            context['today'] = today
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/try.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+    context['services'] = services
+    context['use'] = use
+    return render(request, 'headveterinarian/reports/product_reports.html', context)
+
+def head_a_year_ago_product_reports(request):
+    context={}
+    #lte,lt,gte,gt
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    a_year_ago = date.today() - timedelta(365)
+    services = productInvoice.objects.filter(date__gte=a_year_ago)
+    if request.method == 'POST':
+        if request.POST['filter'] == "Range":
+            a = request.POST.get('a')
+            b = request.POST.get('b')
+            services = productInvoice.objects.filter(is_deleted=False,date__gte=a,date__lte=b)
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['today'] = today
+            context['user'] = user
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/productsInvoiceTemplate.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+        if request.POST['filter'] == "Report":
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['user'] = user
+            context['today'] = today
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/try.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+    context['services'] = services
+    context['use'] = use
+    return render(request, 'headveterinarian/reports/product_reports.html', context)
+
+def head_more_product_reports(request):
+    context={}
+    #lte,lt,gte,gt
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    a_year_ago = date.today() - timedelta(365)
+    services = productInvoice.objects.filter(date__lte=a_year_ago)
+    if request.method == 'POST':
+        if request.POST['filter'] == "Range":
+            a = request.POST.get('a')
+            b = request.POST.get('b')
+            services = productInvoice.objects.filter(is_deleted=False,date__gte=a,date__lte=b)
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['today'] = today
+            context['user'] = user
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/productsInvoiceTemplate.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+        if request.POST['filter'] == "Report":
+            total = 0
+            for serve in services:
+                vars = serve.total + total
+                total = vars
+            context['services'] = services
+            context['total'] = total
+            context['today'] = today
+            context['user'] = user
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Service_Invoice_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/try.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+    context['services'] = services
+    context['use'] = use
+    return render(request, 'headveterinarian/reports/product_reports.html', context)
