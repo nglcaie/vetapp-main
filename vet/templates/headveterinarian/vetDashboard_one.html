@@ -508,8 +508,7 @@
                 <div class="upa-sched">
 
                     <a href="{% url 'head_view_record' sched.pet.id %}" class="cancelBTN">{{sched.pet}}</a> -
-                    {{sched.slot.date|date:"N d
-                    Y"}}, {{sched.slot.timeIn|time:'h:i A'}} : {{sched.slot.timeOut|time:'h:i A'}} {{sched.slot.vet}}
+                    {{sched.slot.date|date:"N d Y"}}, {{sched.slot.timeIn|time:'h:i A'}} : {{sched.slot.timeOut|time:'h:i A'}} {{sched.slot.vet}}
 
                 </div>
                 {% endfor %}

@@ -493,6 +493,24 @@
 
         <br>
         <!--APPOINTMENTS-->
+
+        <style>
+            .doneBTN {
+                color: #2B956B;
+                font-size: 15px;
+                background: #CEFCE0;
+                padding: 3px 5px 0px 5px;
+                border-radius: 5px;
+                text-decoration: none;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                margin-right: 10px;
+            }
+
+            .doneBTN:hover {
+                color: #2B956B;
+                font-size: 16px;
+            }
+        </style>
         <div style=" background: #FFFFFF;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px; padding: 10px;">
@@ -506,11 +524,11 @@
 
                 {%for sched in getSchedarrive %}
                 <div class="upa-sched">
+                    <a href="{% url 'done' sched.id %}" class="doneBTN"><i class='bx bx-check-square'></i></a>
 
                     <a href="{% url 'head_view_record' sched.pet.id %}" class="cancelBTN">{{sched.pet}}</a> -
-                    {{sched.slot.date|date:"N d
-                    Y"}}, {{sched.slot.timeIn|time:'h:i A'}} : {{sched.slot.timeOut|time:'h:i A'}} {{sched.slot.vet}} <a
-                        href="{% url 'done' sched.id %}" class="cancelBTN">Done</a>
+                    {{sched.slot.date|date:"N d Y"}}, {{sched.slot.timeIn|time:'h:i A'}} :
+                    {{sched.slot.timeOut|time:'h:i A'}}
 
                 </div>
                 {% endfor %}
