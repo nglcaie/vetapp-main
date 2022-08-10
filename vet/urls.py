@@ -32,9 +32,13 @@ urlpatterns = [
     re_path(r'^owner_view_transaction/(?P<pk>[a-zA-Z0-9]+$)', views.owner_view_transaction, name='owner_view_transaction'),
     path('choose_pet', views.choose_pet, name='choose_pet'),
     re_path(r'^scheduling/(?P<pk>[a-zA-Z0-9]+$)', views.schedulings, name='scheduling'),
+    #schediling
+
+    path('scheduling_terms_condition', views.scheduling_terms_condition, name='scheduling_terms_condition'),
+    
+    
     path('ajax/load-slot/', views.load_slot, name='ajax_load_slot'),
     path('upcomming_app/', views.upcomming_app, name='upcomming_app'),
-    
     path('cancelled_appointments/', views.cancelled_appointments, name='cancelled_appointments'),
     re_path(r'^edit_pet_pfp/(?P<pk>[a-zA-Z0-9]+$)', views.edit_pet_pfp, name='edit_pet_pfp'),
 
@@ -146,6 +150,8 @@ urlpatterns = [
     re_path(r'^setdidnotarrived/(?P<pk>[a-zA-Z0-9]+$)', views.setdidnotarrived, name='setdidnotarrived'),
     path('restricted/', views.restricted, name='restricted'),
     re_path(r'^unsrestrict/(?P<pk>[a-zA-Z0-9]+$)', views.unsrestrict, name='unsrestrict'),
+
+    
 
     #Sec medical history
     path('add_medical_service', views.add_medical_service, name='add_medical_service'),

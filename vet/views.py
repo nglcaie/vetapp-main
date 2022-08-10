@@ -3808,6 +3808,12 @@ def schedulings(request,pk):
     context ={'sideb':'scheduling','form':form,'pet':pet}
     return render(request,'petowner/scheduling.html',context)
 
+def scheduling_terms_condition(request):
+
+    return render(request,'petowner/scheduling_terms_condition.html')
+
+
+
 
 def load_slot(request):
     dateId = request.GET.get('date_Id')

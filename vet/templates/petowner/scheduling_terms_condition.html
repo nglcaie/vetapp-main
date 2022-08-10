@@ -1,0 +1,171 @@
+{% extends 'petowner/petOwnerHome.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    /**submit btn**/
+    .deleteBTN {
+        font-size: 1px;
+        text-decoration: none;
+        color: #f8f8f8;
+        background-color: #0F416F;
+        border-radius: 20px;
+        padding: 3px 20px 3px 20px;
+        border: none;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        width: 115px;
+        margin-top: 20px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    .container .delete .delete-inner .cancelBTN {
+        font-size: 15px;
+        text-decoration: none;
+        color: #0F416F;
+        background-color: white;
+        border: 2px solid #0F416F;
+        border-radius: 20px;
+        padding: 3px 20px 3px 20px;
+
+        width: 200px;
+        height: 40px;
+
+        margin-top: 20px;
+
+
+    }
+
+    .container .delete .delete-inner .cancelBTN:hover {
+        font-size: 15px;
+        text-decoration: none;
+        color: #f8f8f8;
+        background-color: #0F416F;
+
+        border: none;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+        font-weight: 500;
+        cursor: pointer;
+        border-radius: 20px;
+        padding: 3px 20px 3px 20px;
+        width: 200px;
+        height: 40px;
+
+        margin-top: 20px;
+
+    }
+
+    .delete {
+        position: relative;
+        z-index: 15;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 30px;
+        margin: auto;
+        margin-top: 10px;
+        width: 500px;
+        height: auto;
+
+        vertical-align: middle;
+
+
+
+    }
+
+    .delete-inner {
+        padding: 50px;
+
+
+    }
+
+
+    p {
+
+        color: #585858;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+    }
+
+    .body-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+
+        opacity: 0;
+        z-index: 2;
+        transition: all 150ms linear;
+        background-color: #0f416f42;
+
+        transform: translatex(0%);
+        opacity: 1;
+        display: block;
+        visibility: visible;
+        z-index: 15;
+
+    }
+
+    /**form container**/
+
+    .container {
+
+        height: 100%;
+        padding-bottom: 70px;
+
+
+    }
+
+    .policy {
+        font-size: 12px;
+        line-height: 20px;
+        margin-bottom: 10px;
+    }
+</style>
+
+
+
+<div class="body-overlay"></div>
+
+<div class="container">
+    <div class="delete">
+
+        <div class="delete-inner">
+
+            <b>TERMS AND CONIDTIONS</b> <br><br>
+
+            <p class="policy"> 1. Set the date of appointment atleast 1 day before the appointment. </p>
+            <p class="policy"> 2. Cancellation</p>
+            <p class="policy" style="padding-left: 30px;"> a. Cancel the appointment atleast 1 day before the set
+                appointment date</p>
+            <p class="policy"> 3. 15 minute grace period will be given.</p>
+            <p class="policy"> 4. If the client is not able to be on time, he/she will be given two choices: </p>
+            <p class="policy" style="padding-left: 30px;"> a. Rescchedule the appointment<br>
+                b. Be a walk-in client and wait for your turn<br>
+                This is done to respect the time allotted for the veterinarians.</p>
+            <p class="policy"> 5. If the client does not show up more than 3 times on the scheduled appointment</p>
+            <p class="policy" style="padding-left: 30px;"> a. Account will be temporarily restricted from scheduling
+                appointments</p>
+            <p class="policy"> 6. To lift restriction:</p>
+            <p class="policy" style="padding-left: 30px;"> a. go to the clinic and notify the secretary and have the
+                account unblocked</p>
+
+            <p class="policy"><b> NOTE:</b><br>
+                Each veterinarian will only have 2 hours allotted to accommodate scheduled clients per day or depending
+                on their arrangement within the clinic. </p>
+
+
+
+
+
+        </div>
+
+
+    </div>
+</div>
+
+
+{% endblock %}

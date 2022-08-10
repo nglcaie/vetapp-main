@@ -104,8 +104,9 @@
 
             <div class="col-lg-5 col-md-5 col-sm-5">
                 <style>
-                    .policy {
-                        font-size: 12px;
+                    .policy a {
+                        font-size: 13px;
+                        color: #0F416F;
                     }
 
                     .agree {
@@ -122,16 +123,13 @@
                 <br>
 
                 <p class="policy">
-                    Policy na naiintindihan ganito ganyan
-                    Policy na naiintindihan ganito ganyan
-                    Policy na naiintindihan ganito ganyan </p>
+                    <a href="{% url 'scheduling_terms_condition' %}" target="_blank">Read Terms and Condition</a>
+                </p>
             </div>
         </div>
 
-
-        <br>
         <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" required>
-        <label class="agree" for="vehicle1"> I understand the terms and condition</label><br>
+        <label class="agree" for="vehicle1"> I have read and understand the Terms and Condition.</label><br>
 
         <br>
 
