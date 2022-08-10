@@ -965,8 +965,13 @@ def secretaryDashboard(request):
     nostock = ProductInfo.objects.filter(status="No stock")
     lowstock = ProductInfo.objects.filter(status="Low in Stock")
     expire = Product.objects.filter(expireDate__lte=param)
-    context = {'getProfile':getProfile, 'getSched':getSched, 'sideb':'secretaryDashboard','getSchedToday':getSchedToday,'nostock':nostock,'lowstock':lowstock,'expire':expire}
+    
+    nostockCount = nostock.count()
+    lowstockCount = lowstock.count
+    expireCount = expire.count()
+    context = {'expireCount':expireCount,'lowstockCount':lowstockCount,'nostockCount': nostockCount,'schedCount':schedCount,'getProfile':getProfile, 'getSched':getSched, 'sideb':'secretaryDashboard','getSchedToday':getSchedToday,'nostock':nostock,'lowstock':lowstock,'expire':expire}
     return render(request,'secretary/secretaryDashboard.html', context) 
+
 
 def secretaryDashboard_one(request):
     user = request.user.id
@@ -988,7 +993,11 @@ def secretaryDashboard_one(request):
     nostock = ProductInfo.objects.filter(status="No stock")
     lowstock = ProductInfo.objects.filter(status="Low in Stock")
     expire = Product.objects.filter(expireDate__lte=param)
-    context = {'getProfile':getProfile, 'getSched':getSched, 'sideb':'secretaryDashboard','getSchedToday':getSchedToday,'nostock':nostock,'lowstock':lowstock,'expire':expire}
+    
+    nostockCount = nostock.count()
+    lowstockCount = lowstock.count
+    expireCount = expire.count()
+    context = {'expireCount':expireCount,'lowstockCount':lowstockCount,'nostockCount': nostockCount,'schedCount':schedCount,'getProfile':getProfile, 'getSched':getSched, 'sideb':'secretaryDashboard_one','getSchedToday':getSchedToday,'nostock':nostock,'lowstock':lowstock,'expire':expire}
     return render(request,'secretary/secretaryDashboard_one.html', context) 
 
 def secretaryDashboard_low(request):
@@ -1011,7 +1020,11 @@ def secretaryDashboard_low(request):
     nostock = ProductInfo.objects.filter(status="No stock")
     lowstock = ProductInfo.objects.filter(status="Low in Stock")
     expire = Product.objects.filter(expireDate__lte=param)
-    context = {'getProfile':getProfile, 'getSched':getSched, 'sideb':'secretaryDashboard','getSchedToday':getSchedToday,'nostock':nostock,'lowstock':lowstock,'expire':expire}
+    
+    nostockCount = nostock.count()
+    lowstockCount = lowstock.count
+    expireCount = expire.count()
+    context = {'expireCount':expireCount,'lowstockCount':lowstockCount,'nostockCount': nostockCount,'schedCount':schedCount,'getProfile':getProfile, 'getSched':getSched, 'sideb':'secretaryDashboard_low','getSchedToday':getSchedToday,'nostock':nostock,'lowstock':lowstock,'expire':expire}
     return render(request,'secretary/secretaryDashboard_low.html', context) 
 
 def secretaryDashboard_no(request):
@@ -1034,7 +1047,11 @@ def secretaryDashboard_no(request):
     nostock = ProductInfo.objects.filter(status="No stock")
     lowstock = ProductInfo.objects.filter(status="Low in Stock")
     expire = Product.objects.filter(expireDate__lte=param)
-    context = {'getProfile':getProfile, 'getSched':getSched, 'sideb':'secretaryDashboard','getSchedToday':getSchedToday,'nostock':nostock,'lowstock':lowstock,'expire':expire}
+    
+    nostockCount = nostock.count()
+    lowstockCount = lowstock.count
+    expireCount = expire.count()
+    context = {'expireCount':expireCount,'lowstockCount':lowstockCount,'nostockCount': nostockCount,'schedCount':schedCount,'getProfile':getProfile, 'getSched':getSched, 'sideb':'secretaryDashboard_no','getSchedToday':getSchedToday,'nostock':nostock,'lowstock':lowstock,'expire':expire}
     return render(request,'secretary/secretaryDashboard_no.html', context) 
 
 def products_secretary(request):
@@ -1515,6 +1532,7 @@ def headvetDashboard(request):
     getProfile = StaffProfile.objects.get(useracc=user)
     slot = schedule_slot.objects.filter(vet=getProfile)
     getSchedToday = scheduling.objects.filter(status="Reserved",date=today)
+    getSchedToday_cancel = scheduling.objects.filter(slot__in=slot,date=today).exclude(status="Cancelled")
     getSched = scheduling.objects.filter(date=today).exclude(status="Reserved")
     getSchedarrive = scheduling.objects.filter(date=today,status="Arrived",slot__in=slot)
     getScheddone = scheduling.objects.filter(date=today,status="Done",slot__in=slot)
@@ -1524,8 +1542,9 @@ def headvetDashboard(request):
     nostock = ProductInfo.objects.filter(status="No stock")
     lowstock = ProductInfo.objects.filter(status="Low in Stock")
     expire = Product.objects.filter(expireDate__lte=param)
-    context = { 'getProfile':getProfile, 'getSched':getSched, 'sideb':'headvetDashboard','getSchedToday':getSchedToday,'nostock':nostock,'lowstock':lowstock,'expire':expire,'getSchedarrive':getSchedarrive,'getScheddone':getScheddone}
+    context = {'doneCount':doneCount,'arriveCount':arriveCount,'schedCount':schedCount,'getSchedToday_cancel':getSchedToday_cancel,'getProfile':getProfile, 'getSched':getSched, 'sideb':'headvetDashboard','getSchedToday':getSchedToday,'nostock':nostock,'lowstock':lowstock,'expire':expire,'getSchedarrive':getSchedarrive,'getScheddone':getScheddone}
     return render(request,'headveterinarian/vetDashboard.html', context) 
+
 
 def headvetDashboard_one(request):
     user = request.user.id
@@ -1534,6 +1553,7 @@ def headvetDashboard_one(request):
     getProfile = StaffProfile.objects.get(useracc=user)
     slot = schedule_slot.objects.filter(vet=getProfile)
     getSchedToday = scheduling.objects.filter(status="Reserved",date=today)
+    getSchedToday_cancel = scheduling.objects.filter(slot__in=slot,date=today).exclude(status="Cancelled")
     getSched = scheduling.objects.filter(date=today).exclude(status="Reserved")
     getSchedarrive = scheduling.objects.filter(date=today,status="Arrived",slot__in=slot)
     getScheddone = scheduling.objects.filter(date=today,status="Done",slot__in=slot)
@@ -1543,8 +1563,9 @@ def headvetDashboard_one(request):
     nostock = ProductInfo.objects.filter(status="No stock")
     lowstock = ProductInfo.objects.filter(status="Low in Stock")
     expire = Product.objects.filter(expireDate__lte=param)
-    context = { 'getProfile':getProfile, 'getSched':getSched, 'sideb':'headvetDashboard_one','getSchedToday':getSchedToday,'nostock':nostock,'lowstock':lowstock,'expire':expire,'getSchedarrive':getSchedarrive,'getScheddone':getScheddone}
+    context = {'doneCount':doneCount,'arriveCount':arriveCount,'schedCount':schedCount,'getSchedToday_cancel':getSchedToday_cancel,'getProfile':getProfile, 'getSched':getSched, 'sideb':'headvetDashboard','getSchedToday':getSchedToday,'nostock':nostock,'lowstock':lowstock,'expire':expire,'getSchedarrive':getSchedarrive,'getScheddone':getScheddone}
     return render(request,'headveterinarian/vetDashboard_one.html', context) 
+
 
 def headdone_pet(request,pk):
     user = request.user.id
@@ -2039,6 +2060,7 @@ def vetDashboard(request):
     getProfile = StaffProfile.objects.get(useracc=user)
     slot = schedule_slot.objects.filter(vet=getProfile)
     getSchedToday = scheduling.objects.filter(status="Reserved",date=today)
+    getSchedToday_cancel = scheduling.objects.filter(slot__in=slot,date=today).exclude(status="Cancelled")
     getSched = scheduling.objects.filter(date=today).exclude(status="Reserved")
     getSchedarrive = scheduling.objects.filter(date=today,status="Arrived",slot__in=slot)
     getScheddone = scheduling.objects.filter(date=today,status="Done",slot__in=slot)
@@ -2048,7 +2070,7 @@ def vetDashboard(request):
     nostock = ProductInfo.objects.filter(status="No stock")
     lowstock = ProductInfo.objects.filter(status="Low in Stock")
     expire = Product.objects.filter(expireDate__lte=param)
-    context = { 'getProfile':getProfile,'getSched':getSched, 'sideb':'vetDashboard','getSchedToday':getSchedToday,'nostock':nostock,'lowstock':lowstock,'expire':expire,'getSchedarrive':getSchedarrive,'getScheddone':getScheddone}
+    context = {'doneCount':doneCount,'arriveCount':arriveCount,'schedCount':schedCount,'getSchedToday_cancel':getSchedToday_cancel, 'getProfile':getProfile,'getSched':getSched, 'sideb':'vetDashboard','getSchedToday':getSchedToday,'nostock':nostock,'lowstock':lowstock,'expire':expire,'getSchedarrive':getSchedarrive,'getScheddone':getScheddone}
     return render(request,'veterinarian/vetDashboard.html', context) 
 
 def vetDashboard_one(request):
@@ -2058,6 +2080,7 @@ def vetDashboard_one(request):
     getProfile = StaffProfile.objects.get(useracc=user)
     slot = schedule_slot.objects.filter(vet=getProfile)
     getSchedToday = scheduling.objects.filter(status="Reserved",date=today)
+    getSchedToday_cancel = scheduling.objects.filter(slot__in=slot,date=today).exclude(status="Cancelled")
     getSched = scheduling.objects.filter(date=today).exclude(status="Reserved")
     getSchedarrive = scheduling.objects.filter(date=today,status="Arrived",slot__in=slot)
     getScheddone = scheduling.objects.filter(date=today,status="Done",slot__in=slot)
@@ -2067,8 +2090,8 @@ def vetDashboard_one(request):
     nostock = ProductInfo.objects.filter(status="No stock")
     lowstock = ProductInfo.objects.filter(status="Low in Stock")
     expire = Product.objects.filter(expireDate__lte=param)
-    context = { 'getProfile':getProfile,'getSched':getSched, 'sideb':'vetDashboard_one','getSchedToday':getSchedToday,'nostock':nostock,'lowstock':lowstock,'expire':expire,'getSchedarrive':getSchedarrive,'getScheddone':getScheddone}
-    return render(request,'veterinarian/vetDashboard.html', context) 
+    context = {'doneCount':doneCount,'arriveCount':arriveCount,'schedCount':schedCount,'getSchedToday_cancel':getSchedToday_cancel, 'getProfile':getProfile,'getSched':getSched, 'sideb':'vetDashboard_one','getSchedToday':getSchedToday,'nostock':nostock,'lowstock':lowstock,'expire':expire,'getSchedarrive':getSchedarrive,'getScheddone':getScheddone}
+    return render(request,'veterinarian/vetDashboard_one.html', context)  
 
 
 def done_pet(request,pk):
