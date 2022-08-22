@@ -1,4 +1,4 @@
-{% extends 'secretary\secretaryHome.html' %}
+{% extends 'secretary/secretaryHome.html' %}
 {% load static %}
 
 {% block content %}
@@ -246,7 +246,7 @@
 
     <div class="alert alert-danger alert-dismissible fade show " role="alert">
         <label class="error">
-            {{form.species.errors}}
+            {{message}}
         </label>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true" class="closebtn">&#10799;</span>
@@ -256,7 +256,7 @@
     {% endif %}
 
     {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-    <div class="alert  alert-success alert-dismissible fade show " role="alert">
+    <div class="alert alert-success alert-dismissible fade show " role="alert">
         <label class="success">
             {{message}}
         </label>
@@ -330,7 +330,7 @@
             <!-- TABLE DATA -->
 
 
-            {% for sched in all_sched %}
+            {% for sched in all_sched_del %}
             <tr class="table_data">
                 <td>{{sched.date}} </td>
 

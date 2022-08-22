@@ -1,4 +1,4 @@
-{% extends 'secretary\secretaryHome.html' %}
+{% extends 'secretary/secretaryHome.html' %}
 {% load static %}
 
 {% block content %}
@@ -147,14 +147,28 @@
 
 
     }
+
+    .error {
+        font-size: 13px;
+        color: red;
+    }
+
+    
+    .success {
+        font-size: 13px;
+        color: green;
+        width: 200px;
+
+    }
 </style>
 <!-- MESSAGES -->
+{% csrf_token %}
 {% if messages %}
 {% for message in messages %}
 {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
 
 <div class="alert alert-danger alert-dismissible fade show " role="alert">
-    <label class="error">
+    <label class="error" >
         {{message}}
 
     </label>
@@ -207,7 +221,9 @@
         <tr class="table_head">
             <th>Date</th>
             <th>Time</th>
+            <th>Pet and Owner</th>
             <th>Veterinarian</th>
+            
             <th colspan="2">Action</th>
         </tr>
         <!-- END TABLE HEAD -->
@@ -218,6 +234,7 @@
         <tr class="table_data">
             <td> {{sched.slot.date|date:"N d Y"}} </td>
             <td>{{sched.slot.timeIn|time:'h:i A'}} : {{sched.slot.timeOut|time:'h:i A'}} </td>
+            <td>{{sched.pet}}</td>
             <td>{{sched.slot.vet}}</td>
             <td><a href="{% url 'setarrived' sched.id %}" class="addUserBTN">Arrive</a> </td>
             <td><a href="{% url 'setdidnotarrived' sched.id %}" class="addUserBTN">Did Not Arrive</a> </td>
@@ -249,6 +266,7 @@
         <tr class="table_head">
             <th>Date</th>
             <th>Time</th>
+            <th>Pet and Owner</th>
             <th>Veterinarian</th>
 
         </tr>
@@ -260,6 +278,7 @@
         <tr class="table_data">
             <td> {{sched.slot.date|date:"N d Y"}} </td>
             <td>{{sched.slot.timeIn|time:'h:i A'}} : {{sched.slot.timeOut|time:'h:i A'}} </td>
+            <td>{{sched.pet}}</td>
             <td>{{sched.slot.vet}}</td>
 
         </tr>
@@ -292,6 +311,7 @@
         <tr class="table_head">
             <th>Date</th>
             <th>Time</th>
+            <th>Pet and Owner</th>
             <th>Veterinarian</th>
 
         </tr>
@@ -303,6 +323,7 @@
         <tr class="table_data">
             <td> {{sched.slot.date|date:"N d Y"}} </td>
             <td>{{sched.slot.timeIn|time:'h:i A'}} : {{sched.slot.timeOut|time:'h:i A'}} </td>
+            <td>{{sched.pet}}</td>
             <td>{{sched.slot.vet}}</td>
 
         </tr>
@@ -332,8 +353,10 @@
 
         <!-- TABLE HEAD -->
         <tr class="table_head">
+            
             <th>Date</th>
             <th>Time</th>
+            <th>Pet and Owner</th>
             <th>Veterinarian</th>
 
         </tr>
@@ -345,6 +368,7 @@
         <tr class="table_data">
             <td> {{sched.slot.date|date:"N d Y"}} </td>
             <td>{{sched.slot.timeIn|time:'h:i A'}} : {{sched.slot.timeOut|time:'h:i A'}} </td>
+            <td>{{sched.pet}}</td>
             <td>{{sched.slot.vet}}</td>
 
         </tr>

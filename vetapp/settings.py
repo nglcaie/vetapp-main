@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'vetapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'vetDB1',
+        'NAME': 'database_real',
         'USERNAME': 'root',
         'PASSWORD': '123456',
         'PORT': '3306',

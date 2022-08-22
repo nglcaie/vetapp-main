@@ -185,7 +185,7 @@
                 <div class="tablepanel-sched">
                     {%for sched in schedules %}
                     <div class="upa-sched"> {{sched.date}} {{sched.pet}} {{sched.slot.timeIn|time:'h:i A'}}
-                        {{sched.slot.timeOut|time:'h:i A'}} {{sched.slot.vet}}</div>
+                        {{sched.slot.timeOut|time:'h:i A'}} - Dr. {{sched.slot.vet}}</div>
                     {% endfor %}
 
 

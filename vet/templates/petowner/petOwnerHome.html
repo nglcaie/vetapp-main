@@ -9,7 +9,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <title>DAC Petowner</title>
+
+    <title>DAC | Pet Owner</title>
+    <link rel="icon" href="{% static 'image/paw.png' %}">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'css\bootstrap.min.css' %}">
     <!----===== Boxicons CSS ===== -->
@@ -19,7 +22,7 @@
     <!----JSscript---->
     <script defer src="{% static 'js\index.js' %}"></script>
 
-   <!--Optional JavaScript -->
+    <!--Optional JavaScript -->
     <!--jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{% static 'js/jquery-3.3.1.slim.min.js'  %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
@@ -28,7 +31,6 @@
 
 </head>
 <style>
-    
     .labell {
         font-family: 'Poppins';
         font-style: normal;
@@ -40,6 +42,11 @@
 
         color: #0F416F;
     }
+
+    .userinfo-table tr td {
+        font-size: 14px;
+    }
+
 
 
     .rounded-pfp {
@@ -110,26 +117,53 @@
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     }
+
+    @media only screen and (max-width:992px) {
+
+
+        .main-content .userinfo {
+            width: 100%;
+            height: auto;
+            padding-left: 0px;
+            padding-right: 0px;
+            padding-top: 100px;
+        }
+
+        .tablepanellz {
+            overflow-y: scroll;
+
+
+
+            width: 100%;
+            /**height: 170px;**/
+
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+        }
+
+
+
+    }
 </style>
 
 <body style="background-image: url('/static/image/background.png');background-size: cover;">
     <div class="body-overlay"></div>
-        {% include 'petowner/sidebar_petOwnerHome.html' %}
-        
+    {% include 'petowner/sidebar_petOwnerHome.html' %}
+
 
     <div class="wrapper">
 
-     
 
 
-     
+
+
         <!-- Page Content  -->
         <div id="content">
 
-            <div class="top-navbar"  style="height: 52px;">
+            <div class="top-navbar" style="height: 52px;">
                 <nav class="navbar navbar-expand-lg">
                     <div class="container-fluid">
-                        
+
 
                         <button class="d-inline-block d-lg-none ml-auto more-button" type="button"
                             data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -137,117 +171,119 @@
                             <span class="material-icons"><i class='bx bx-dots-vertical-rounded'></i></span>
                         </button>
 
-                        
+
                     </div>
                 </nav>
             </div>
-            
+
             <style>
-                .rounded-pfp{
-                    height:100px;
+                .rounded-pfp {
+                    height: 100px;
                     width: 100px;
                     border-radius: 100%;
                     border: 5px solid #0F416F;
                 }
-            </style> <!--bago toh-->
-            
+            </style>
+            <!--bago toh-->
+
             <div class="main-content">
-                 {% block content %}
+                {% block content %}
 
-                 <img src="media/{{getProfile.user_image}}" class="rounded-pfp"> <br>
+                <img src="media/{{getProfile.user_image}}" class="rounded-pfp"> <br>
 
-                 <div class="row userinfo tablepanellz">
- 
-                     <div class="col-lg-12 col-md-12 col-sm-12 ">
- 
-                         <table>
-                             <tr>
-                                 <td>
-                                     <p class="bodyheadd"> Hello, {{getProfile.firstName}}! <img
-                                             src="{% static 'image/paw.png' %}" width="30px;"
-                                             style="margin-bottom: 10px; margin-left: 10px;"> </p>
-                                 </td>
-                             </tr>
-                         </table>
- 
-                     </div>
- 
-                     <div class="col-lg-12 col-md-12 col-sm-12 " style="padding: 30px; padding-top: 0px; ">
- 
-                         <table class=" userinfo-table">
-                            
-                             <tr>
-                                 <td class="labell">
-                                     Name:
-                                 </td>
-                                 <td>
-                                     {{getProfile.firstName}} {{getProfile.lastName}}
-                                 </td>
-                             </tr>
- 
-                             <tr>
-                                 <td class="labell">
-                                     Email:
-                                 </td>
-                                 <td>
-                                     {{getProfile.useracc}}
-                                 </td>
-                             </tr>
- 
-                             <tr>
-                                 <td class="labell">
-                                     Gender:
-                                 </td>
-                                 <td>
-                                     {{getProfile.gender}}
-                                 </td>
- 
-                             </tr>
-                             <tr>
-                                 <td class="labell">
-                                     Contact:
-                                 </td>
-                                 <td>
-                                     {{getProfile.contactNum}}
-                                 </td>
- 
-                             </tr>
-                             <tr>
-                                 <td class="labell">
-                                     Address:
-                                 </td>
-                                 <td>
-                                     {{getProfile.address}}
-                                 </td>
-                             </tr>
- 
- 
- 
-                         </table>
- 
- 
-                     </div>
- 
- 
- 
-                 </div>
-                 <div class="row">
- 
-                     <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: right; padding-right: 30px;"> <br>
+                <div class="row userinfo tablepanellz">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 ">
+
+                        <table>
+                            <tr>
+                                <td>
+                                    <p class="bodyheadd"> Hello, {{getProfile.firstName}}! <img
+                                            src="{% static 'image/paw.png' %}" width="30px;"
+                                            style="margin-bottom: 10px; margin-left: 10px;"> </p>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 " style="padding: 30px; padding-top: 0px; ">
+
+                        <table class=" userinfo-table">
+
+                            <tr>
+                                <td class="labell">
+                                    Name:
+                                </td>
+                                <td>
+                                    {{getProfile.firstName}} {{getProfile.lastName}}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="labell">
+                                    Email:
+                                </td>
+                                <td>
+                                    {{getProfile.useracc}}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="labell">
+                                    Gender:
+                                </td>
+                                <td>
+                                    {{getProfile.gender}}
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="labell">
+                                    Contact:
+                                </td>
+                                <td>
+                                    {{getProfile.contactNum}}
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="labell">
+                                    Address:
+                                </td>
+                                <td>
+                                    {{getProfile.address}}
+                                </td>
+                            </tr>
+
+
+
+                        </table>
+
+
+                    </div>
+
+
+
+                </div>
+                <div class="row">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: right;"> <br>
                         <a href="{% url 'OwnerChangePass' %}" class="createBTNn">Change Password</a>
-                        <a href="{% url 'edit_owner_profile' getProfile.id %}" class="createBTNn">Edit Profile</a></div>
-                 </div>
-           
-                
- <br><br>
+                        <a href="{% url 'edit_owner_profile' getProfile.id %}" class="createBTNn">Edit Profile</a>
+                    </div>
+                </div>
 
-              
-               
 
-               
+                <br><br>
+
+
+
+
+
                 {% endblock %}
 
-            
+
             </div>
 
         </div>
@@ -258,7 +294,7 @@
 
 
 
- 
+
 
 
 

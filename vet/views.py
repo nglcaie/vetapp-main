@@ -65,7 +65,6 @@ def forgot_pass_3(request):
     return render(request,'forgot_pass_3.html')
 
 def loginPage(request):
-    
     if request.user.is_authenticated and request.user.is_admin:
         return redirect('admin/')
     elif request.user.is_authenticated and request.user.is_headveterinarian:
@@ -114,7 +113,7 @@ def loginPage(request):
 
 
 def OwnerChangePass(request):
-   
+    context={}
     if (request.method=='POST'):
         form = PasswordChangeForm(request.user,request.POST)
         if form.is_valid():
@@ -145,10 +144,12 @@ def SecChangePass(request):
             pass
     else:
         form = PasswordChangeForm(request.user)
-    return render(request,'secretary/change_pass.html',{'form':form})
+
+    context={'sideb':'SecChangePass','form':form}
+    return render(request,'secretary/change_pass.html',context)
 
 def headvetChangePass(request):
-  
+    context={}
     if (request.method=='POST'):
         form = PasswordChangeForm(request.user,request.POST)
         if form.is_valid():
@@ -166,7 +167,7 @@ def headvetChangePass(request):
     return render(request,'headveterinarian/change_pass.html', context)
 
 def vetChangePass(request):
-    
+    context={}
     if (request.method=='POST'):
         form = PasswordChangeForm(request.user,request.POST)
         if form.is_valid():
@@ -2707,7 +2708,7 @@ def products(request):
             item.save()
     searchthis_query = request.GET.get('searchthis')
     if searchthis_query != " " and searchthis_query is not None:
-         displayproducts = ProductInfo.objects.filter(Q(product_name__icontains=searchthis_query) | Q(product_type__prodType__icontains=searchthis_query)).distinct()
+         displayproducts = ProductInfo.objects.filter(Q(product_name__icontains=searchthis_query) | Q(product_type__prodType__icontains=searchthis_query) | Q(description__icontains=searchthis_query)).distinct()
     context={'sideb': 'products', 'displayproducts':displayproducts}
     return render(request, 'secretary/products/products.html', context)
 
@@ -3406,7 +3407,7 @@ def chargeslipView(request,pk):
             return HttpResponse('We had some errors <pre>' + html + '</pre>')
         return response
     context={'sideb' : 'chargeslip_view','all_chargeslip':all_chargeslip,'chargeslip':charge_in,'servicequery':servicequery,'productquery':productquery,'all_service_total':all_service_total,'all_prod_total':all_prod_total,'transact': transact}
-    return render(request,'secretary/transaction/chargeslipView.html',context) 
+    return render(request,'secretary/transaction/chargeSlipView.html',context) 
 
 def transact_payment(request,pk):
     id = request.user.id
@@ -3599,10 +3600,11 @@ def sec_modify_outside(request,pk,pk2):
         context['chargeslip'] = charge_in
         return render(request,'secretary/transaction/product_chargeslip.html',context) 
 
-
 def set_appointment_slot(request):
     context = {'sideb': 'scheduling_slot'}
+    
     all_sched = schedule_slot.objects.all()
+    all_sched_del = schedule_slot.objects.filter(is_deleted=False)
     today = date.today()
     form = Schedule_Slot(request.POST)
     if request.method == "POST":
@@ -3633,7 +3635,7 @@ def set_appointment_slot(request):
                 messages.error(request,'Invalid Date of Schedule')         
                 return redirect('scheduling_slot')      
             elif limit != limits:
-                messages.error(request,'Time must only be 30 minutes')         
+                messages.error(request,"Time must only be 30 minutes")         
                 return redirect('scheduling_slot')    
             else:
                 if formatdate == "Sunday" and float(inputIn[0]) < 9:
@@ -3665,12 +3667,14 @@ def set_appointment_slot(request):
         form = Schedule_Slot()
         context['form'] = form
         context['all_sched'] = all_sched
+        context['all_sched_del'] = all_sched_del
     return render(request,'secretary/schedule/schedule_slot.html',context) 
 
 
 def edit_set_appointment_slot(request,pk):
     context = {}
     today = date.today()
+    all_sched_del = schedule_slot.objects.filter(is_deleted=False)
     sched = schedule_slot.objects.get(id=pk)
     all_sched = schedule_slot.objects.all()
     form = Schedule_Slot(request.POST,instance=sched)
@@ -3712,7 +3716,7 @@ def edit_set_appointment_slot(request,pk):
                     messages.error(request,'Time should not be earlier that Opening Hour')
                     return redirect('scheduling_slot')
                 elif formatdate == "Sunday" and float(inputIn[0]) > 12:
-                    messages.error(request,'Time should not be later than Closing Hours')
+                    messages.error(request,'Time should not be earlier that Closing Hour')
                     return redirect('scheduling_slot') 
                 else:
                     if schedule_slot.objects.filter(date=dates,timeIn = timeIn,vet=vet).exclude(id=pk).exists():
@@ -3728,7 +3732,7 @@ def edit_set_appointment_slot(request,pk):
                         x.code = codes
                         x.save()
                         context['form'] = form
-                        messages.success(request,'Slot Created')         
+                        messages.success(request,'Slot has been successfully updated!')         
                         return redirect('scheduling_slot') 
         else:
             context['form'] = form
@@ -3736,6 +3740,7 @@ def edit_set_appointment_slot(request,pk):
         form = Schedule_Slot(instance=sched)
         context['form'] = form
         context['all_sched'] = all_sched
+        context['all_sched_del'] = all_sched_del
     return render(request,'secretary/schedule/schedule_slot.html',context) 
 
 def delete_scheduling_slot(request,pk):
@@ -3772,39 +3777,35 @@ def choose_pet(request):
 def schedulings(request,pk):
     user = request.user
     pet = pets.objects.get(id=pk)
+    today = date.today()
     form = SchedulingForm(initial={'pet': pet})
     if request.method == 'POST':
         form = SchedulingForm(request.POST,initial={'pet': pet})
         if form.is_valid():
             get_pet = form.cleaned_data.get('pet')
             print(get_pet)
-            date = form.cleaned_data.get('date')
+            dates = form.cleaned_data.get('date')
             print(date)
             slot = form.cleaned_data.get('slot')
             print(slot)
-            form.save()
-            reserve = schedule_slot.objects.get(id=slot.id)
-            reserve.is_reserved = 1
-            reserve.save()
-            subject = 'Dagupan Animal Clinic Appointment'
-            formatDate = date.strftime("%d-%b-%y")
-            message = 'You have successfully reserved an appointment on' +  formatDate + '-' + str(reserve.timeIn) + '-' + str(reserve.timeOut) + ".Please come on time." 
-            recipient = user
-            send_mail(subject, message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
-            messages.success(request,"Appointment is successfully reserved")
-            return redirect('choose_pet')
+            if dates < today:
+                messages.error(request,"Schedule Date is invalid, date must not be earlier than today!")
+                return redirect('choose_pet')
+            else:
+                form.save()
+                reserve = schedule_slot.objects.get(id=slot.id)
+                reserve.is_reserved = 1
+                reserve.save()
+                subject = 'Dagupan Animal Clinic Appointment'
+                formatDate = dates.strftime("%d-%b-%y")
+                message = 'You have successfully reserved an appointment on' +  formatDate + '-' + str(reserve.timeIn) + '-' + str(reserve.timeOut) + ".Please come on time." 
+                recipient = user
+                send_mail(subject, message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
+                messages.success(request,"Appointment is successfully reserved")
+                return redirect('choose_pet')
         else:
-            get_pet = form.cleaned_data.get('pet')
-            print(get_pet)
-            date = form.cleaned_data.get('date')
-            print(date)
-            slot = form.cleaned_data.get('slot')
-            print(slot)
             form = SchedulingForm(request.POST,initial={'pet': pet})
             print('heloo')
-
-        
-
     context ={'sideb':'scheduling','form':form,'pet':pet}
     return render(request,'petowner/scheduling.html',context)
 
@@ -3903,7 +3904,7 @@ def didnotarrived(request,pk):
             a.is_restricted = True
             a.save()
             subject = 'Dagupan Animal Clinic Restriction'
-            message = "You can no longer set an appointment for the mean time. Please contact the clinic for further information"
+            message = "You can no longer set an appointment for the mean time. Please contact the clinic for further information. Res Tel. Nos: 703-7067 / 255-5953 / 703-5519, Clinic Nos. 0927-113-9135 or 0933-823-9772" 
             recipient = getProf.useracc.email
             send_mail(subject, message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
         else:
@@ -3911,6 +3912,7 @@ def didnotarrived(request,pk):
     else:
         flag = flagsystem(petOwner=getProf,flagpoints = 1) 
         flag.save()
+        
     context = {'getSched':getSched}
     return redirect('sec_upcoming_app')
 
@@ -6576,9 +6578,6 @@ def head_more_product_reports(request):
     context['services'] = services
     context['use'] = use
     return render(request, 'headveterinarian/reports/product_reports.html', context)
-
-
-
 
 
 def client_reports(request):

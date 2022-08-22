@@ -1,4 +1,4 @@
-{% extends 'secretary\secretaryHome.html' %}
+{% extends 'secretary/secretaryHome.html' %}
 {% load static %}
 
 {% block content %}
@@ -219,7 +219,10 @@
         <tr class="table_data">
             <td> {{prof.petOwner}} </td>
             {%if prof.is_restricted == 1 %}
-            <a href="{% url 'unsrestrict' prof.id %}" class="addUserBTN">Unrestrict</a>
+            <td>
+                   <a href="{% url 'unsrestrict' prof.id %}" class="addUserBTN">Unrestrict</a>
+            </td>
+         
             {% else %}
             {% endif %}
         </tr>

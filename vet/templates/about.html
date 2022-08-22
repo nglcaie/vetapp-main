@@ -10,11 +10,15 @@
 
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=5" />
 
-  <title>Landing Page</title>
+
+  <title>DAC | About</title>
+  <link rel="icon" href="{% static 'image/paw.png' %}">
+
+
 
   <!--  CSS -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,700">
- 
+
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -23,12 +27,12 @@
 
   <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <link rel="stylesheet"href="{% static 'css/header-2.css' %}">
+  <link rel="stylesheet" href="{% static 'css/header-1.css' %}">
 
 
-      <!----===== Boxicons CSS ===== -->
-      <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-</head>
+  <!----===== Boxicons CSS ===== -->
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+</head>>
 <style>
   .about-banner {
     margin-top: 100px;
@@ -82,25 +86,26 @@
 
   <div id="Frame" class="Frame">
 
-        <!-- Header Start -->
-        <header class="site-header">
-          <div class="wrapper site-header__wrapper">
-            <a href="#" class="brand"><img src="{% static 'image/logo.png' %}" height="50px"></a>
-            <nav class="nav">
-              <button class="nav__toggle" aria-expanded="false" type="button">
-                <i class='bx bx-menu' style="color: #fff; font-size: 30px;"></i>
-              </button>
-              <ul class="nav__wrapper">
-                <li class="nav__item x"><a href="{% url 'index' %}">Home</a></li>
-                <li class="nav__item x"><a href="{% url 'aboutUs' %}">About</a></li>
-                <li class="nav__item x"><a  href="{% url 'services' %}">Services</a></li>
-                <li class="nav__item x"><a href="{% url 'contact_us' %}">Contacts</a></li>
-                <li class="nav__item" ><a href="{% url 'login' %}"> <button class="button" type="button">Log in</button></a></li>
-              </ul>
-            </nav>
-          </div>
-        </header>
-        <!-- Header End -->
+    <!-- Header Start -->
+    <header class="site-header">
+      <div class="wrapper site-header__wrapper">
+        <a href="#" class="brand"><img src="{% static 'image/logo.png' %}" height="50px"></a>
+        <nav class="nav">
+          <button class="nav__toggle" aria-expanded="false" type="button">
+            <i class='bx bx-menu' style="color: #fff; font-size: 30px;"></i>
+          </button>
+          <ul class="nav__wrapper">
+            <li class="nav__item x"><a href="{% url 'index' %}">Home</a></li>
+            <li class="nav__item x"><a href="{% url 'aboutUs' %}">About</a></li>
+            <li class="nav__item x"><a href="{% url 'services' %}">Services</a></li>
+            <li class="nav__item x"><a href="{% url 'contact_us' %}">Contacts</a></li>
+            <li class="nav__item"><a href="{% url 'login' %}"> <button class="button" type="button">Log in</button></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- Header End -->
 
 
 
@@ -109,28 +114,29 @@
     <div class="content row">
       <div class="col-lg-12 col-md-12 col-sm-12">
 
-            <!--INPUT YOUR CSS CODES HERE-->
-      <div class="about-banner">
-        <span class="about-banner"> About Us </span><br><br>
-        <p class="lorem-ipsum"> Dagupan Veterinary Clinic is a privately owned
-          company that started in 1989.<br> In 2007, the clinic was renamed Dagupan Animal Clinic.
-          Small animal companions <br>such as hamsters, rabbits, and some exotic animals are among<br>
-          the company's expertise.</p>
+        <!--INPUT YOUR CSS CODES HERE-->
+        <div class="about-banner">
+          <span class="about-banner"> About Us </span><br><br>
+          <p class="lorem-ipsum"> Dagupan Veterinary Clinic is a privately owned
+            company that started in 1989.<br> In 2007, the clinic was renamed Dagupan Animal Clinic.
+            Small animal companions <br>such as hamsters, rabbits, and some exotic animals are among<br>
+            the company's expertise.</p>
 
 
 
-        <a href="{% url 'services' %}"><button class="know-our-services-BTN" type="button">Know our Services</button></a>
+          <a href="{% url 'services' %}"><button class="know-our-services-BTN" type="button">Know our
+              Services</button></a>
+        </div>
       </div>
-      </div>
 
-  
+
 
 
     </div>
 
 
     <div>
-      <br> <br> 
+      <br> <br>
       <img src="{% static 'image/wave.png' %}" width="100%">
     </div>
 

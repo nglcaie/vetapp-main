@@ -447,6 +447,9 @@ class scheduling(models.Model):
     class Meta:
         verbose_name_plural = "Scheduling"
 
+    def __str__(self):
+        return f"{self.slot}"
+
 
 class flagsystem(models.Model):
     petOwner=models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='Pet Owner')
@@ -455,3 +458,6 @@ class flagsystem(models.Model):
 
     class Meta:
         verbose_name_plural = "Restriction for Scheduling"
+
+    def __str__(self):
+        return f"{self.petOwner}"
