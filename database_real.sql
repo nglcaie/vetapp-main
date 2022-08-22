@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 22, 2022 at 12:42 PM
+-- Generation Time: Aug 22, 2022 at 12:45 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.4
 
@@ -258,7 +258,14 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 (59, '2022-08-22 10:40:40.564910', '5', 'secretary@gmail.com', 2, '[{\"changed\": {\"fields\": [\"password\"]}}]', 6, 1),
 (60, '2022-08-22 10:41:12.017329', '10', 'awllabore@gmail.com', 1, '[{\"added\": {}}]', 6, 1),
 (61, '2022-08-22 10:41:19.142637', '10', 'awllabore@gmail.com', 2, '[{\"changed\": {\"fields\": [\"Is used\"]}}]', 6, 1),
-(62, '2022-08-22 10:41:52.029692', '4', 'Beatrize Balderama', 1, '[{\"added\": {}}]', 14, 1);
+(62, '2022-08-22 10:41:52.029692', '4', 'Beatrize Balderama', 1, '[{\"added\": {}}]', 14, 1),
+(63, '2022-08-22 10:44:18.506146', '2', 'javiersofia.as@gmail.com', 2, '[{\"changed\": {\"fields\": [\"password\"]}}]', 6, 1),
+(64, '2022-08-22 10:44:36.397569', '3', 'pejenriquez@gmail.com', 2, '[{\"changed\": {\"fields\": [\"password\"]}}]', 6, 1),
+(65, '2022-08-22 10:44:41.534246', '4', 'antjav14@gmail.com', 2, '[{\"changed\": {\"fields\": [\"password\"]}}]', 6, 1),
+(66, '2022-08-22 10:44:48.031839', '6', 'docdave@gmail.com', 2, '[{\"changed\": {\"fields\": [\"password\"]}}]', 6, 1),
+(67, '2022-08-22 10:44:54.176469', '7', 'nathcruz@gmail.com', 2, '[{\"changed\": {\"fields\": [\"password\"]}}]', 6, 1),
+(68, '2022-08-22 10:45:00.665448', '8', 'jethver@gmail.com', 2, '[{\"changed\": {\"fields\": [\"password\"]}}]', 6, 1),
+(69, '2022-08-22 10:45:06.436868', '9', 'alicemedina@gmail.com', 2, '[{\"changed\": {\"fields\": [\"password\"]}}]', 6, 1);
 
 -- --------------------------------------------------------
 
@@ -389,8 +396,8 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('qx1olq8nbhzjeuxbjwhl2gppfqjtrnbt', '.eJxVjMsOwiAQRf-FtSFAeUxduvcbyDCMUjWQlHZl_HdD0oVu7znnvkXEfStx77zGJYuz0OL0uyWkJ9cB8gPrvUlqdVuXJIciD9rltWV-XQ7376BgL6P2TpOiZMwMGsG52RCbYBkAkqGAymbtyXqbppsmqwJzDqwCODYKJvH5As8_N0Q:1oQ2We:dXGhmYr_2IhvcfW-z3cUG6IHC8dMgm1OHbAZQvT98Bg', '2022-09-05 08:11:12.839351'),
-('x1fhf14gfvbtijjkskk5387q5y1x22e5', '.eJxVjMsOwiAQRf-FtSFAeUxduvcbyDCMUjWQlHZl_HdD0oVu7znnvkXEfStx77zGJYuz0OL0uyWkJ9cB8gPrvUlqdVuXJIciD9rltWV-XQ7376BgL6P2TpOiZMwMGsG52RCbYBkAkqGAymbtyXqbppsmqwJzDqwCODYKJvH5As8_N0Q:1oQ4rI:HgaweomVKK3bOXWREPp86hki3ucwlyxQTTbhU3WmiII', '2022-09-05 10:40:40.574945');
+('37osswioqj7duraqyg7tgq3un4s6q2d8', '.eJxVjMsOwiAQRf-FtSFAeUxduvcbyDCMUjWQlHZl_HdD0oVu7znnvkXEfStx77zGJYuz0OL0uyWkJ9cB8gPrvUlqdVuXJIciD9rltWV-XQ7376BgL6P2TpOiZMwMGsG52RCbYBkAkqGAymbtyXqbppsmqwJzDqwCODYKJvH5As8_N0Q:1oQ4va:G2Xe_cNqisqL-9W7LEb_2UCeHy8iQG3tROZGHq2UmSw', '2022-09-05 10:45:06.447569'),
+('qx1olq8nbhzjeuxbjwhl2gppfqjtrnbt', '.eJxVjMsOwiAQRf-FtSFAeUxduvcbyDCMUjWQlHZl_HdD0oVu7znnvkXEfStx77zGJYuz0OL0uyWkJ9cB8gPrvUlqdVuXJIciD9rltWV-XQ7376BgL6P2TpOiZMwMGsG52RCbYBkAkqGAymbtyXqbppsmqwJzDqwCODYKJvH5As8_N0Q:1oQ2We:dXGhmYr_2IhvcfW-z3cUG6IHC8dMgm1OHbAZQvT98Bg', '2022-09-05 08:11:12.839351');
 
 -- --------------------------------------------------------
 
@@ -1003,14 +1010,14 @@ CREATE TABLE `vet_user` (
 
 INSERT INTO `vet_user` (`id`, `password`, `email`, `date_joined`, `last_login`, `is_admin`, `is_active`, `date_of_inactive`, `is_used`, `is_secretary`, `is_headveterinarian`, `is_veterinarian`, `is_petowner`) VALUES
 (1, 'pbkdf2_sha256$320000$EnzfRpAoD5hdo02iPpz70j$lTTPBzhH2MkfIonbRldRiLpfjJDqMXlQK0XP5/jaFaE=', 'admin@gmail.com', '2022-08-22 07:14:11.892946', '2022-08-22 10:38:21.924036', 1, 1, NULL, 0, 0, 0, 0, 0),
-(2, 'pbkdf2_sha256$320000$eWiK65Qxm7jSktMkTkmyK1$qH7/XE8n9wY/VqWoOWUQbMhuW+ijG0/c2Lfu5BLd8RA=', 'javiersofia.as@gmail.com', '2022-08-22 07:17:30.768354', '2022-08-22 08:19:06.335479', 0, 1, NULL, 1, 0, 0, 0, 1),
-(3, 'pbkdf2_sha256$320000$tuQ3kiN6J06qEcI4M1KkOd$JqspsUD37FL1nKukWAOmTDGTminwnfBWKikV7tEKKRM=', 'pejenriquez@gmail.com', '2022-08-22 07:18:09.396228', '2022-08-22 08:18:43.046526', 0, 1, NULL, 1, 0, 0, 0, 1),
-(4, 'pbkdf2_sha256$320000$mBsMzFUBr4nBNL7BR6hAbD$ZyA8H36QgG8ME/xoYg2WaZFwktYo7QdH7Iu3ftwkICo=', 'antjav14@gmail.com', '2022-08-22 07:19:07.507135', '2022-08-22 08:13:34.069715', 0, 1, NULL, 1, 0, 0, 0, 1),
+(2, 'pbkdf2_sha256$320000$DCF1Yf5BH4wn15RhpXcr1C$Nv7zQuBsvJgFZlCFXbP+fwIpAFLNrvyYvExZIcHqd3c=', 'javiersofia.as@gmail.com', '2022-08-22 07:17:30.768354', '2022-08-22 08:19:06.335479', 0, 1, NULL, 1, 0, 0, 0, 1),
+(3, 'pbkdf2_sha256$320000$hqoMRdUnUyHaGOfgx5EmW4$32MSfpqATwicWrkHtgrW5uK0KPYp1WzM2sSml/hbnY0=', 'pejenriquez@gmail.com', '2022-08-22 07:18:09.396228', '2022-08-22 08:18:43.046526', 0, 1, NULL, 1, 0, 0, 0, 1),
+(4, 'pbkdf2_sha256$320000$cwPKEsMl2dzBrHM7bTkgdZ$dI/47No4uvj2irFv5PLWvYD5wuY/YdNhw/dTwAA6ZZ0=', 'antjav14@gmail.com', '2022-08-22 07:19:07.507135', '2022-08-22 08:13:34.069715', 0, 1, NULL, 1, 0, 0, 0, 1),
 (5, 'pbkdf2_sha256$320000$kDGQGFDUWoeqdj14jmgAcv$UpFKltfyk/q51JAx7gvBfrOYdVm2n0c4GcwnOHCcUTs=', 'secretary@gmail.com', '2022-08-22 07:19:55.441455', '2022-08-22 10:37:25.820249', 0, 1, NULL, 1, 1, 0, 0, 0),
-(6, 'pbkdf2_sha256$320000$Cd62gllLqBLo6SgwYL3XbW$5RXNqOu6S9iugCmiozsk3WTBmnpr2xHNa8Ll43Cf+Rc=', 'docdave@gmail.com', '2022-08-22 07:20:24.373620', '2022-08-22 08:11:27.414533', 0, 1, NULL, 1, 0, 1, 0, 0),
-(7, 'pbkdf2_sha256$320000$Od2EWnqMfCqjykTKlKt61y$z9tYDLjfsWH1wUzzxzLZ2c8r2h3LOkhn/N087OJ69Pc=', 'nathcruz@gmail.com', '2022-08-22 07:21:04.299004', NULL, 0, 1, NULL, 1, 0, 0, 1, 0),
-(8, 'pbkdf2_sha256$320000$8nouRjDpoBhF8XSAIasOjg$nHykVhgpaVCImuYyJvaTZi6loRxId5kffXjbE91GtAw=', 'jethver@gmail.com', '2022-08-22 07:21:31.828252', NULL, 0, 1, NULL, 1, 0, 0, 1, 0),
-(9, 'pbkdf2_sha256$320000$Rpf9A94fMykhD3RVWR75Tf$SVs4IhWzuj4TtCdFwV1ZC/LCLyL0g0GntTKq20/gfTw=', 'alicemedina@gmail.com', '2022-08-22 07:22:07.347211', NULL, 0, 1, NULL, 1, 0, 0, 1, 0),
+(6, 'pbkdf2_sha256$320000$909daG3tOtY9KkFAwqi0F7$r5aYEs7gjGv5fcHUUHiGSCeTb6Mfg5RyVBHC4h2e8vE=', 'docdave@gmail.com', '2022-08-22 07:20:24.373620', '2022-08-22 08:11:27.414533', 0, 1, NULL, 1, 0, 1, 0, 0),
+(7, 'pbkdf2_sha256$320000$JgLNhb75qSsdkR2SjbMHiv$UQGH0T7VY5bL5v/kgbj1e2ZWzyTf7a6A/fQD0XHd+oA=', 'nathcruz@gmail.com', '2022-08-22 07:21:04.299004', NULL, 0, 1, NULL, 1, 0, 0, 1, 0),
+(8, 'pbkdf2_sha256$320000$vkJAv4yCY9zn2cb5EoowLk$KIqnRxwOwR4UTHNOstqp5fdZRlfPxcysnFTznjkppzA=', 'jethver@gmail.com', '2022-08-22 07:21:31.828252', NULL, 0, 1, NULL, 1, 0, 0, 1, 0),
+(9, 'pbkdf2_sha256$320000$CM2jk3RayibnORsogNeWvb$k8SPEr8NrTwsyMvT2YVNUWRg4WXi0HJmk8rriMNliVw=', 'alicemedina@gmail.com', '2022-08-22 07:22:07.347211', NULL, 0, 1, NULL, 1, 0, 0, 1, 0),
 (10, 'pbkdf2_sha256$320000$gxZCoxlnRzqF22BLrsSyN8$9t+5aTPvTA7tbStqDD+jn2WYccrXdNUyQielOTMY6yE=', 'awllabore@gmail.com', '2022-08-22 10:41:12.016325', NULL, 0, 1, NULL, 1, 0, 0, 0, 1);
 
 -- --------------------------------------------------------
@@ -1323,7 +1330,7 @@ ALTER TABLE `auth_permission`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
