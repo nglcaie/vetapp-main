@@ -294,6 +294,13 @@ urlpatterns = [
     path('more_transaction_reports/', views.more_transaction_reports, name='more_transaction_reports'), 
     path('all_products_reports/', views.all_products_reports, name='all_products_reports'), 
     re_path(r'^single_product_reports/(?P<pk>[a-zA-Z0-9]+$)', views.single_product_reports, name='single_product_reports'),
+    path('client_reports/', views.client_reports, name='client_reports'),
+    path('client_report/', views.client_report, name='client_report'),
+    path('today_client_reports/', views.today_client_reports, name='today_client_reports'),
+    path('last_seven_client_reports/', views.seven_client_reports, name='last_seven_client_reports'),
+    path('last_thirty_client_reports/', views.last_thirty_client_reports, name='last_thirty_client_reports'),
+    path('a_year_ago_client_reports/', views.a_year_ago_client_reports, name='a_year_ago_client_reports'),
+    path('more_client_reports/', views.more_client_reports, name='more_client_reports'),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

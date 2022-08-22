@@ -6576,3 +6576,190 @@ def head_more_product_reports(request):
     context['services'] = services
     context['use'] = use
     return render(request, 'headveterinarian/reports/product_reports.html', context)
+
+
+
+
+
+def client_reports(request):
+    context={}
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    all_chargeslip = MedicalHistory.objects.filter(is_deleted=False)
+    if request.method == 'POST':
+        if request.POST['filter'] == "Range":
+            a = request.POST.get('a')
+            b = request.POST.get('b')
+            services = MedicalHistory.objects.filter(is_deleted=False,date__gte=a,date__lte=b)
+            context['services'] = services
+            context['user'] = user
+            context['today'] = today
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] =  'filename="Client_Report.pdf"'
+            # find the template and render it.
+            template = get_template('for_render_pdf/client.html')
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            # if error then show some funny view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+
+    context={'sideb':'client_reports','all_chargeslip':all_chargeslip,'use':use}
+    return render(request,'secretary/reports/client_reports.html',context) 
+ 
+
+def client_report(request):
+    context={}
+    #lte,lt,gte,gt
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    services = MedicalHistory.objects.filter(is_deleted=False)
+    context['services'] = services
+    context['user'] = user
+    context['today'] = today
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] =  'filename="Client_Report.pdf"'
+    # find the template and render it.
+    template = get_template('for_render_pdf/client.html')
+    html = template.render(context)
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+    html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+def today_client_reports(request):
+    context={}
+    #lte,lt,gte,gt
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    services = MedicalHistory.objects.filter(date=today)
+    total = 0
+    tender = 0
+    change = 0
+    for serve in services:
+        vars = serve.grandTotal + total
+        vars2 = serve.tenderedAmount + tender
+        var3 = serve.changeAmount + change
+        tender = vars2
+        total = vars
+        change=var3
+    context['services'] = services
+    context['user'] = user
+    context['today'] = today
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] =  'filename="Client_Report.pdf"'
+    # find the template and render it.
+    template = get_template('for_render_pdf/client.html')
+    html = template.render(context)
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+    html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+def seven_client_reports(request):
+    context={}
+    #lte,lt,gte,gt
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    last_seven = date.today() - timedelta(7)
+    services = MedicalHistory.objects.filter(date__gte=last_seven)
+    context['services'] = services
+    context['user'] = user
+    context['today'] = today
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] =  'filename="Client_Report.pdf"'
+    # find the template and render it.
+    template = get_template('for_render_pdf/client.html')
+    html = template.render(context)
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+    html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+def last_thirty_client_reports(request):
+    context={}
+    #lte,lt,gte,gt
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    last_thirty = date.today() - timedelta(30)
+    services = MedicalHistory.objects.filter(date__gte=last_thirty)
+    context['services'] = services
+    context['user'] = user
+    context['today'] = today
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] =  'filename="Client_Report.pdf"'
+    # find the template and render it.
+    template = get_template('for_render_pdf/client.html')
+    html = template.render(context)
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+    html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+def a_year_ago_client_reports(request):
+    context={}
+    #lte,lt,gte,gt
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    a_year_ago = date.today() - timedelta(365)
+    services = MedicalHistory.objects.filter(date__gte=a_year_ago)
+    context['services'] = services
+    context['user'] = user
+    context['today'] = today
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] =  'filename="Client_Report.pdf"'
+    # find the template and render it.
+    template = get_template('for_render_pdf/client.html')
+    html = template.render(context)
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+    html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+def more_client_reports(request):
+    context={}
+    #lte,lt,gte,gt
+    use = request.user.id
+    user = StaffProfile.objects.get(useracc=use)
+    today = date.today()
+    a_year_ago = date.today() - timedelta(365)
+    services = MedicalHistory.objects.filter(date__lte=a_year_ago)
+    context['services'] = services
+    context['user'] = user
+    context['today'] = today
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] =  'filename="Client_Report.pdf"'
+    # find the template and render it.
+    template = get_template('for_render_pdf/client.html')
+    html = template.render(context)
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+    html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
